@@ -17,9 +17,10 @@ obj/
 *.DS_Store
 Thumbs.db
 
-# Uygulama ayar dosyaları (Hassas bilgiler içerir)
+# ASP.NET ve diğer frameworklere özgü hassas dosyalar
 appsettings.json
 appsettings.Development.json
+secrets.json
 
 # Geçici dosyalar
 *.tmp
@@ -28,6 +29,7 @@ appsettings.Development.json
 
 # Paket yöneticisi klasörleri
 node_modules/
+vendor/
 wwwroot/lib/
 wwwroot/uploads/
 wwwroot/img/
@@ -43,4 +45,11 @@ publish/
 .ReSharper
 *.resharper
 .vs/
+
+# PHP yapılandırma dosyaları
+*.env
+.env.local
+.env.*.php
+config.php
+database.php
 
