@@ -2,7 +2,160 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
+@section Styles {
+    <style>
+        .bg-mavi {
+            background-color: #00aaff;
+            color: white;
+        }
 
+        .ana {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .inline-box {
+            flex: 0 0 auto;
+        }
+
+        .alan1 {
+            width: 33%;
+            min-height: 800px;
+            background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
+        }
+
+        .alan2 {
+            width: 33%;
+            min-height: 800px;
+            background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
+        }
+
+        .alan3 {
+            width: 33%;
+            min-height: 800px;
+            background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
+        }
+
+        .fixed-width-card {
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .küçük-resim {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .küçük-resim:hover {
+            transform: scale(1.1);
+            border: 2px solid #00aaff;
+        }
+
+        .line-separator {
+            border-bottom: 1px solid #e0e0e0;
+            margin: 10px 0;
+        }
+
+        /* Genel stil */
+        .button-panel {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button:hover {
+            transform: scale(1.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Telefon rengi */
+        .phone {
+            background-color: #25d366;
+            /* WhatsApp yeşili */
+        }
+
+        .phone:hover {
+            background-color: #128c7e;
+        }
+
+        /* WhatsApp rengi */
+        .whatsapp {
+            background-color: #25d366;
+        }
+
+        .whatsapp:hover {
+            background-color: #128c7e;
+        }
+
+        /* Instagram rengi */
+        .instagram {
+            background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
+        }
+
+        .instagram:hover {
+            background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
+            filter: brightness(1.2);
+        }
+
+        /* Paylaş butonu */
+        .share {
+            background-color: #007bff;
+            /* Mavi renk */
+        }
+
+        .share:hover {
+            background-color: #0056b3;
+        }
+
+        /* Masaüstü görünüm için 707px üzeri */
+        @@media (min-width: 707px) {
+            .alan1, .alan2, .alan3 {
+                width: 33%;
+            }
+        }
+
+        /* Mobil cihazlar için düzen (707px ve altı) */
+        @@media (max-width: 600px) {
+            .ana {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .inline-box {
+                width: 100%;
+            }
+
+            .alan1 {
+                min-height: auto;
+            }
+
+            .alan3 {
+                min-height: auto;
+            }
+        }
+    </style>
+
+}
 <div class="ana">
 
     <!-- Alan 1 -->
@@ -46,7 +199,7 @@
         </div>
     </div>
 
-    <!-- Alan 2 -->
+        <!-- Alan 2 -->
     <div class="inline-box alan2">
         <div class="ilan-detaylari">
             <!-- İlan Detay Bilgileri -->
@@ -80,7 +233,93 @@
                     </div>
                     <div class="line-separator"></div>
 
-                    
+                    <div class="row">
+                        <div class="col-4"><strong>Parsel:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.Parsel</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Yüz Ölçümü:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.YuzOlcum</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Hisse:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.Hisse</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Tür:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.Turu</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Başlangıç Tarihi:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.TarihBas?.ToString("yyyy-MM-dd")</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Bitiş Tarihi:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.TarihBitis?.ToString("yyyy-MM-dd")</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Teslim Tarihi:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.TarihTeslim?.ToString("yyyy-MM-dd")</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Satış Fiyatı:</strong></div>
+                        <div class="col-8">@String.Format("{0:N0} ₺", @Model.EmlakDetay?.FiyatSatis)</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Peşin Fiyatı:</strong></div>
+                        <div class="col-8">@String.Format("{0:N0} ₺", @Model.EmlakDetay?.FiyatPesin)</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Kapora:</strong></div>
+                        <div class="col-8">@String.Format("{0:N0} ₺", @Model.EmlakDetay?.Kapora)</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Taksitli Mi:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.Taksitlimi</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Taksit Bedeli:</strong></div>
+                        <div class="col-8">@String.Format("{0:N0} ₺", @Model.EmlakDetay?.TaksitBedeli)</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Taksit Sayısı:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.TaksitSayisi</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Bahçe Sayısı:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.BagceSayisi</div>
+                    </div>
+                    <div class="line-separator"></div>
+
+                    <div class="row">
+                        <div class="col-4"><strong>Bahçe Sayısı Satılan:</strong></div>
+                        <div class="col-8">@Model.EmlakDetay?.BahceSayisiIstenen</div>
                     </div>
                     <div class="line-separator"></div>
 
@@ -118,18 +357,20 @@
         </div>
     </div>
 
+
     <!-- Alan 3 -->
     <div class="inline-box alan3">
         <!-- Kullanıcı Bilgileri -->
         <div class="border rounded shadow text-center p-3">
-            <img src="@Model.KullaniciDetay?.ImgUrl" class="img-fluid rounded-circle border"
-                style="width: 120px; height: 120px;" alt="Kullanıcı Profil Resmi">
+            <img src="@(!string.IsNullOrEmpty(Model.KullaniciDetay?.ImgUrl) ? Model.KullaniciDetay.ImgUrl : "/img/default-profile.jpg")"
+                class="img-fluid rounded-circle border" style="width: 120px; height: 120px;"
+                alt="Kullanıcı Profil Resmi">
             <h4 class="mt-2">@Model.KullaniciDetay?.Ad</h4>
             <p><strong>Firma:</strong> @Model.KullaniciDetay?.FirmaUnvani</p>
             <p><strong>Telefon:</strong> @Model.KullaniciDetay?.Telefon</p>
         </div>
         <div class="button-panel">
-            <a href="tel:+905322173384" class="button phone" title="Telefon">
+            <a href="tel:@Model.KullaniciDetay?.Telefon" class="button phone" title="Telefon">
                 <i class="fas fa-phone"></i>
             </a>
             <a href="https://wa.me/905322173384" class="button whatsapp" id="whatsapp-share" title="WhatsApp">
@@ -146,192 +387,30 @@
     </div>
 </div>
 
-<script>
-    // Tüm küçük resimlere click event'i ekle
-    document.querySelectorAll('.küçük-resim').forEach(kucukResim => {
-        kucukResim.addEventListener('click', function () {
-            // Tıklanan küçük resmin URL'sini al
-            const yeniResimUrl = this.src;
-            // Ana resmi güncelle
-            document.getElementById('ana-resim').src = yeniResimUrl;
+@section Scripts {
+    <script>
+        // Tüm küçük resimlere click event'i ekle
+        document.querySelectorAll('.küçük-resim').forEach(kucukResim => {
+            kucukResim.addEventListener('click', function () {
+                // Tıklanan küçük resmin URL'sini al
+                const yeniResimUrl = this.src;
+                // Ana resmi güncelle
+                document.getElementById('ana-resim').src = yeniResimUrl;
+            });
         });
-    });
 
-    //# whatsappdan paylaşım yapmak için icona basınca çalışıyor.
-    document.getElementById("whatsapp-share").addEventListener("click", function () {
-        const ilanBasligi = "Satılık Arsa - Muhteşem Fırsat!"; // İlan Başlığını Dinamik Getirin
-        const ilanLinki = window.location.href; // Şu anki sayfa URL'sini alın
-        const mesaj = `${ilanBasligi}\n${ilanLinki}`;
+        //# whatsappdan paylaşım yapmak için icona basınca çalışıyor.
+        document.getElementById("whatsapp-share").addEventListener("click", function () {
+            const ilanBasligi = "Satılık Arsa - Muhteşem Fırsat!"; // İlan Başlığını Dinamik Getirin
+            const ilanLinki = window.location.href; // Şu anki sayfa URL'sini alın
+            const mesaj = `${ilanBasligi}\n${ilanLinki}`;
 
-        // WhatsApp URL'sini oluştur
-        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mesaj)}`;
+            // WhatsApp URL'sini oluştur
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mesaj)}`;
 
-        // Kullanıcıyı WhatsApp'a yönlendir
-        window.open(whatsappUrl, "_blank");
-    });
+            // Kullanıcıyı WhatsApp'a yönlendir
+            window.open(whatsappUrl, "_blank");
+        });
 
-</script>
-
-<style>
-    .bg-mavi {
-        background-color: #00aaff;
-        color: white;
-    }
-
-    .ana {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-        gap: 5px;
-        margin-top: 10px;
-    }
-
-    .inline-box {
-        flex: 0 0 auto;
-    }
-
-    .alan1 {
-        width: 540px;
-        min-height: 800px;
-        background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
-    }
-
-    .alan2 {
-        width: 340px;
-        min-height: 800px;
-        background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
-    }
-
-    .alan3 {
-        width: 360px;
-        min-height: 800px;
-        background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
-    }
-
-    .fixed-width-card {
-        max-width: 100%;
-        height: auto;
-        margin: 0 auto;
-    }
-
-    .küçük-resim {
-        cursor: pointer;
-        transition: transform 0.2s ease;
-    }
-
-    .küçük-resim:hover {
-        transform: scale(1.1);
-        border: 2px solid #00aaff;
-    }
-
-    .line-separator {
-        border-bottom: 1px solid #e0e0e0;
-        margin: 10px 0;
-    }
-
-    /* Genel stil */
-    .button-panel {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 20px 0;
-    }
-
-    .button {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 24px;
-        color: white;
-        text-decoration: none;
-        position: relative;
-        overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .button:hover {
-        transform: scale(1.2);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Telefon rengi */
-    .phone {
-        background-color: #25d366;
-        /* WhatsApp yeşili */
-    }
-
-    .phone:hover {
-        background-color: #128c7e;
-    }
-
-    /* WhatsApp rengi */
-    .whatsapp {
-        background-color: #25d366;
-    }
-
-    .whatsapp:hover {
-        background-color: #128c7e;
-    }
-
-    /* Instagram rengi */
-    .instagram {
-        background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
-    }
-
-    .instagram:hover {
-        background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
-        filter: brightness(1.2);
-    }
-
-    /* Paylaş butonu */
-    .share {
-        background-color: #007bff;
-        /* Mavi renk */
-    }
-
-    .share:hover {
-        background-color: #0056b3;
-    }
-
-
-    /* Mobil cihazlar için düzen (707px ve altı) */
-    @@media (max-width: 707px) {
-        .ana {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .inline-box {
-            width: 100%;
-        }
-
-        .alan1 {
-            min-height: auto;
-        }
-
-        .alan3 {
-            min-height: auto;
-        }
-    }
-
-    /* Mobil cihazlar için düzen (707px ve altı) */
-    @@media (max-width: 1280px) {
-        .ana {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .inline-box {
-            width: 100%;
-        }
-
-        .alan1,
-        .alan2,
-        .alan3 {
-            min-height: auto;
-        }
-    }
-</style>
+    </script>
+}
