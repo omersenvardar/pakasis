@@ -1,0 +1,78 @@
+@* @model DBGoreWebApp.Models.ViewModels.AreaSearchViewModel
+@using DBGoreWebApp.Models.Entities
+
+<h2>Arama</h2>
+
+<!-- Arama Formu -->
+<form id="index-AreaSearch" asp-action="AreaSearch" method="post">
+    ...
+</form>
+
+<div class="index-arama-verileri">
+    @if (!string.IsNullOrEmpty(ViewBag.SearchQuery))
+    {
+        <h4>Arama Sonuçları: @ViewBag.SearchQuery</h4>
+    }
+
+    @if (ViewBag.Results != null && ViewBag.Results.Any())
+    {
+        <div class="card-container">
+            @foreach (var item in ViewBag.Results)
+            {
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Il, @item.Ilce</h5>
+                        <p class="card-text">Alan: @item.Alan m²</p>
+                        <p class="card-text">Fiyat: @item.Fiyat TL</p>
+                        <p class="card-text">@item.Aciklama</p>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <p>Sonuç bulunamadı.</p>
+    }
+</div>
+
+
+
+<style>
+    .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 250px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    margin-bottom: 5px;
+}
+
+</style> *@

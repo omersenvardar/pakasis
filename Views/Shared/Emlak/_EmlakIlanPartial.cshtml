@@ -1,0 +1,143 @@
+@using DBGoreWebApp.Models.Entities
+@model DBGoreWebApp.Models.ViewModels.CompositeViewModel
+
+<style>
+    .card.emlak-card {
+        width: 360px;
+        height: 800px;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card.emlak-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container {
+    width: 360px;
+    height: 270px;
+    /*overflow: hidden;*/
+    /* position: relative; /* Resmin doğru yerleşmesi için */
+}
+
+.main-image {
+    width: 360px;
+    height: 270px;
+    /*object-fit: cover; /* Resmin oranını koruyarak alana sığmasını sağlar */
+    /*object-position: center; /* Resmin merkezi görünür olacak şekilde yerleştirir */
+}
+
+
+    .image-container:hover .main-image {
+        transform: scale(1.05);
+    }
+
+    .scrolling-wrapper {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .thumbnail {
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+    }
+
+    .thumbnail:hover {
+        border-color: #007bff;
+    }
+
+    .aa-price {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #ff0000;
+        font-weight: bold;
+    }
+    .card-adreskonum {
+        font-size: 12px;
+        margin:  0px;
+        }
+</style>
+
+<div id="emlakList">
+    <div class="container">
+        <div class="row">
+            @if (Model.EmlakBahceler != null && Model.EmlakBahceler.Any())
+            {
+                @foreach (var emlak in Model.EmlakBahceler)
+                {
+                    var kullanici = Model.Kullanicilar.FirstOrDefault(k => k.Id == emlak.KullaniciId);
+                    var arsaResimler = Model.ArsaResimler.Where(r => r.ArsaId == emlak.IlanNo).ToList();
+                    <div class="col mt-3 d-flex justify-content-center">
+                        <div class="card emlak-card" style="width: 360px; height: 600px; flex-shrink: 0;">
+                            <!-- Resim Kartı -->
+                            <div class="image-container">
+                                <a asp-controller="EmlakBahce" asp-action="Detail" asp-route-id="@emlak.Id">
+                                    @if (arsaResimler != null && arsaResimler.Any())
+                                    {
+                                        var firstImage = arsaResimler.First();
+                                        <img id="mainImage-@emlak.IlanNo" src="@firstImage.ResimArsaUrl" width="360px" height="270px" class="main-image"
+                                            alt="Ana Resim">
+                                    }
+                                    else
+                                    {
+                                        <img src="/img/dbemlak.jpg" class="main-image" alt="Varsayılan Resim" width="360px" height="270px" alt="Ana Resim">
+                                    }
+                                </a>
+                            </div>
+                            <!-- Bilgiler -->
+                            <div class="card-body">
+                                <h5 class="text-dark">@Html.Raw(emlak.IlanAdi)</h5>
+                                <p class="card-adreskonum"><strong>Adres:</strong> @emlak.AdresKonumu</p>
+                                <div class="">
+                                    <span class="aa-price">@String.Format("{0:N0} ₺", emlak.FiyatSatis)</span>
+                                </div>
+                                @if(emlak.FiyatPesin != null)
+                                {
+                                <div class=""><i>Bu bahçeyi @emlak.FiyatPesin peşin @emlak.TaksitBedeli TL den başlayan taksitlerle alabilirsiniz</i></div>
+                                }
+
+                                
+                                @* <p><strong>Yüz Ölçüm:</strong> @String.Format("{0:N0} M2", emlak.YuzOlcum)</p>
+                                <p><strong>İlan Tarihi:</strong> @emlak.TarihBas?.ToString("dd MMMM yyyy")</p> *@
+                                <div class="scrolling-wrapper">
+                                    @foreach (var resim in arsaResimler)
+                                    {
+                                        <img class="thumbnail" src="@resim.ResimArsaUrl" alt="Arsa Resim"
+                                            onclick="changeMainImage('@emlak.IlanNo', '@resim.ResimArsaUrl')">
+                                    }
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            }
+            else
+            {
+                <h1>İlanlar Yükleniyor</h1>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script>
+        function changeMainImage(ilanNo, resimUrl) {
+            var mainImage = document.getElementById('mainImage-' + ilanNo);
+            mainImage.src = resimUrl;
+        }
+    </script>
+}

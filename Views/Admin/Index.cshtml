@@ -1,0 +1,135 @@
+<div class="admin-panel">
+  <!-- Sol Panel -->
+  <div class="admin-sol-panel">
+    <p>İlan Yönetimi</p>
+    <a class="panel-item" onclick="loadContent('/Admin/EmlakIlanlari', 'contentArea')">Emlak İlanları</a>
+    <a class="panel-item" onclick="loadContent('/Admin/ArabaIlanlari', 'contentArea')">Araç İlanları</a>
+
+    <p>Kullanıcı Yönetimi</p>
+    <a class="panel-item" onclick="loadContent('/Admin/Kullanicilar', 'contentArea')">Kullanıcılar</a>
+    <p>Ayarlar</p>
+    <a class="panel-item" onclick="loadContent('/Admin/Ayarlar/SayfaAyarlari', 'contentArea')"> Ana Sayfa Ayarları</a>
+    <a class="panel-item" onclick="loadContent('/Admin/Ayarlar/KategoriAyarlari', 'contentArea')"> Kategori Ayarlari </a>
+    <a class="panel-item" onclick="loadContent('/Admin/Ayarlar/VitrinIlanlari', 'contentArea')">VitrinIlanlari İlanları</a>
+  </div>
+
+  <!-- Sağ Panel -->
+  <div class="admin-sag-panel">
+    <!-- İçerik Alanı -->
+    <div id="contentArea">
+      <h3>Admin Paneline Hoşgeldiniz</h3>
+      <p>Sol menüden bir seçenek seçerek içerikleri görüntüleyebilirsiniz.</p>
+      @if (TempData["Message"] != null)
+      {
+        <div class="alert alert-info">
+          @TempData["Message"]
+        </div>
+      }
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Admin Panel Genel Tasarım */
+  .admin-panel {
+    display: flex;
+    flex-wrap: wrap;
+    /* Mobilde satır atlamayı sağlar */
+    background-color: #f0f4f7;
+    min-height: 100vh;
+    /* Minimum ekran yüksekliği */
+  }
+
+  /* Sol Panel */
+  .admin-sol-panel {
+    width: 300px;
+    background-color: #eaf4fc;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  .admin-sol-panel p {
+    margin: 10px 0;
+    font-weight: bold;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+  }
+
+  .panel-item {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .panel-item:hover {
+    background-color: #d3e6f3;
+    color: #0056b3;
+  }
+
+  .panel-item.active {
+    border: 2px solid #0056b3;
+    background-color: #bcdff5;
+    color: #003f73;
+  }
+
+  /* Sağ Panel */
+  .admin-sag-panel {
+    flex-grow: 1;
+    background-color: #ddeaf7;
+    padding: 20px;
+    border-left: 1px solid #ccc;
+  }
+
+  /* Mobil Görünüm */
+  @@media (max-width: 768px) {
+    .admin-panel {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .admin-sol-panel {
+      width: 100%;
+      box-shadow: none;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .admin-sag-panel {
+      width: 100%;
+      border-left: none;
+      padding: 10px;
+    }
+  }
+</style>
+
+<script>
+  function loadContent(url, sectionId = "contentArea") {
+    const targetElement = document.getElementById(sectionId);
+
+    if (!targetElement) {
+      console.error("Hedef HTML öğesi bulunamadı. ID:", sectionId);
+      return;
+    }
+
+    // Yükleniyor mesajı ekleyin
+    targetElement.innerHTML = "<p>Yükleniyor...</p>";
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) throw new Error("Network response was not ok");
+        return response.text();
+      })
+      .then((html) => {
+        targetElement.innerHTML = html;
+      })
+      .catch((error) => {
+        console.error("Error loading content:", error);
+        targetElement.innerHTML = "<p>Bir hata oluştu. Lütfen tekrar deneyin.</p>";
+      });
+  }
+</script>

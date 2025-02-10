@@ -1,0 +1,114 @@
+@model DBGoreWebApp.Models.ViewModels.EmlakIlanverViewModel
+
+@{
+    ViewData["Title"] = "Emlak İlanı Ver";
+}
+
+<h2 class="text-center mb-4">Emlak İlanı Ver</h2>
+<div class="container">
+    <form asp-action="Create" asp-controller="EmlakBahce" method="post" enctype="multipart/form-data" class="p-4 border rounded bg-light">
+        <div class="row g-3">
+            <label for="Adres" class="form-label bg-mavi">Adres Giriniz</label>
+            <!-- İl -->
+            <div class="col-lg-4 col-md-6">
+                <label for="Il" class="form-label">İl</label>
+                <select id="Il" name="Il" class="form-select" required>
+                    <option value="" disabled selected>İl Seçiniz</option>
+                    @foreach (var il in Model.Adresler.Select(a => a.Il).Distinct())
+                    {
+                        <option value="@il">@il</option>
+                    }
+                </select>
+            </div>
+            <!-- İlçe -->
+            <div class="col-lg-4 col-md-6">
+                <label for="Ilce" class="form-label">İlçe</label>
+                <select id="Ilce" name="Ilce" class="form-select" required>
+                    <option value="" disabled selected>İlçe Seçiniz</option>
+                </select>
+            </div>
+            <!-- Mahalle -->
+            <div class="col-lg-4 col-md-6">
+                <label for="Mahalle" class="form-label">Mahalle</label>
+                <select id="Mahalle" name="Mahalle" class="form-select" required>
+                    <option value="" disabled selected>Mahalle Seçiniz</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Taksitli Mi -->
+        <div class="row g-3">
+            <div class="col-lg-4 col-md-6">
+                <label for="TaksitliMi" class="form-label">Taksitli Mi?</label>
+                <select id="TaksitliMi" name="TaksitliMi" class="form-select" required>
+                    <option value="E">Evet</option>
+                    <option value="H">Hayır</option>
+                </select>
+            </div>
+            <!-- Taksit Sayısı -->
+            <div class="col-lg-4 col-md-6" id="TaksitSayisiContainer" style="display: none;">
+                <label for="TaksitSayisi" class="form-label">Taksit Sayısı</label>
+                <select id="TaksitSayisi" name="TaksitSayisi" class="form-select">
+                    <option value="" disabled selected>Seçiniz</option>
+                    @for (int i = 1; i <= 120; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- Resim Yükleme -->
+        <div class="row g-3">
+            <label for="Resim" class="form-label bg-mavi">Resim Yükleme</label>
+            <div class="col-12">
+                <input type="file" class="form-control" id="Resim" name="Resimler" multiple accept="image/*">
+                <div id="previewContainer" class="d-flex flex-wrap border mt-3 p-3" style="min-height: 100px;"></div>
+            </div>
+        </div>
+
+        <!-- Gönder Butonu -->
+        <div class="col-12 text-center">
+            <button type="submit" class="btn btn-primary mt-3">İlan Ver</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .bg-mavi {
+        background-color: rgb(0, 174, 255);
+        background:linear-gradient(to bottom right,rgb(0, 174, 255),#C6A15C);
+        color: white;
+        transition: all 0.3s ease;
+    }
+
+    .bg-mavi:hover {
+        background-color: rgb(134, 217, 255);
+    }
+
+    .img-thumbnail {
+        margin: 5px;
+        position: relative;
+    }
+
+    .img-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .img-container .remove-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+</style>
+
+

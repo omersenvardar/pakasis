@@ -1,0 +1,376 @@
+﻿@{
+    var kategoriler = ViewContext.HttpContext.Items["Kategoriler"] as List<DBGoreWebApp.Models.Entities.Kategori>;
+}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Pakasis</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/HomeIndex.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @RenderSection("Styles", required: false)
+</head>
+
+<body>
+    @{
+    string kullaniciAd = ViewContext.HttpContext.Session.GetString("KullaniciAd") ?? "";
+    string kullaniciId = ViewContext.HttpContext.Session.GetString("KullaniciId") ?? "";
+    string kullaniciYetki = ViewContext.HttpContext.Session.GetString("KullaniciYetki") ?? "";
+}
+
+    <header class="bg-dark py-3 border-bottom">
+    <div class="container d-flex align-items-center justify-content-between">
+        <!-- Logo -->
+        <div class="d-flex align-items-center">
+            <h1 class="m-0 fw-bold">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none">
+                    <span class="bg-primary text-white px-3  rounded">Pakasis</span>
+                    <span class="text-primary"></span>
+                </a>
+            </h1>
+        </div>
+
+        <!-- Kategoriler (Masaüstü) -->
+        <div class="d-none d-lg-block">
+            
+            @if (kategoriler != null)
+            {
+                <nav class="d-flex align-items-center">
+                    @await Component.InvokeAsync("Kategori")
+                </nav>
+            }
+            else
+            {
+                <p class="text-light">Kategoriler Bulunamadı</p>
+            }
+        </div>
+
+        <!-- Mobil Hamburger Menü -->
+        <div class="d-lg-none">
+            <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Masaüstü Menü -->
+        <nav class="d-none d-lg-flex align-items-center">
+            @if (!string.IsNullOrEmpty(kullaniciYetki))
+            {
+                @if (kullaniciYetki == "admin")
+                {
+                    <a asp-controller="Admin" asp-action="Index" class="nav-link text-light">Admin Panel</a>
+                    <a asp-controller="EmlakBahce" asp-action="Ilanver" class="nav-link text-light">Emlak İlanı Ver</a>
+                    <a asp-controller="Arabalar" asp-action="Create" class="nav-link text-light">Araç İlanı Ver</a>
+                }
+                else if (kullaniciYetki == "üye")
+                {
+                    <a asp-controller="EmlakBahce" asp-action="Ilanver" class="nav-link text-light">Emlak İlanı Ver</a>
+                    <a asp-controller="Arabalar" asp-action="Create" class="nav-link text-light">Araç İlanı Ver</a>
+                }
+            }
+
+            <!-- Kullanıcı Profili -->
+            @if (!string.IsNullOrEmpty(kullaniciAd))
+            {
+                <div class="d-flex align-items-center gap-2">
+                    @{
+                        var kullaniciProfilResmi = ViewContext.HttpContext.Session.GetString("KullaniciProfilResmi");
+                    }
+                    @if (!string.IsNullOrEmpty(kullaniciProfilResmi) && kullaniciProfilResmi != "/img/default-user.jpg")
+                    {
+                        <a asp-controller="Users" asp-action="Detail" asp-Route-id="@kullaniciId">
+                            <img src="@kullaniciProfilResmi" alt="Kullanıcı Profil Resmi"
+                                 class="rounded-circle border border-primary"
+                                 style="width: 40px; height: 40px; object-fit: cover;">
+                        </a>
+                    }
+                    <a asp-controller="Users" asp-action="Detail" asp-Route-id="@kullaniciId" class="nav-link text-light " style="text-decoration: none; border: none;">
+                        <span class="nav-link text-light " >@kullaniciAd</span>
+                    </a>
+                    <form asp-controller="Account" asp-action="Logout" method="post">
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn btn-sm btn-outline-danger">Çıkış Yap</button>
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary me-2">Giriş Yap</a>
+                    <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary">Üye Ol</a>
+                </div>
+            }
+        </nav>
+    </div>
+
+    <!-- Mobil Menü -->
+    <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="mobileMenuLabel">PAKASİS Emlak Otomobil</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            @if (!string.IsNullOrEmpty(kullaniciAd))
+            {
+                <a asp-controller="Users" asp-action="Detail" asp-Route-id="@kullaniciId">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    @{
+                        var kullaniciProfilResmi = ViewContext.HttpContext.Session.GetString("KullaniciProfilResmi");
+                    }
+                    @if (!string.IsNullOrEmpty(kullaniciProfilResmi) && kullaniciProfilResmi != "/img/default-user.jpg")
+                    {
+                        <img src="@kullaniciProfilResmi" alt="Profil Resmi" class="rounded-circle border border-primary" style="width: 40px; height: 40px; object-fit: cover;">
+                    }
+                    <span class="text-light">@kullaniciAd</span>
+                </div>
+                </a>
+                <form asp-controller="Account" asp-action="Logout" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-outline-danger w-100 mb-2">Çıkış Yap</button>
+                </form>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary w-100 mb-2">Giriş Yap</a>
+                <a asp-controller="Account" asp-action="Register" class="btn btn-outline-primary w-100">Üye Ol</a>
+            }
+            @if (!string.IsNullOrEmpty(kullaniciYetki))
+            {
+                @if (kullaniciYetki == "admin")
+                {
+                    <a asp-controller="Admin" asp-action="Index" class="nav-link text-light">Admin Panel</a>
+                    <a asp-controller="EmlakBahce" asp-action="Ilanver" class="nav-link text-light">Emlak İlanı Ver</a>
+                    <a asp-controller="Arabalar" asp-action="Create" class="nav-link text-light">Araç İlanı Ver</a>
+                }
+                else if (kullaniciYetki == "üye")
+                {
+                    <a asp-controller="EmlakBahce" asp-action="Ilanver" class="nav-link text-light">Emlak İlanı Ver</a>
+                    <a asp-controller="Arabalar" asp-action="Create" class="nav-link text-light">Araç İlanı Ver</a>
+                }
+            }
+        <!-- Kategoriler (Mobil) -->
+<div class="d-lg-block kategori-container">
+    @if (kategoriler != null)
+    {
+        <nav class="d-flex align-items-center">
+            @await Component.InvokeAsync("Kategori")
+        </nav>
+    }
+    else
+    {
+        <p class="text-light">Kategoriler Bulunamadı</p>
+    }
+</div>
+
+<style>
+    @@media (max-width: 768px) {
+        .kategori-container {
+            width: 100%;
+        }
+    }
+</style>
+
+        </div>
+    </div>
+</header>
+
+<style>
+    header {
+        background-color: #0d1b2a;
+        color: #ffffff;
+    }
+
+    header a.nav-link {
+        font-weight: 500;
+        text-decoration: none;
+        padding: 5px 15px;
+        border-bottom: 2px solid transparent;
+        transition: all 0.3s ease-in-out;
+    }
+
+    header a.nav-link:hover {
+        border-bottom: 2px solid #ffffff;
+        color: #ffffff;
+    }
+
+    .offcanvas a.nav-link {
+        padding: 10px 15px;
+        border-bottom: none;
+    }
+
+    .offcanvas a.nav-link:hover {
+        background-color: #1b263b;
+        color: #ffffff;
+    }
+</style>
+
+
+        <style>
+        .home-banner {
+    background: linear-gradient(to bottom, #313131, #929292, #737373);
+    @* background: linear-gradient(to top, #0db2ff, rgb(0, 0, 0)); *@
+    /* url('/img/dbemlakotomotive.png') no-repeat center center; */
+    @* background-blend-mode: multiply; /* ya da 'multiply', 'screen', 'darken', 'lighten' gibi farklı blend modlarını deneyebilirsiniz */ *@
+    margin-top: 0px;
+    height: 200px;
+}
+    </style>
+    <!-- #Arama ve reklam alanı başı  -->
+    <div class="container-fluid bg-light text-dark p-4 text-center home-banner"
+        style="">
+        @if(ViewBag.homeTitle != null)
+        {
+                <h2 class="text-white fw-bold mb-4">@ViewBag.homeTitle</h2>
+        }
+        else
+        {
+                <h2 class="text-white fw-bold mb-4">"<strong style="color: rgb(90, 156, 255);">Pakasis</strong>" aracılığı ile güvenle al, zahmetsizce sat.</h2>
+        }  
+        <div class="row align-items-center">
+            <div class="col-md-6 text-start">
+                <h5 class="text-white mb-3">İletişim</h5>
+                <ul class="list-unstyled text-white small">
+                    <li><i class="fa fa-phone"></i> +90 532 217 33 84</li>
+                    <li><i class="fa fa-envelope"></i> info@pakasis.com</li>
+                    <li><i class="fa fa-map-marker"></i> Ankara, Türkiye</li>
+                </ul>
+            </div>
+            <!-- Arama Butonu -->
+            @* <div class="col-md-8">
+                <div class="input-group" style="display: inline; justify-content: center;">
+                    <form asp-controller="Areas" asp-action="Search" method="post">
+                            <input type="text" id="searchInput" name="SearchValue" style="" placeholder="Arama yap..." aria-label="Arama yap">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Ara</button>
+                    </form>
+                </div>
+            </div> *@
+
+            <div class="col-md-6 text-end">
+                <h5 class="text-white mb-3">Reklam</h5>
+                <div class="p-3 rounded">
+                    <p class="text-light small mb-0 fs-5">@ViewBag.HomeMessage</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="custom-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <style>
+         /* Sayfanın tamamını kapsayacak şekilde yüksekliği belirleme */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* İçeriği esnek yaparak footer'ı en alta itmek */
+        .wrapper {
+    min-height: 100vh; /* Ekran yüksekliği kadar olacak */
+    display: flex;
+    flex-direction: column;
+        }
+
+        /* İçeriği büyüyebilen bir alan olarak ayarla */
+        .content {
+    flex: 1; /* İçeriğin genişleyip boşluğu doldurmasını sağlar */
+        }
+
+        /* Footer'ı sabitle */
+        footer {
+    width: 100%;
+    background-color: #343a40; /* Bootstrap koyu arka plan */
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+        }
+
+    </style>
+        <body>
+    <div class="wrapper">
+        <div class="content">
+           
+        </div>
+
+        
+    <!-- Uyarı görünme alanı başı -->
+   @if (TempData["LoginMessage"] != null)
+{
+    <p class="alert alert-success tempDataMessage" id="tempDataMessage">
+        @TempData["LoginMessage"]
+    </p>
+
+}
+@if (TempData["LogoutMessage"] != null)
+{
+    <p class="alert alert-danger tempDataMessage" id="tempDataMessage">
+        @TempData["LogoutMessage"]
+    </p>
+
+}
+
+<style>
+    .tempDataMessage {
+        display: none; /* Başlangıçta gizle */
+        text-align: center; /* Ortala */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        padding: 15px;
+        font-size: 18px;
+        animation: fadeInOut 4s ease-in-out forwards;
+    }
+
+    @@keyframes fadeInOut {
+        0% { opacity: 0; }
+        20% { opacity: 1; }
+        80% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var messageElement = document.getElementById('tempDataMessage');
+        if (messageElement) {
+            messageElement.style.display = 'block'; // Mesajı göster
+        }
+
+        // Mesajı 3 saniye sonra kaldır
+        setTimeout(function() {
+            if (messageElement) {
+                messageElement.style.display = 'none'; // Mesajı gizle
+            }
+        }, 3000); // 3 saniye (3000 milisaniye)
+    });
+</script>
+    <!-- Uyarı görünme alanı sonu -->
+        <footer class="bg-dark text-light py-4">
+            @await Html.PartialAsync("Partials/_Footer")
+        </footer>
+    </div>
+
+</body>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

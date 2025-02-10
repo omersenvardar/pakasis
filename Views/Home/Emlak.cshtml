@@ -1,0 +1,154 @@
+@using DBGoreWebApp.Models.Entities
+@model DBGoreWebApp.Models.ViewModels.CompositeViewModel
+
+@{
+    ViewData["Title"] = "Ana Sayfa";
+}
+<link rel="stylesheet" href="~/css/HomeIndex.css" asp-append-version="true" />
+<h1>Emlak ilanları</h1>
+<div class="container bg-light">
+
+    <div class="row g-3">
+        <label for="Adres" class="form-label bg-mavi">Adres Giriniz</label>
+        <div class="col-md-12">
+            <label for="Il" class="form-label">İl</label>
+            <select id="Il" name="Il" class="form-select" required>
+                <option value="" disabled selected>İl Seçiniz</option>
+                @if (Model.Adresler != null && Model.Adresler.Any())
+                {
+                    @foreach (var il in Model.Adresler.Select(a => a.Il).Distinct())
+                    {
+                        <option value="@il">@il</option>
+                    }
+                }
+                else
+                {
+                    <option value="">Adres bilgisi yok</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="Ilce" class="form-label">İlçe</label>
+            <select id="Ilce" name="Ilce" class="form-select" required>
+                <option value="" disabled selected>İlçe Seçiniz</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="Mahalle" class="form-label">Mahalle</label>
+            <select id="Mahalle" name="Mahalle" class="form-select" required>
+                <option value="" disabled selected>Mahalle Seçiniz</option>
+            </select>
+        </div>
+    </div>
+    <div class="mt-2" id="girilenAdres" style="font-size: 14px; color: gray;">
+        Girilen adres burada görüntülenecek...
+    </div>
+
+    <div id="emlakList">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                        @await Html.PartialAsync("Emlak/_EmlakIlanPartial")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    const adresGruplari = @Html.Raw(Json.Serialize(ViewBag.AdresGruplari));
+
+    document.getElementById("Il").addEventListener("change", function () {
+        const selectedIl = this.value;
+        const ilceDropdown = document.getElementById("Ilce");
+        const mahalleDropdown = document.getElementById("Mahalle");
+
+        ilceDropdown.innerHTML = '<option value="" disabled selected>İlçe Seçiniz</option>';
+        mahalleDropdown.innerHTML = '<option value="" disabled selected>Mahalle Seçiniz</option>';
+
+        if (adresGruplari[selectedIl]) {
+            for (const ilce in adresGruplari[selectedIl]) {
+                const option = document.createElement("option");
+                option.value = ilce;
+                option.textContent = ilce;
+                ilceDropdown.appendChild(option);
+            }
+        }
+        updateGirilenAdres();
+    });
+
+    document.getElementById("Ilce").addEventListener("change", function () {
+        const selectedIl = document.getElementById("Il").value;
+        const selectedIlce = this.value;
+        const mahalleDropdown = document.getElementById("Mahalle");
+
+        mahalleDropdown.innerHTML = '<option value="" disabled selected>Mahalle Seçiniz</option>';
+
+        if (adresGruplari[selectedIl] && adresGruplari[selectedIl][selectedIlce]) {
+            adresGruplari[selectedIl][selectedIlce].forEach(mahalle => {
+                const option = document.createElement("option");
+                option.value = mahalle;
+                option.textContent = mahalle;
+                mahalleDropdown.appendChild(option);
+            });
+        }
+        updateGirilenAdres();
+    });
+
+    document.getElementById("Mahalle").addEventListener("change", updateGirilenAdres);
+
+    function updateGirilenAdres() {
+        const il = document.getElementById("Il").value;
+        const ilce = document.getElementById("Ilce").value;
+        const mahalle = document.getElementById("Mahalle").value;
+
+        const adres = `${il ? il : ""} ${ilce ? ilce : ""} ${mahalle ? mahalle : ""}`.trim();
+        document.getElementById("girilenAdres").textContent = adres ? `Girilen Adres: ${adres}` : "Girilen adres burada görüntülenecek...";
+
+        // AJAX çağrısı yaparak verileri filtrele
+        if (il && ilce && mahalle) {
+            fetch(`/Home/FilterEmlak?il=${il}&ilce=${ilce}&mahalle=${mahalle}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("emlakList").innerHTML = data;
+                });
+        }
+    }
+
+    function showImage(imageUrl) {
+        document.getElementById("mainImage").src = imageUrl;
+    }
+
+    document.querySelectorAll('.thumbnail').forEach(img => {
+        img.addEventListener('click', function () {
+            showImage(this.src);
+        });
+    });
+
+</script>
+
+<style>
+    .card:hover {
+        transform: none !important;
+    }
+
+    .thumbnail {
+        border: 2px solid #ccc;
+        /* Adjust the border style */
+    }
+
+    #AdresKonum {
+        background-color: lightblue;
+        /* Adjust the color as needed */
+    }
+
+    .thumbnail-container img {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .thumbnail-container img:hover {
+        border: 2px solid #000;
+    }
+</style>

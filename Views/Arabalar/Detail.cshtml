@@ -1,0 +1,104 @@
+@model DBGoreWebApp.Models.ViewModels.ArabaViewModel
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+<div class="ana">
+    <!-- Alan 1 -->
+    <div class="inline-box alan1">
+        <div class="container">
+            <h3 class="m-0">@Model.ArabaDetay?.VersiyonAdi</h3>
+            <hr>
+        </div>
+        <div class="text-center mt-3" style="height: 347px; overflow: hidden;">
+            @if (Model.ArabaResimler != null && Model.ArabaResimler.Count > 0)
+            {
+                <img src="@Model.ArabaResimler[0].ResimArabaUrl" id="ana-resim" class="img-fluid border"
+                    style="width: 100%; height: 100%; object-fit: cover;" alt="Ana Resim">
+            }
+            else
+            {
+                <img src="/img/default-car.jpg" class="main-image img-fluid border"
+                    style="width: 100%; height: 100%; object-fit: cover;" alt="Varsayılan Resim">
+            }
+        </div>
+        <div class="mt-3 d-flex justify-content-center flex-wrap">
+            @if (Model.ArabaResimler != null && Model.ArabaResimler.Count > 0)
+            {
+                @foreach (var resim in Model.ArabaResimler)
+                {
+                    <img src="@resim.ResimArabaUrl" class="img-thumbnail küçük-resim mx-1 border"
+                        style="width: 80px; height: 80px; cursor: pointer;" alt="Küçük Resim">
+                }
+            }
+            else
+            {
+                <p class="text-muted">Küçük resim bulunamadı.</p>
+            }
+        </div>
+        <div class="mt-3">
+            <p>@Html.Raw(Model.ArabaDetay?.Ozellikleri ?? "Belirtilmemiş")</p>
+        </div>
+    </div>
+    
+    <!-- Alan 2 -->
+    <div class="inline-box alan2">
+        <div class="ilan-detaylari">
+            <div class="card shadow fixed-width-card">
+                <div class="card-body">
+                    <h4 class="text-center">Araba Detayları</h4>
+                    <div class="row"><div class="col-4"><strong>Marka:</strong></div><div class="col-8">@Model.MarkaAdi</div></div>
+                    <div class="line-separator"></div>
+                    <div class="row"><div class="col-4"><strong>Model:</strong></div><div class="col-8">@Model.ModelAdi</div></div>
+                    <div class="line-separator"></div>
+                    <div class="row"><div class="col-4"><strong>Yıl:</strong></div><div class="col-8">@Model.YilAdi</div></div>
+                    <div class="line-separator"></div>
+                    <div class="row"><div class="col-4"><strong>Fiyat:</strong></div><div class="col-8">@String.Format("{0:N0} ₺", @Model.ArabaDetay?.Fiyat)</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Alan 3 -->
+    <div class="inline-box alan3">
+        <div class="border rounded shadow text-center p-3">
+            <img src="@Model.KullaniciDetay?.ImgUrl" class="img-fluid rounded-circle border"
+                style="width: 120px; height: 120px;" alt="Kullanıcı Profil Resmi">
+            <h4 class="mt-2">@Model.KullaniciDetay?.Ad</h4>
+            <p><strong>Telefon:</strong> @Model.KullaniciDetay?.Telefon</p>
+        </div>
+        <div class="button-panel">
+            <a href="tel:+90@Model.KullaniciDetay?.Telefon" class="button phone" title="Telefon"><i class="fas fa-phone"></i></a>
+            <a href="https://wa.me/90@Model.KullaniciDetay?.Telefon" class="button whatsapp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="button share" title="Paylaş"><i class="fas fa-share-alt"></i></a>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelectorAll('.küçük-resim').forEach(kucukResim => {
+        kucukResim.addEventListener('click', function () {
+            document.getElementById('ana-resim').src = this.src;
+        });
+    });
+</script>
+
+<style>
+    .ana { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; margin-top: 20px; }
+    .inline-box { flex: 1; min-width: 300px; }
+    .alan1, .alan2, .alan3 { background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd); }
+    .fixed-width-card { max-width: 100%; height: auto; margin: 0 auto; }
+    .küçük-resim { cursor: pointer; transition: transform 0.2s ease; }
+    .küçük-resim:hover { transform: scale(1.1); border: 2px solid #00aaff; }
+    .line-separator { border-bottom: 1px solid #e0e0e0; margin: 10px 0; }
+    .button-panel { display: flex; justify-content: center; gap: 15px; margin: 20px 0; }
+    .button { width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 24px; color: white; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .button:hover { transform: scale(1.2); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+    .phone { background-color: #25d366; }
+    .phone:hover { background-color: #128c7e; }
+    .whatsapp { background-color: #25d366; }
+    .whatsapp:hover { background-color: #128c7e; }
+    .share { background-color: #007bff; }
+    .share:hover { background-color: #0056b3; }
+    @@media (max-width: 992px) { .ana { flex-direction: column; align-items: center; } }
+    @@media (max-width: 517px) { .alan1, .alan2, .alan3 { width: 100%; background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd); } }
+</style>

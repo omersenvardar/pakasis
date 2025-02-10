@@ -1,0 +1,486 @@
+@using DBGoreWebApp.Models.Entities
+@using DBGoreWebApp.Models.ViewModels
+@model DBGoreWebApp.Models.ViewModels.CompositeViewModel
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+<div class="body1">
+    <div class="container">
+        <div class="row">
+            <h1>@ViewBag.PageTitle</h1>
+            <p>@ViewBag.WelcomeText</p>
+            <div class="@ViewBag.WelcomeText">Buton</div>
+            <div class="" style="@ViewBag.deneme">@ViewBag.deneme</div>
+        </div>
+    </div>
+    <div id="emlakList" class="hpage-container">
+
+        <div class="container">
+            <div class="row">
+                 @if (Model.EmlakBahceler != null && Model.EmlakBahceler.Any())
+            {
+                @foreach (var emlak in Model.EmlakBahceler)
+                {
+                    // İlgili ilan resimlerini filtrele
+                     var arsaResimler = (Model.ArsaResimler ?? new List<ArsaResim>())
+                        .Where(r => r.ArsaId == emlak.IlanNo)
+                        .OrderBy(r => r.Id) // İlk eklenen resim için sıralama
+                        .ToList(); 
+                    <div class="@ViewBag.IlanKolonSayisi" style="display: flex; flex-wrap: wrap;">
+                        <div class="hpage-card">
+                            <!-- İlan Resmi -->
+                            <div class="hpage-image-container">
+                                <a asp-controller="EmlakBahce" asp-action="Detail" asp-route-id="@emlak.Id">
+                                    @if (arsaResimler != null && arsaResimler.Any() && !string.IsNullOrEmpty(arsaResimler.First().ResimArsaUrl))
+                                    {
+                                        var firstImage = arsaResimler.First();
+                                        <img src="@firstImage.ResimArsaUrl" class="hpage-main-image" alt="Ana Resim">
+                                    }
+                                    else
+                                    {
+                                        <img src="/img/dbemlak.jpg" class="hpage-main-image" alt="Varsayılan Resim">
+                                    }
+                                </a>
+                            </div>
+
+                            <!-- İlan Bilgileri -->
+                            <div class="hpage-card-body">
+                                <h5 class="hpage-text-dark">@emlak.IlanAdi</h5>
+                                <p class="hpage-card-adreskonum">
+                                    <strong>Adres:</strong>
+                                    @if (emlak.AdresKonumuNavigation != null)
+                                    {
+                                        @($"{emlak.AdresKonumuNavigation.Il}, {emlak.AdresKonumuNavigation.Ilce}, {emlak.AdresKonumuNavigation.MahalleKoyAdi}")
+                                    }
+                                    else
+                                    {
+                                        <span>Adres bilgisi bulunamadı</span>
+                                    }
+                                </p>
+                                <div>
+                                    <span class="hpage-aa-price">@String.Format("{0:N0} ₺", emlak.FiyatSatis)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }        
+                </div>
+            </div>
+        </div>
+
+    @* <div class="container">
+                <div class="row">
+            @if (Model.EmlakBahceler != null && Model.EmlakBahceler.Any())
+            {
+                @foreach (var emlak in Model.EmlakBahceler)
+                {
+                    // İlgili ilan resimlerini filtrele
+                     var arsaResimler = (Model.ArsaResimler ?? new List<ArsaResim>())
+                        .Where(r => r.ArsaId == emlak.IlanNo)
+                        .OrderBy(r => r.Id) // İlk eklenen resim için sıralama
+                        .ToList(); 
+                    <div class="col" style="@ViewBag.IlanKolonSayisi">
+                        <div class="hpage-card">
+                            <!-- İlan Resmi -->
+                            <div class="hpage-image-container">
+                                <a asp-controller="EmlakBahce" asp-action="Detail" asp-route-id="@emlak.Id">
+                                    @if (arsaResimler != null && arsaResimler.Any() && !string.IsNullOrEmpty(arsaResimler.First().ResimArsaUrl))
+                                    {
+                                        var firstImage = arsaResimler.First();
+                                        <img src="@firstImage.ResimArsaUrl" class="hpage-main-image" alt="Ana Resim">
+                                    }
+                                    else
+                                    {
+                                        <img src="/img/dbemlak.jpg" class="hpage-main-image" alt="Varsayılan Resim">
+                                    }
+                                </a>
+                            </div>
+
+                            <!-- İlan Bilgileri -->
+                            <div class="hpage-card-body">
+                                <h5 class="hpage-text-dark">@emlak.IlanAdi</h5>
+                                <p class="hpage-card-adreskonum">
+                                    <strong>Adres:</strong>
+                                    @if (emlak.AdresKonumuNavigation != null)
+                                    {
+                                        @($"{emlak.AdresKonumuNavigation.Il}, {emlak.AdresKonumuNavigation.Ilce}, {emlak.AdresKonumuNavigation.MahalleKoyAdi}")
+                                    }
+                                    else
+                                    {
+                                        <span>Adres bilgisi bulunamadı</span>
+                                    }
+                                </p>
+                                <div>
+                                    <span class="hpage-aa-price">@String.Format("{0:N0} ₺", emlak.FiyatSatis)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <h1>İlanlar Yükleniyor...</h1>
+            }   
+            </div>
+        </div>
+        <!-- Emlak İlanları -->
+        <div class="hpage-row">
+            
+        </div> *@
+        <!-- Emlaklar için Sayfalama -->
+        <div class="hpage-pagination">
+            @if (Model.CurrentEmlakPage > 1)
+            {
+                <a href="@Url.Action("Index", new { emlakPage = Model.CurrentEmlakPage - 1 })">Önceki</a>
+            }
+
+            @for (int i = 1; i <= Model.TotalEmlakPages; i++)
+            {
+                <a href="@Url.Action("Index", new { emlakPage = i })"
+                   class="@(Model.CurrentEmlakPage == i ? "active" : "")">@i</a>
+            }
+
+            @if (Model.CurrentEmlakPage < Model.TotalEmlakPages)
+            {
+                <a href="@Url.Action("Index", new { emlakPage = Model.CurrentEmlakPage + 1 })">Sonraki</a>
+            }
+        </div>
+
+
+
+        <!-- Emlak Sayfalama sonu -->
+
+
+        <div class="arabalar">
+            <div class="hpage-row">
+                @if (Model.ArabaViewModels?.Arabalar != null && Model.ArabaViewModels.Arabalar.Any())
+                {
+                    @foreach (var araba in Model.ArabaViewModels.Arabalar)
+                    {
+                        var arabaResimler = (Model.ArabaViewModels?.ArabaResimler ?? new List<ArabaResim>())
+                        .Where(r => r.ArabaId == araba.Id)
+                        .ToList();
+                        var adres = Model.ArabaViewModels?.Adresler?.FirstOrDefault(a => a.Id == araba.AdresKonumu);
+
+                        <div class="" style="@ViewBag.IlanKolonSayisi">
+                            <div class="hpage-card">
+                                <div class="hpage-image-container">
+                                    <a asp-controller="Arabalar" asp-action="Detail" asp-route-id="@araba.Id">
+                                        @if (arabaResimler != null && arabaResimler.Any() &&
+                                       !string.IsNullOrEmpty(arabaResimler.First().ResimArabaUrl))
+                                        {
+                                            var firstImage = arabaResimler.First();
+                                            <img src="@firstImage.ResimArabaUrl" class="hpage-main-image" alt="Ana Resim">
+                                        }
+                                        else
+                                        {
+                                            <img src="/img/dbemlak.jpg" class="hpage-main-image" alt="Varsayilan Resim">
+                                        }
+                                    </a>
+                                </div>
+                                <div class="hpage-card-body">
+                                    <h5 class="hpage-text-dark">@araba.VersiyonAdi</h5>
+                                    <p class="hpage-card-adreskonum"><strong>Adres:</strong>
+                                        @if (adres != null)
+                                        {
+                                            @($"{adres.Il}, {adres.Ilce}, {adres.MahalleKoyAdi}")
+                                        }
+                                        else
+                                        {
+                                            <span>Adres bilgisi bulunamadı</span>
+                                        }
+                                    </p>
+                                    <div>
+                                        <span class="hpage-aa-price">@String.Format("{0:N0} ₺", araba.Fiyat)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h1>Araçlar Yükleniyor</h1>
+                }
+            </div>
+            <!-- Araçlar Sayfalama başı -->
+            <div class="hpage-pagination">
+                @if (Model.CurrentArabaPage > 1)
+                {
+                    <a href="@Url.Action("Index", new { arabaPage = Model.CurrentArabaPage - 1 })">Önceki</a>
+                }
+
+                @for (int i = 1; i <= Model.TotalArabaPages; i++)
+                {
+                    <a href="@Url.Action("Index", new { arabaPage = i })"
+                        class="@(Model.CurrentArabaPage == i ? "active" : "")">@i</a>
+                }
+
+                @if (Model.CurrentArabaPage < Model.TotalArabaPages)
+                {
+                    <a href="@Url.Action("Index", new { arabaPage = Model.CurrentArabaPage + 1 })">Sonraki</a>
+                }
+            </div>
+            <!-- Araçlar için sayfalama sonu" -->
+
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+    /* Genel Ayarlar */
+    .body1 {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #00aaff, #f8f9fa);
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Hpage Container */
+    .hpage-container {
+        
+    }
+    .hpage-row {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap; /* Ekrana sığmayan kartları alt satıra kaydırır */
+        gap: 15px; /* Kartlar arasındaki boşluk */
+        justify-content: center; /* Kartları yatayda ortalar */
+        margin: 0 auto;
+        padding: 20px;
+        max-width: 1200px;
+    }
+
+    /* Kart Ayarları */
+    .hpage-card {
+        width: 376px; /* Kart genişliği sabit */
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background-color: #fff;
+    }
+
+    .hpage-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Resim Alanı */
+    .hpage-image-container {
+        width: 100%;
+        height: 270px; /* Sabit yükseklik */
+        overflow: hidden;
+    }
+
+    .hpage-main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Kart İçeriği */
+    .hpage-card-body {
+        padding: 15px;
+    }
+
+    .hpage-text-dark {
+        font-size: 1.2rem;
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .hpage-card-adreskonum {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .hpage-aa-price {
+        font-size: 1.2rem;
+        color: #ff0000;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
+    /* Sayfalama */
+    .hpage-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .hpage-pagination a {
+        text-decoration: none;
+        padding: 5px 10px;
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .hpage-pagination a:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .hpage-pagination .active {
+        background-color: #007bff;
+        color: white;
+    }
+
+    /* Responsive Tasarım */
+    @@media (max-width: 1200px) {
+        .hpage-container {
+            gap: 15px; /* Kartlar arasındaki boşluk */
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .hpage-card {
+            width: 376px; /* Genişlik sabit */
+        }
+
+        .hpage-container {
+            justify-content: space-around; /* Küçük ekranlarda hizalamayı düzenler */
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .hpage-container {
+            gap: 10px; /* Daha küçük boşluk */
+        }
+
+        .hpage-card-body {
+            padding: 10px;
+        }
+
+        .hpage-text-dark {
+            font-size: 1rem;
+        }
+
+        .hpage-aa-price {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+
+
+<script>
+    $(document).ready(function () {
+        // İl dropdown'unu doldur
+        const groupedAddresses = @Html.Raw(Json.Serialize(ViewBag.AdresGruplari)); // Backend'den gelen adres verisi
+
+        if (groupedAddresses) {
+            Object.keys(groupedAddresses).forEach(function (city) {
+                $("#Il").append(`<option value="${city}">${city}</option>`);
+            });
+        }
+
+        // İl değiştiğinde ilçe dropdown'unu doldur
+        $("#Il").change(function () {
+            const selectedCity = $(this).val();
+            $("#Ilce").empty().append('<option value="">Seçiniz</option>');
+            $("#Mahalle").empty().append('<option value="">Seçiniz</option>').prop("disabled", true);
+
+            if (selectedCity && groupedAddresses[selectedCity]) {
+                Object.keys(groupedAddresses[selectedCity]).forEach(function (district) {
+                    $("#Ilce").append(`<option value="${district}">${district}</option>`);
+                });
+                $("#Ilce").prop("disabled", false);
+            } else {
+                $("#Ilce").prop("disabled", true);
+            }
+        });
+
+        // İlçe değiştiğinde mahalle dropdown'unu doldur
+        $("#Ilce").change(function () {
+            const selectedCity = $("#Il").val();
+            const selectedDistrict = $(this).val();
+            $("#Mahalle").empty().append('<option value="">Seçiniz</option>');
+
+            if (selectedCity && selectedDistrict && groupedAddresses[selectedCity][selectedDistrict]) {
+                groupedAddresses[selectedCity][selectedDistrict].forEach(function (neighborhood) {
+                    $("#Mahalle").append(
+                        `<option value="${neighborhood}">${neighborhood}</option>`
+                    );
+                });
+                $("#Mahalle").prop("disabled", false);
+            } else {
+                $("#Mahalle").prop("disabled", true);
+            }
+        });
+
+        // Filtrele butonuna tıklanınca formu gönder
+        $("#searchBtn").click(function () {
+            const formData = $("#filterForm").serialize();
+            window.location.href = `/Home/Index?${formData}`;
+        });
+    });
+</script>
+
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+
+<!-- Emlak filtreleme başı  -->
+@* <div class="container-arama">
+        <div class="filter-container">
+            <form id="filterForm" class="filter-form">
+                <h3 class="form-title">Emlak Filtreleme</h3>
+
+                <div class="filter-row">
+                    <label for="Il">İl:</label>
+                    <select name="Il" id="Il">
+                        <option value="">Seçiniz</option>
+                        <!-- İller buraya eklenecek -->
+                    </select>
+
+                    <label for="Ilce">İlçe:</label>
+                    <select name="Ilce" id="Ilce" disabled>
+                        <option value="">Seçiniz</option>
+                        <!-- İlçeler buraya eklenecek -->
+                    </select>
+
+                    <label for="Mahalle">Mahalle:</label>
+                    <select name="Mahalle" id="Mahalle" disabled>
+                        <option value="">Seçiniz</option>
+                        <!-- Mahalleler buraya eklenecek -->
+                    </select>
+                </div>
+
+                <div class="filter-row">
+                    <label for="MinFiyat">Min Fiyat:</label>
+                    <input type="number" name="MinFiyat" id="MinFiyat" />
+
+                    <label for="MaxFiyat">Max Fiyat:</label>
+                    <input type="number" name="MaxFiyat" id="MaxFiyat" />
+
+                    <label for="MinMetrekare">Min Metrekare:</label>
+                    <input type="number" name="MinMetrekare" id="MinMetrekare" />
+
+                    <label for="MaxMetrekare">Max Metrekare:</label>
+                    <input type="number" name="MaxMetrekare" id="MaxMetrekare" />
+                </div>
+
+                <div class="filter-row">
+                    <button type="button" id="searchBtn">Ara</button>
+                </div>
+            </form>
+        </div>
+    </div> *@
+<!-- Emlak filtreleme sonu  -->

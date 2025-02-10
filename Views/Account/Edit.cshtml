@@ -1,0 +1,103 @@
+@model DBGoreWebApp.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Bilgileri Güncelle";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Bilgileri Güncelle</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Edit" asp-controller="Account" method="post" enctype="multipart/form-data"
+                        id="editForm">
+                        <input type="hidden" asp-for="Id" />
+
+                        <!-- Ad -->
+                        <div class="mb-3">
+                            <label for="Ad" class="form-label">Ad</label>
+                            <input type="text" class="form-control" asp-for="Ad" maxlength="50" required />
+                        </div>
+
+                        <!-- Soyad -->
+                        <div class="mb-3">
+                            <label for="Soyad" class="form-label">Soyad</label>
+                            <input type="text" class="form-control" asp-for="Soyad" maxlength="50" required />
+                        </div>
+
+                        <!-- Telefon -->
+                        <div class="mb-3">
+                            <label for="Telefon" class="form-label">Telefon</label>
+                            <input type="text" class="form-control" asp-for="Telefon" maxlength="15" required />
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">E-posta</label>
+                            <input type="email" class="form-control" asp-for="Email" maxlength="255" required />
+                        </div>
+
+                        <!-- Şifre (Opsiyonel) -->
+                        <div class="mb-3">
+                            <label for="Sifre" class="form-label">Yeni Şifre (Değiştirmek istemiyorsanız boş
+                                bırakın)</label>
+                            <input type="password" class="form-control" asp-for="Sifre" maxlength="255" />
+                        </div>
+
+                        <!-- Firma Ünvanı -->
+                        <div class="mb-3">
+                            <label for="FirmaUnvani" class="form-label">Firma Ünvanı</label>
+                            <input type="text" class="form-control" asp-for="FirmaUnvani" maxlength="255" />
+                        </div>
+
+                        <!-- Referans -->
+                        <div class="mb-3">
+                            <label for="Referans" class="form-label">Referans</label>
+                            <input type="text" class="form-control" asp-for="Referans" maxlength="255" />
+                        </div>
+
+                        <!-- Profil Resmi -->
+                        <div class="mb-3">
+                            <label for="ImgUrl" class="form-label">Profil Resmi</label>
+                            <input type="file" class="form-control" id="ImgUrl" name="ImgUrl"
+                                onchange="previewImage(event)">
+                            <div id="imagePreview" class="mt-2">
+                                @if (!string.IsNullOrEmpty(Model.ImgUrlStr))
+                                {
+                                    <img src="@Model.ImgUrlStr" style="width: 300px; height: 300px; object-fit: cover;" />
+                                }
+
+                            </div>
+                        </div>
+
+                        <!-- Gönder Butonu -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Güncelle</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Profil resmi önizlemesi
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var img = document.createElement('img');
+            img.src = reader.result;
+            img.style.width = "300px";
+            img.style.height = "300px";
+            img.style.objectFit = "cover";
+            var imagePreviewDiv = document.getElementById('imagePreview');
+            imagePreviewDiv.innerHTML = ''; // Önceki resmi temizle
+            imagePreviewDiv.appendChild(img);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>

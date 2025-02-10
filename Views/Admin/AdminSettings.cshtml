@@ -1,0 +1,90 @@
+@model List<DBGoreWebApp.Models.Entities.AdminSettings>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
+}
+<div class="container mt-5">
+    <h2 class="text-center">Admin Ayarları</h2>
+
+    <!-- Yeni Ayar Ekleme -->
+    <div class="mb-4">
+
+        <h4>Yeni Ayar Ekle</h4>
+        <form method="post" action="/Admin/AddAyar">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="settingKey" placeholder="Ayar Anahtarı" required />
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="settingValue" placeholder="Ayar Değeri" required />
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary w-100">Ekle</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+
+    <!-- Ayarları Listeleme -->
+    <h4>Mevcut Ayarlar</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Ayar Anahtarı</th>
+                <th>Ayar Değeri</th>
+                <th>İşlemler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ayar in Model)
+            {
+                <tr>
+                    <td>@ayar.SettingKey</td>
+                    <td>@ayar.SettingValue</td>
+                    <td>
+                        
+                        <form method="post" action="/Admin/UpdateAyar" class="d-inline">
+                                                        
+
+                            <input type="hidden" name="id" value="@ayar.SettingId" />
+                            <div class="row g-2">
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control" name="settingKey" value="@ayar.SettingKey" />
+                                </div>
+                                <div class="col-md-4">
+                                    @if (ayar.SettingKey == "hpageKolonSayisi")
+                                {
+                                    <select id="settingValue" class="form-select" name="settingValue">
+                                        <option value="col-md-6 mt-2">2 Sıra</option>
+                                        <option value="col-md-4 mt-2">3 Sıra</option>
+                                        <option value="col-md-3 mt-2">4 Sıra</option>
+                                        <option value="col-md-2 mt-2">6 Sıra</option>
+                                    </select>
+                                }
+                                else
+                                {
+                                    <input type="text" class="form-control" name="settingValue"
+                                        value="@ayar.SettingValue" />
+                                }
+                                </div>
+
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-success">Güncelle</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <form method="post" action="/Admin/DeleteAyar" class="d-inline">
+                            <input type="hidden" name="id" value="@ayar.SettingId" />
+                            <button type="submit" class="btn btn-danger">Sil</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,128 @@
+@model List<DBGoreWebApp.Models.Entities.EmlakBahce>
+
+<style>
+    /* Card Tasarımı */
+    .card {
+        width: 376px; /* Sabit genişlik */
+        height: 400px; /* Sabit yükseklik */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05); /* Hover efekti */
+        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Resim Alanı */
+    .card img {
+        /*width: 376px; /* Sabit genişlik */
+        height: 200px; /* Sabit yükseklik */
+        object-fit: cover; /* Resmi düzgün şekilde yerleştirir */
+    }
+
+    /* Card Başlık */
+    .card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+        display: -webkit-box;
+    -webkit-line-clamp: 2; /* En fazla 2 satır */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Taşan kısımları gizle */
+    text-overflow: ellipsis; /* Devamı varsa sonuna üç nokta */
+    white-space: normal; /* Alt satıra inme */
+    }
+
+    /* Card İçeriği */
+    .card-text {
+        font-size: 11px;
+        color: #555;
+        display: -webkit-box;
+        -webkit-line-clamp: 2; /* En fazla 2 satır */
+        -webkit-box-orient: vertical;
+        overflow: hidden; /* Taşan kısımları gizle */
+        text-overflow: ellipsis; /* Devamı varsa sonuna üç nokta */
+        white-space: normal; /* Alt satıra inme */
+    }
+    .card-taksit {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* En fazla 2 satır */
+    -webkit-box-orient: vertical;
+    overflow: hidden; /* Taşan kısımları gizle */
+    text-overflow: ellipsis; /* Devamı varsa sonuna üç nokta */
+    white-space: normal; /* Alt satıra inme */
+}
+
+
+    /* Fiyat Bilgisi */
+    .card-price {
+        font-size: 16px;
+        color: red;
+        font-weight: bold;
+        position: absolute;
+        bottom: 5px;
+        width: 90%;
+        text-align: left;
+    }
+
+    /* Row Ortalamak İçin */
+    .row {
+        justify-content: center;
+    }
+
+    /* Card Gövdesi */
+    .card-body {
+        position: relative;
+        height: 100%;
+    }
+</style>
+
+<div class="container mt-5">
+    <h3 class="text-center">Emlak - @ViewBag.AltKategori</h3>
+    <div class="row">
+        @if (Model.Any())
+        {
+            foreach (var emlak in Model)
+            {
+                <div class="@ViewBag.emlaklarKolonSayisi mb-4 d-flex ju stify-content-center">
+                    <div class="card shadow-sm">
+                        <!-- Resim URL'sini ViewBag üzerinden al -->
+                        <a href="/EmlakBahce/Detail/@emlak.Id">
+                            <img src="@ViewBag.ResimUrls[emlak.Id]" class="card-img-top" alt="@emlak.IlanAdi">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title text-center">
+                                <a href="/EmlakBahce/Detail/@emlak.Id" class="text-decoration-none text-dark">
+                                    @emlak.IlanAdi
+                                </a>
+                            </h5>
+                            <p class="card-text text-center">
+                                <strong>Adres:</strong> @emlak.AdresKonumuNavigation?.Il,
+                                @emlak.AdresKonumuNavigation?.Ilce<br />
+                            </p>
+                            @if(emlak.Taksitlimi == "E")
+                            {
+                            <p class="card-taksit">Aylık @emlak.TaksitBedeli ₺ taksit bedeli ile @emlak.TaksitSayisi ay taksite sahip olabilirsiniz. </p>
+                            }
+                            else
+                            {
+                            <p>@emlak.YuzOlcum m2</p>
+                            }
+                                
+                            <p class="card-price">
+                                <strong>Fiyat:</strong> @emlak.FiyatSatis?.ToString("C0")
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12">
+                <p class="text-center text-muted">Bu kategori için uygun ilan bulunamadı.</p>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,130 @@
+@using DBGoreWebApp.Models.Entities
+@model DBGoreWebApp.Models.Entities.Kullanici
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Kullanıcı Detayları -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <img src="@(!string.IsNullOrEmpty(Model.ImgUrl) ? Model.ImgUrl : "/img/default-user.jpg")"
+                        class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px;"
+                        alt="Kullanıcı Fotoğrafı">
+                    <h5>@Model.Ad @Model.Soyad</h5>
+                    <p class="text-muted"><i class="fas fa-envelope"></i> @Model.Email</p>
+                    <p><i class="fas fa-phone"></i> @Model.Telefon</p>
+                    <p><strong>Kayıt Tarihi:</strong> @Model.KayitTarihi.ToShortDateString()</p>
+
+                    <!-- Durum -->
+                    <p>
+                        <strong>Durum:</strong>
+                        <form method="post" action="/Admin/UpdateKullaniciDurum" style="display: inline;">
+                            <input type="hidden" name="Id" value="@Model.Id" />
+                            <select name="Durum" class="form-select-inline"
+                                style="background-color: @(Model.Durum == 'a' ? "green" : Model.Durum == 'p' ? "orange" : "red"); color: white;"
+                                onchange="this.form.submit()">
+                                @if (Model.Durum == 'a') { <option value="a">Onaylı</option> }
+                                else if (Model.Durum == 'p') { <option value="p">Onaysız</option> }
+                                else if (Model.Durum == 'k') { <option value="k">Banlı</option> }
+                                <option value="a">Onayla</option>
+                                <option value="p">Onaysız</option>
+                                <option value="k">Banla</option>
+                            </select>
+                        </form>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Abonelik Bilgileri -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>Abonelik Bilgileri</h5>
+                    <form method="post" action="/Admin/UpdateKullaniciAbonelik">
+                        <div class="mb-3">
+                            <div>
+                                <input type="hidden" name="Id" value="@Model.Id" />
+                                <label for="AbonelikTipi">Abonelik Tipi</label>
+                                @Html.DropDownListFor(model => model.AbonelikTipi,
+                                         (SelectList)ViewBag.AbonelikTipleri, "Seçiniz", new { @class = "form-select" })
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="AbonelikBaslangic" class="form-label">Başlangıç Tarihi</label>
+                            <input type="date" id="AbonelikBaslangic" name="AbonelikBaslangicTarihi"
+                                class="form-control" value="@Model.AbonelikBaslangicTarihi?.ToString("yyyy-MM-dd")" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="AbonelikBitis" class="form-label">Bitiş Tarihi</label>
+                            <input type="date" id="AbonelikBitis" name="AbonelikBitisTarihi" class="form-control"
+                                value="@Model.AbonelikBitisTarihi?.ToString("yyyy-MM-dd")" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="SonKullanim" class="form-label">Son Kullanım Tarihi</label>
+                            <input type="date" id="SonKullanim" name="SonKullanimTarihi" class="form-control"
+                                value="@Model.SonKullanimTarihi?.ToString("yyyy-MM-dd")" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kullanıcı İlanları -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>Emlak İlanları</h5>
+                    @if (Model.EmlakIlanlari != null && Model.EmlakIlanlari.Any())
+                    {
+                        <ul class="list-group">
+                            @foreach (var ilan in Model.EmlakIlanlari)
+                            {
+                                <li class="list-group-item">
+                                    <strong>@ilan.IlanAdi</strong>
+                                    <p>@ilan.AdresKonumuNavigation?.Il
+                                        @ilan.AdresKonumuNavigation?.Ilce</p>
+                                    <p><strong>Fiyat:</strong> @ilan.FiyatSatis?.ToString("N0") ₺</p>
+                                    <p><strong>İlan Tarihi:</strong> @ilan.TarihBas?.ToShortDateString()</p>
+                                    <a href="/EmlakBahce/Detail/@ilan.Id" class="btn btn-info btn-sm">Detaylar</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Kullanıcının emlak ilanı yok.</p>
+                    }
+                </div>
+            </div>
+
+            <div class="card shadow mt-4">
+                <div class="card-body">
+                    <h5>Araç İlanları</h5>
+                    @if (Model.ArabaIlanlari != null && Model.ArabaIlanlari.Any())
+                    {
+                        <ul class="list-group">
+                            @foreach (var ilan in Model.ArabaIlanlari)
+                            {
+                                <li class="list-group-item">
+                                    <strong>@ilan.VersiyonAdi</strong>
+                                    <p><strong>Fiyat:</strong> @ilan.Fiyat?.ToString("N0") ₺</p>
+                                    <p><strong>İlan Tarihi:</strong> @ilan.YilID</p>
+                                    <a href="/Arabalar/Detail/@ilan.Id" class="btn btn-info btn-sm">Detaylar</a>
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>Kullanıcının araç ilanı yok.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

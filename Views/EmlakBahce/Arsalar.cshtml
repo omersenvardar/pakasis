@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Durum</th>
+            <th>Oluşturma Tarihi</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var arsa in Model)
+        {
+            <tr>
+                <td>@arsa.Id</td>
+                <td>@arsa.Durum</td>
+                <td>@arsa.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,405 @@
+is_global = true
+build_property.TargetFramework = net9.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DBGoreWebApp
+build_property.RootNamespace = DBGoreWebApp
+build_property.ProjectDir = C:\Users\MW11\Desktop\Projeler\DbEmlakSite\Pakasis\dbgorewebapp\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\MW11\Desktop\Projeler\DbEmlakSite\Pakasis\dbgorewebapp
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 9.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Account/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Account/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxFcnJvci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Account/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Account/RegisterSuccess.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3RlclN1Y2Nlc3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/AdminSettings.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW5TZXR0aW5ncy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/ArabaDetay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXJhYmFEZXRheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/ArabaIlanlari.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXJhYmFJbGFubGFyaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/Ayarlar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQXlhcmxhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/EmlakDetay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRW1sYWtEZXRheS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/EmlakIlanlari.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRW1sYWtJbGFubGFyaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/Guncellendi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cR3VuY2VsbGVuZGkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/KullaniciDetay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cS3VsbGFuaWNpRGV0YXkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Admin/Kullanicilar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cS3VsbGFuaWNpbGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arabalar/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJhYmFsYXJcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arabalar/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJhYmFsYXJcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arabalar/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJhYmFsYXJcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arabalar/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJhYmFsYXJcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arabalar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJhYmFsYXJcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arabalar/Otomobil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJhYmFsYXJcT3RvbW9iaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/AramaSonucu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcQXJhbWFTb251Y3UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/AreaSearch.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcQXJlYVNlYXJjaC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/Arsa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcQXJzYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/HobiBahcesi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcSG9iaUJhaGNlc2kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/SearchResults.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcU2VhcmNoUmVzdWx0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Areas/Tarla.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJlYXNcVGFybGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arsalar/Ilanver.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJzYWxhclxJbGFudmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Arsalar/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXJzYWxhclxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Arsa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxBcnNhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Arsalar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxBcnNhbGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/EmlakIlanVer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxFbWxha0lsYW5WZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Emlaklar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxFbWxha2xhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/HobiBahceleri.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxIb2JpQmFoY2VsZXJpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Ilanver.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxJbGFudmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Ilanverildi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxJbGFudmVyaWxkaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/EmlakBahce/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtCYWhjZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Emlak/Arsa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1sYWtcQXJzYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Home/Emlak.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFbWxhay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Home/EmlakIlanlari.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxFbWxha0lsYW5sYXJpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Home/NotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxOb3RGb3VuZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Home/Yedek.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxZZWRlay5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/Ayarlar/_Kategoriler.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXEF5YXJsYXJcX0thdGVnb3JpbGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/Ayarlar/_SayfaAyarlari.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXEF5YXJsYXJcX1NheWZhQXlhcmxhcmkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/Ayarlar/_VitrinIlanlari.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXEF5YXJsYXJcX1ZpdHJpbklsYW5sYXJpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_AdminAktifIlanlarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9BZG1pbkFrdGlmSWxhbmxhclBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_AdminKaldirilanIlanlarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9BZG1pbkthbGRpcmlsYW5JbGFubGFyUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_AdminKullaniciGuncellendiPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9BZG1pbkt1bGxhbmljaUd1bmNlbGxlbmRpUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_AdminOnayBekleyenIlanlarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9BZG1pbk9uYXlCZWtsZXllbklsYW5sYXJQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_AdminPasifIlanlarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9BZG1pblBhc2lmSWxhbmxhclBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_AdminTumIlanlarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9BZG1pblR1bUlsYW5sYXJQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_ArabaIlanlariPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9BcmFiYUlsYW5sYXJpUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_EmlakIlanlariPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9FbWxha0lsYW5sYXJpUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Admin/_KullanicilarPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFkbWluXF9LdWxsYW5pY2lsYXJQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Arabalar/_ArabaHomeCardPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEFyYWJhbGFyXF9BcmFiYUhvbWVDYXJkUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Components/Kategori/Default.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENvbXBvbmVudHNcS2F0ZWdvcmlcRGVmYXVsdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Emlak/_EmlakIlanPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVtbGFrXF9FbWxha0lsYW5QYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Emlak/_EmlakListPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVtbGFrXF9FbWxha0xpc3RQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Home/_HomeEmlakCardPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEhvbWVcX0hvbWVFbWxha0NhcmRQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/IlanAraba/_ArabaOnayli.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxJbGFuQXJhYmFcX0FyYWJhT25heWxpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/IlanAraba/_ArabaOnaysiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxJbGFuQXJhYmFcX0FyYWJhT25heXNpei5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/IlanEmlak/_EditEmlakPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxJbGFuRW1sYWtcX0VkaXRFbWxha1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/IlanEmlak/_EmlakOnayli.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxJbGFuRW1sYWtcX0VtbGFrT25heWxpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/IlanEmlak/_EmlakOnaysiz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxJbGFuRW1sYWtcX0VtbGFrT25heXNpei5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/Profil/_ArabaIlanlarim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxQcm9maWxcX0FyYWJhSWxhbmxhcmltLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/Profil/_EditKullaniciPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxQcm9maWxcX0VkaXRLdWxsYW5pY2lQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/Profil/_EditPassPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxQcm9maWxcX0VkaXRQYXNzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/Profil/_EditProfilResimiPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxQcm9maWxcX0VkaXRQcm9maWxSZXNpbWlQYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/_ArabaIlanlarim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxfQXJhYmFJbGFubGFyaW0uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/_Ilanlarim.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxfSWxhbmxhcmltLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/_Kazanclar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxfS2F6YW5jbGFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Kullanici/_Profil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEt1bGxhbmljaVxfUHJvZmlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/Partials/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFBhcnRpYWxzXF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/ArabaGuncellendi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcQXJhYmFHdW5jZWxsZW5kaS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRGV0YWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/EditAraba.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdEFyYWJhLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/EditEmlak.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRWRpdEVtbGFrLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/ForgotPassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcRm9yZ290UGFzc3dvcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/IlanGuncellendi.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSWxhbkd1bmNlbGxlbmRpLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Users/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUmVnaXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MW11/Desktop/Projeler/DbEmlakSite/Pakasis/dbgorewebapp/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-3mw6or8syr

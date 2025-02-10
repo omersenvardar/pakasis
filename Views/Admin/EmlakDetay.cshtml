@@ -1,0 +1,669 @@
+@model DBGoreWebApp.Models.Entities.EmlakBahce
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+<div class="row">
+    @if (TempData["UpdateEmlakDetayMessage"] != null)
+      {
+        <div class="alert alert-info">
+          @TempData["UpdateEmlakDetayMessage"]
+        </div>
+      }
+      @if (TempData["UpdateEmlakDetayBilgi"] != null)
+      {
+        <div class="alert alert-info">
+          @TempData["UpdateEmlakDetayBilgi"]
+        </div>
+      }
+        
+    </div>
+<div class="ana">
+    
+    <!-- Resimler ve İlan Başlığı -->
+    <div class="inline-box alan1 bg-light col-md-4">
+        <!-- Ana Resim -->
+        <div class="text-center mt-3" style="height: 347px; overflow: hidden;">
+            @if (Model.ArsaResimleri != null && Model.ArsaResimleri.Any())
+            {
+                <img src="@Model.ArsaResimleri.FirstOrDefault()?.ResimArsaUrl" id="ana-resim" class="img-fluid border"
+                    style="width: 100%; height: 100%; object-fit: cover;" alt="Ana Resim">
+            }
+            else
+            {
+                <img src="/img/default-emlak.jpg" class="img-fluid border"
+                    style="width: 100%; height: 100%; object-fit: cover;" alt="Varsayılan Resim">
+            }
+        </div>
+        <!-- Küçük Resimler -->
+        <div class="mt-3 d-flex justify-content-center flex-wrap">
+            @if (Model.ArsaResimleri != null && Model.ArsaResimleri.Any())
+            {
+                @foreach (var resim in Model.ArsaResimleri)
+                {
+                    
+                    <div class="küçük-resim-container position-relative mx-1">
+                        <img src="@resim.ResimArsaUrl" class="img-thumbnail küçük-resim border" 
+                             style="width: 80px; height: 80px; cursor: pointer;" alt="Küçük Resim"
+                             onclick="updateAnaResim(this.src)">
+                        <button type="button" class="close-btn" onclick="removeExistingImage(@resim.Id)">×</button>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">Küçük resim bulunamadı.</p>
+            }
+        </div>
+
+        <!-- İlan Başlığı ve Açıklama -->
+        <div class="mt-3">
+            <h3>@Model.IlanAdi</h3>
+            <p>@Html.Raw(Model.IlanAciklamasi)</p>
+        </div>
+    </div>
+    <!-- Emlak Detayları -->
+    <div class="inline-box alan2 col-md-5">
+        <!-- Emlak Bilgileri -->
+        <div class="row-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>Emlak Bilgileri</h5>
+                    
+                    <form method="post" action="/Admin/UpdateEmlakDetay" enctype="multipart/form-data">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <div class="row g-3">
+                            <label for="Adres" class="form-label bg-mavi">Adres Bilgisi</label>
+                            <div class="col-md-12">
+                                <p><strong>Mevcut Adres:</strong> @Model.AdresKonumuNavigation?.Il,
+                                    @Model.AdresKonumuNavigation?.Ilce, @Model.AdresKonumuNavigation?.MahalleKoyAdi</p>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Il" class="form-label">İl</label>
+                                <select id="Il" name="Il" class="form-select">
+                                    <option value="" selected>İl Seçiniz</option>
+                                    @foreach (var il in ViewBag.AdresGruplari.Keys)
+                                    {
+                                        <option value="@il">@il</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Ilce" class="form-label">İlçe</label>
+                                <select id="Ilce" name="Ilce" class="form-select">
+                                    <option value="" selected>İlçe Seçiniz</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Mahalle" class="form-label">Mahalle</label>
+                                <select id="Mahalle" name="MahalleKoyAdi" class="form-select">
+                                    <option value="" selected>Mahalle Seçiniz</option>
+                                </select>
+                            </div>
+                            <input type="hidden" id="AdresKonumu" name="AdresKonumu" value="@Model.AdresKonumu" />
+                        </div>
+                        <input type="hidden" id="adresKonumu" name="AdresKonumu" value="">
+                        <div class="mt-2" id="girilenAdres" style="font-size: 14px; color: gray;">
+                            <p id="adresKonumuGoster" style="font-size: 14px; color: gray;">Adres: </p>
+                        </div>
+                        <!-- İlan bilgileri -->
+                        <input type="hidden" name="IlanNo" value="@Model.IlanNo">
+                        <input type="text" name="IlanNo" value="@Model.IlanNo" disabled>
+                        <div class="mb-3">
+                            <label for="Ada">Ada</label>
+                            <input type="number" id="Ada" name="Ada" class="form-control" value="@Model.Ada" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="Parsel">Parsel</label>
+                            <input type="number" id="Parsel" name="Parsel" class="form-control" value="@Model.Parsel" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="YuzOlcum">Yüz Ölçüm</label>
+                            <input type="number" id="YuzOlcum" name="YuzOlcum" class="form-control"
+                                value="@Model.YuzOlcum" />
+                        </div>
+                        <div class="col-md-3">
+                            <label for="Hisse" class="form-label">Hisse</label>
+                            <input type="number" class="form-control" id="Hisse" value="@Model.Hisse" name="Hisse"
+                                placeholder="Örn: 2">
+                        </div>
+                        <!-- Proje Tarih Bilgileri -->
+                        <div class="row g-3 mt-3">
+                            <label class="form-label bg-mavi">Proje Tarihi Bilgileri</label>
+                            <div class="col-md-3">
+                                <label for="Tur" class="form-label">Niteliği</label>
+                                <select id="Tur" class="form-select" name="Tur">
+                                    <option value="@Model.Turu" disabled>@Model.Turu</option>
+                                    <option value="Arsa">Arsa</option>
+                                    <option value="Tarla">Tarla</option>
+                                    <option value="Hobi Bahçesi">Hobi Bahçesi</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 ">
+                                <label for="TarihBas" class="form-label">Başlangıç Tarihi</label>
+                                <input type="date" class="form-control bg-mavi text-white bg-warning" id="TarihBas"
+                                    name="TarihBas" value="@Model.TarihBas?.ToString("yyyy-MM-dd")">
+
+                            </div>
+                            <div class="col-md-3">
+                                <label for="TarihBitis" class="form-label">Bitiş Tarihi</label>
+                                <input type="date" class="form-control bg-mavi text-white bg-warning" id="TarihBitis"
+                                    name="TarihBitis" value="@Model.TarihBitis?.ToString("yyyy-MM-dd")">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="TarihTeslim" class="form-label">Teslim Tarihi</label>
+                                <input type="date" class="form-control bg-mavi text-white bg-warning" id="TarihTeslim"
+                                    name="TarihTeslim" value="@Model.TarihTeslim?.ToString("yyyy-MM-dd")">
+                            </div>
+                        </div>
+                        <!-- Hobi Bahçesi ile İlgili Alanlar -->
+                        <div id="hobiBahcesiFields" style="display:none;">
+                            <div class="row g-3 mt-3">
+                                <div class="col-md-3">
+                                    <label for="BagceSayisi" class="form-label">Bağçe Sayısı</label>
+                                    <input type="number" class="form-control" id="BagceSayisi" name="BagceSayisi" value="@Model.BagceSayisi"
+                                        placeholder="Bağçe Sayısı">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="BahceSayisiSatilan" class="form-label">Satılan Bağçe Sayısı</label>
+                                    <input type="number" class="form-control" id="BahceSayisiSatilan" value="@Model.BahceSayisiIstenen"
+                                        name="BahceSayisiSatilan" placeholder="Satılan Bağçe Sayısı">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fiyat Bilgileri -->
+                        <div class="row g-3 mt-3">
+                            <label for="FiyatBilgileri" class="form-label bg-mavi">Fiyat Bilgileri</label>
+                            <div class="col-md-4">
+                                <label for="FiyatSatis" class="form-label">Satış Fiyatı: <span
+                                        id="FiyatSatisLabel"></span></label>
+                                <input type="number" class="form-control" value="@Model.FiyatSatis" id="FiyatSatis" name="FiyatSatis"
+                                    placeholder="Örn: 100000" required oninput="formatAndDisplay(this)">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="FiyatPesin" class="form-label">Peşin Fiyat: <span
+                                        id="FiyatPesinLabel"></span></label>
+                                <input type="number" class="form-control" value="@Model.FiyatPesin" id="FiyatPesin" name="FiyatPesin"
+                                    placeholder="Örn: 80000" required oninput="formatAndDisplay(this)">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Kapora" class="form-label">Kapora: <span id="KaporaLabel"></span></label>
+                                <input type="number" class="form-control" value="@Model.Kapora" id="Kapora" name="Kapora"
+                                    placeholder="Örn: 5000" required oninput="formatAndDisplay(this)">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Vadeli Satış</label>
+                                <select id="Vadeli" name="Taksitlimi"  class="form-select">
+                                    @if(Model.Taksitlimi == "E")
+                                    {
+                                        <option value="@Model.Taksitlimi" disabled>Evet</option>
+                                    }
+                                    else if(Model.Taksitlimi == "H")
+                                    {
+                                    <option value="@Model.Taksitlimi" disabled>Hayır</option>
+                                    }
+                                    <option value="H">Hayır</option>
+                                    <option value="E">Evet</option>
+                                </select>
+                            </div>
+                            <div class="col-md-8">
+                                <label for="ParselSorgu" class="form-label">Parsel Sorgu: <span
+                                        id="ParselSorgu"></span></label>
+                                <input type="text" class="form-control" id="ParselSorgu" name="ParselSorgu" value="@Model.ParselSorgu"
+                                    placeholder="Parsel Sorgu Adresini Giriniz">
+                            </div>
+                        </div>
+                        <div class="row g-3 mt-3 d-none" id="taksitAlan">
+                            <div class="col-md-4">
+                                <label for="TaksitSayisi" class="form-label">Taksit Sayısı: <span
+                                        id="TaksitSayisiLabel"></span></label>
+                                <input type="number" class="form-control" id="TaksitSayisi" name="TaksitSayisi" min="1"
+                                    max="120" value="@Model.TaksitSayisi" oninput="formatAndDisplay(this)">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="TaksitBedeli" class="form-label">Taksit Bedeli: <span
+                                        id="TaksitBedeliLabel"></span></label>
+                                <input type="number" class="form-control" id="TaksitBedeli" name="TaksitBedeli" value="@Model.TaksitBedeli"
+                                    oninput="formatAndDisplay(this)">
+                            </div>
+                        </div>
+                        <!-- Açıklama Alanı -->
+                        <div class="row g-3 mt-3">
+                            <label for="IlanAdi" class="form-label bg-mavi">Açıklama</label>
+                            <div class="col-md-12">
+                                <label for="IlanAdi" class="form-label">İlan Başlığı</label>
+                                <input type="text" class="form-control" value="@Model.IlanAdi" id="IlanAdi"
+                                    name="IlanAdi"  maxlength="100" placeholder="Örn: Satılık Hobi Bahçesi" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="IlanAciklamasi" class="form-label">İlan Açıklaması</label>
+                                <textarea class="form-control" id="IlanAciklamasi"
+                                          name="IlanAciklamasi" rows="3" placeholder="İlan hakkında detaylı bilgi..." required>@Model.IlanAciklamasi</textarea>
+                            </div>
+
+                        </div>
+                        <div class="form-group mt-3">
+                            <h5>Yeni Resimler Yükle</h5>
+                            <input type="file" id="resimler" name="yeniResimler" class="form-control" accept="image/*"
+                                multiple />
+                            <div class="row mt-3" id="newImagePreview" style="gap: 1rem;"></div>
+                        </div>
+
+                        <input type="hidden" id="silinecekResimler" name="silinecekResimler" value="" />
+
+                        <button type="submit" class="btn btn-primary w-100">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kullanıcı Bilgileri -->
+    <div class="inline-box alan3 col-md-2">
+        <div class="border rounded shadow text-center p-3 bg-light">
+            <img src="@(Model.Kullanici?.ImgUrl ?? "/img/default-profile.jpg")" class="img-fluid rounded-circle border"
+                style="width: 120px; height: 120px;" alt="Kullanıcı Profil Resmi">
+
+            <h4 class="mt-2">
+                @if (Model.Kullanici != null)
+                {
+                    <a href="/Admin/KullaniciDetay/@Model.Kullanici.Id" class="text-decoration-none">@Model.Kullanici.Ad</a>
+                }
+                else
+                {
+                    <a href="#" class="text-muted text-decoration-none">Kullanıcı Bilgisi Eksik</a>
+                }
+            </h4>
+            <p><strong>E-Posta:</strong> @(Model.Kullanici?.Email ?? "E-posta bilgisi bulunamadı")</p>
+            <p><strong>Telefon:</strong> @(Model.Kullanici?.Telefon ?? "Telefon bilgisi bulunamadı")</p>
+            
+            <!-- Durum güncelleme  -->
+        
+                    <h5>@Model.Id</h5>
+                     @if(!string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("KullaniciYetki")))
+        {
+                    <!-- Durum -->
+                    <p>
+                        <strong>Durum:</strong>
+                    <form method="post" action="/Admin/UpdateEmlakDurum" style="display: inline;">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <select name="Durum" class="form-select-inline"
+                            style="background-color: @(Model.Durum == 'a' ? "green" : Model.Durum == 'v' ? "blue" : Model.Durum == 'p' ? "orange" : "red"); color: white;"
+                            onchange="this.form.submit()">
+                                @if (Model.Durum == 'a')
+                                {
+                                <option value="a">Onaylı</option>
+                                }
+                                else if (Model.Durum == 'v')
+                                {
+                                <option value="p">Vitrinde</option>
+                                }
+                                else if (Model.Durum == 'p')
+                                {
+                                <option value="p">Onaysız</option>
+                                }
+                                else if (Model.Durum == 'k')
+                                {
+                                <option value="k">Kaldırılmış</option>
+                                }
+                            <option value="a">Onayla</option>
+                            <option value="v">Vitrinde al</option>
+                            <option value="p">Onaysız</option>
+                            <option value="k">Kaldır</option>
+                        </select>
+                    </form>
+                    </p>
+        }
+        else
+        {
+            <p>Sen bir üyesin kendine gel</p>
+        }
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Adres il ilçe mahalleköy seçim -->
+    <script>
+        const adresGruplari = @Html.Raw(Json.Serialize(ViewBag.AdresGruplari));
+
+        document.getElementById("Il").addEventListener("change", function () {
+            const selectedIl = this.value;
+            const ilceDropdown = document.getElementById("Ilce");
+            const mahalleDropdown = document.getElementById("Mahalle");
+
+            ilceDropdown.innerHTML = '<option value="" selected>İlçe Seçiniz</option>';
+            mahalleDropdown.innerHTML = '<option value="" selected>Mahalle Seçiniz</option>';
+
+            if (adresGruplari[selectedIl]) {
+                for (const ilce in adresGruplari[selectedIl]) {
+                    const option = document.createElement("option");
+                    option.value = ilce;
+                    option.textContent = ilce;
+                    ilceDropdown.appendChild(option);
+                }
+            }
+        });
+
+        document.getElementById("Ilce").addEventListener("change", function () {
+            const selectedIl = document.getElementById("Il").value;
+            const selectedIlce = this.value;
+            const mahalleDropdown = document.getElementById("Mahalle");
+
+            mahalleDropdown.innerHTML = '<option value="" selected>Mahalle Seçiniz</option>';
+
+            if (adresGruplari[selectedIl] && adresGruplari[selectedIl][selectedIlce]) {
+                adresGruplari[selectedIl][selectedIlce].forEach(mahalle => {
+                    const option = document.createElement("option");
+                    option.value = mahalle;
+                    option.textContent = mahalle;
+                    mahalleDropdown.appendChild(option);
+                });
+            }
+        });
+
+        document.getElementById("Mahalle").addEventListener("change", function () {
+            const selectedIl = document.getElementById("Il").value;
+            const selectedIlce = document.getElementById("Ilce").value;
+            const selectedMahalle = this.value;
+
+            const adres = Object.values(adresGruplari[selectedIl][selectedIlce]).find(m => m === selectedMahalle);
+            document.getElementById("AdresKonumu").value = adres ? adres : @Model.AdresKonumu;
+        });
+    </script>
+    <script>
+        // Yeni resimleri önizleme ve yükleme
+        $('#resimler').change(function () {
+            const files = Array.from(this.files);
+
+            if (files.length > 10) {
+                alert('En fazla 10 resim seçebilirsiniz!');
+                this.value = ''; // Seçimi temizle
+                return;
+            }
+
+            $('#newImagePreview').empty();
+
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const previewHtml = `
+                                            <div class="resim-card" data-index="${index}">
+                                                <img src="${e.target.result}" alt="${file.name}" />
+                                                <button class="close-btn" type="button" onclick="removeNewImage(${index})">&times;</button>
+                                            </div>
+                                        `;
+                    $('#newImagePreview').append(previewHtml);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function removeNewImage(index) {
+            const input = document.getElementById('resimler');
+            const dt = new DataTransfer();
+
+            Array.from(input.files).forEach((file, i) => {
+                if (i !== index) {
+                    dt.items.add(file);
+                }
+            });
+
+            input.files = dt.files;
+
+            $(`.resim-card[data-index="${index}"]`).remove();
+        }
+
+        function removeExistingImage(id) {
+            const deletedImagesInput = document.getElementById('silinecekResimler');
+            const currentDeletedIds = deletedImagesInput.value ? deletedImagesInput.value.split(',') : [];
+            currentDeletedIds.push(id);
+
+            deletedImagesInput.value = currentDeletedIds.join(',');
+            $(`.resim-card[data-id="${id}"]`).remove();
+        }
+    </script>
+
+    <style>
+
+        .resim-card {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resim-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resim-card .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .küçük-resim-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+}
+
+.küçük-resim-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.küçük-resim-container .close-btn {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+    </style>
+
+    <!-- Sayfa detayları düzenleme alanının ayarları  -->
+    <script>
+        // adres seçimi
+        function findAdresId(il, ilce, mahalle) {
+            const adres = adresGruplari.find(a => a.Il === il && a.Ilce === ilce && a.MahalleKoyAdi === mahalle);
+            return adres ? adres.Id : null;
+        }
+
+
+        // Fiyat alanları noktalıklı gösteriyor
+
+        function formatAndDisplay(input) {
+            const value = input.value;
+            const formattedValue = new Intl.NumberFormat('tr-TR', {
+                minimumFractionDigits: 0
+            }).format(value);
+
+            const labelId = input.id + "Label";
+            document.getElementById(labelId).innerText = formattedValue ? formattedValue : '';
+        }
+
+        document.getElementById('Vadeli').addEventListener('change', function () {
+            const taksitAlan = document.getElementById('taksitAlan');
+            if (this.value === 'E') {
+                taksitAlan.classList.remove('d-none');
+                //  vadeliMiInput.value = 'true';
+            } else {
+                taksitAlan.classList.add('d-none');
+                //   vadeliMiInput.value = 'false';
+            }
+        });
+
+        // Tur Alanı Hobi Bahçesi seçilince BagceSayisi Alanı çıkıyor.
+
+        $(document).ready(function () {
+            // İlk yüklemede, Tur seçeneğine göre alanları kontrol et
+            toggleHobiBahcesiFields();
+
+            // Tur seçeneği değiştiğinde çalışacak fonksiyon
+            $('#Tur').change(function () {
+                toggleHobiBahcesiFields();
+            });
+
+            // "Hobi Bahçesi" seçildiğinde ilgili alanları göster, diğerlerinde gizle
+            function toggleHobiBahcesiFields() {
+                if ($('#Tur').val() === 'Hobi Bahçesi') {
+                    $('#hobiBahcesiFields').show(); // Hobi Bahçesi seçildiyse göster
+                } else {
+                    $('#hobiBahcesiFields').hide(); // Diğerlerinde gizle
+                }
+            }
+        });
+        // Tüm küçük resimlere click event'i ekle
+    document.querySelectorAll('.küçük-resim').forEach(kucukResim => {
+        kucukResim.addEventListener('click', function () {
+            // Tıklanan küçük resmin URL'sini al
+            const yeniResimUrl = this.src;
+            // Ana resmi güncelle
+            document.getElementById('ana-resim').src = yeniResimUrl;
+        });
+    });
+
+    //# ana küçük-resim-container altındaki küçük buttonlara konulan çarpı addEventListener
+    function updateAnaResim(resimUrl) {
+    // Ana resmin URL'sini güncelle
+    document.getElementById('ana-resim').src = resimUrl;
+}
+
+function removeExistingImage(id) {
+    const deletedImagesInput = document.getElementById('silinecekResimler');
+    const currentDeletedIds = deletedImagesInput.value ? deletedImagesInput.value.split(',') : [];
+    
+    // Eğer ID zaten listede değilse ekle
+    if (!currentDeletedIds.includes(id.toString())) {
+        currentDeletedIds.push(id);
+    }
+    
+    deletedImagesInput.value = currentDeletedIds.join(',');
+    
+    // Görseli arayüzden kaldır
+    const imageContainer = document.querySelector(`.küçük-resim-container button[onclick="removeExistingImage(${id})"]`).parentNode;
+    imageContainer.remove();
+}
+
+
+    //# whatsappdan paylaşım yapmak için icona basınca çalışıyor.
+    document.getElementById("whatsapp-share").addEventListener("click", function () {
+        const ilanBasligi = "Satılık Arsa - Muhteşem Fırsat!"; // İlan Başlığını Dinamik Getirin
+        const ilanLinki = window.location.href; // Şu anki sayfa URL'sini alın
+        const mesaj = `${ilanBasligi}\n${ilanLinki}`;
+
+        // WhatsApp URL'sini oluştur
+        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mesaj)}`;
+
+        // Kullanıcıyı WhatsApp'a yönlendir
+        window.open(whatsappUrl, "_blank");
+    });
+    </script>
+    <!-- Detay sayfasının düzeni -->
+    <style>
+        .bg-mavi {
+            background: linear-gradient(to bottom right, rgb(0, 174, 255), #e5e5e4);
+            color: white;
+            transition: all 1s ease;
+        }
+
+        .bg-mavi:hover {
+            background-color: rgb(134, 217, 255);
+        }
+
+        #girilenAdres {
+            padding: 5px;
+            border: 1px dashed gray;
+            border-radius: 5px;
+        }
+
+        #resimPreview {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .resim-card {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resim-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resim-card .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .ana {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .inline-box {
+        flex: 1 1 auto;
+        margin: 5px;
+    }
+
+    .alan1,
+    .alan2 {
+        background: linear-gradient(to bottom right, #ffffff, #f2fffd);
+    }
+
+    .küçük-resim:hover {
+        transform: scale(1.1);
+        border: 2px solid #007bff;
+    }
+    </style>
+}

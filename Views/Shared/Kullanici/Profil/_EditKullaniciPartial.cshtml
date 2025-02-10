@@ -1,0 +1,36 @@
+@model DBGoreWebApp.Models.Entities.Kullanici
+<style>
+    .container {
+        padding: 0px 0px 20px 0px;
+        margin: 0 auto;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h4>Kullanıcı Bilgilerini Güncelle</h4>
+            <form asp-action="UpdateKullanici" asp-controller="Account" method="post">
+                <input type="hidden" name="Id" value="@Model.Id">
+                <div class="mb-3">
+                    <label for="Ad" class="form-label">Ad</label>
+                    <input type="text" class="form-control" id="Ad" name="Ad" value="@Model.Ad" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Soyad" class="form-label">Soyad</label>
+                    <input type="text" class="form-control" id="Soyad" name="Soyad" value="@Model.Soyad" required>
+                </div>
+                <div class="mb-3">
+                    <label for="Telefon" class="form-label">Telefon</label>
+                    <input type="text" class="form-control" id="Telefon" name="Telefon" value="@Model.Telefon">
+                </div>
+                <div class="mb-3">
+                    <label for="Email" class="form-label">E-posta</label>
+                    <input type="email" class="form-control" id="Email" name="Email" value="@Model.Email" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 mt-3">Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>

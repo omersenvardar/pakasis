@@ -1,0 +1,124 @@
+@model List<DBGoreWebApp.Models.Entities.Kullanici>
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .card-body div {
+        flex: 1;
+    }
+
+    .badge {
+        padding: 5px 10px;
+        color: white;
+        font-size: 0.9rem;
+        border-radius: 5px;
+    }
+
+    .img-container {
+        text-align: center;
+        flex: 0.3;
+    }
+
+    .img-container img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+    }
+
+    .info-container,
+    .subscription-container,
+    .ilan-container {
+        text-align: left;
+    }
+
+    .info-container p,
+    .subscription-container p,
+    .ilan-container p {
+        margin: 5px 0;
+    }
+
+    /* Medya Sorgusu ile Responsive Tasarım */
+    @@media (max-width: 600px) {
+        .card-body {
+            display: block;
+        }
+
+        .img-container {
+            flex: none;
+            margin-bottom: 20px;
+        }
+
+        .img-container img {
+            width: 80px;
+            height: 80px;
+        }
+
+        .info-container,
+        .subscription-container,
+        .ilan-container {
+            flex: none;
+            text-align: center;
+        }
+    }
+</style>
+
+
+<h3>Kullanıcılar</h3>
+<div class="container">
+    @foreach (var kullanici in Model)
+    {
+        <div class="card mb-3 shadow">
+            <a asp-controller="Admin" asp-action="KullaniciDetay" asp-route-id="@kullanici.Id" class="btn">
+                <div class="card-body">
+                    <!-- Resim Alanı -->
+                    <div class="img-container">
+                        <img src="@(!string.IsNullOrEmpty(kullanici.ImgUrl) ? kullanici.ImgUrl : "/img/default-profile.jpg")" 
+                             alt="Kullanıcı Resmi">
+                        <p style="margin-top: 10px;">
+                            <strong>Durum:</strong>
+                            <span class="badge"
+                                  style="background-color: @(kullanici.Durum == 'a' ? "green" : kullanici.Durum == 'p' ? "yellow" : "red");">
+                                @(kullanici.Durum == 'a' ? "Onaylı" : kullanici.Durum == 'p' ? "Onaysız" : "Banlı")
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- Bilgi Alanı -->
+                    <div class="info-container">
+                        <h5>@kullanici.Ad @kullanici.Soyad</h5>
+                        <p><strong>Email:</strong> @kullanici.Email</p>
+                        <p><strong>Telefon:</strong> @kullanici.Telefon</p>
+                        <p><strong>Firma:</strong> @kullanici.FirmaUnvani</p>
+                        <p><strong>Kayıt Tarihi:</strong> @kullanici.KayitTarihi.ToShortDateString()</p>
+                    </div>
+
+                    <!-- Abonelik Bilgileri -->
+                    <div class="subscription-container">
+                        <p><strong>Abonelik:</strong> @kullanici.AbonelikTipi</p>
+                        <p><strong>Başlangıç:</strong> @kullanici.AbonelikBaslangicTarihi?.ToShortDateString()</p>
+                        <p><strong>Bitiş:</strong> @kullanici.AbonelikBitisTarihi?.ToShortDateString()</p>
+                        <p><strong>Son Kullanım:</strong> @kullanici.SonKullanimTarihi?.ToShortDateString()</p>
+                    </div>
+
+                    <!-- İlan Bilgileri -->
+                    <div class="ilan-container">
+                        <p><strong>Emlak İlan Sayısı:</strong> @ViewBag.EmlakIlanSayilari[kullanici.Id]</p>
+                        <p><strong>Araç İlan Sayısı:</strong> @ViewBag.ArabaIlanSayilari[kullanici.Id]</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>

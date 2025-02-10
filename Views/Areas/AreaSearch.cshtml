@@ -1,0 +1,48 @@
+@model DBGoreWebApp.Models.ViewModels.AreaSearchViewModel
+@using DBGoreWebApp.Models.Entities
+
+<h2 class="mb-4">Arama Sonuçları</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+@if (Model.Results != null && Model.Results.Any())
+{
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Şehir</th>
+                    <th scope="col">İlçe</th>
+                    <th scope="col">Alan (m²)</th>
+                    <th scope="col">Fiyat (₺)</th>
+                    <th scope="col">Detay</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Results)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Il</td>
+                        <td>@item.Ilce</td>
+                        <td>@item.Alan</td>
+                        <td>@item.Fiyat</td>
+                        <td>
+                            <a href="@Url.Action("Detail", "Areas", new { id = item.Id })" class="btn btn-primary btn-sm">
+                                Detay
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">Sonuç bulunamadı.</div>
+}

@@ -1,0 +1,23 @@
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Başlık</th>
+            <th>Fiyat</th>
+            <th>Adres</th>
+            <th>Durum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ilan in Model)
+        {
+            <tr>
+                <td>@ilan.Id</td>
+                <td>@ilan.IlanAdi</td>
+                <td>@String.Format("{0:N0} ₺", ilan.FiyatSatis)</td>
+                <td>@ilan.AdresKonumuNavigation?.Il ?? "Bilinmiyor"</td>
+                <td>@ilan.IlanStatusu</td>
+            </tr>
+        }
+    </tbody>
+</table>

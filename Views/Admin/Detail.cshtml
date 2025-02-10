@@ -1,0 +1,102 @@
+@model DBGoreWebApp.Models.Entities.Kullanici
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Kullanıcı Detayları -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body text-center">
+                    <img src="@(!string.IsNullOrEmpty(Model.ImgUrl) ? Model.ImgUrl : "/img/default-user.jpg")" 
+                         class="img-fluid rounded-circle mb-3" 
+                         style="width: 150px; height: 150px;" 
+                         alt="Kullanıcı Fotoğrafı">
+                    <h5>@Model.Ad @Model.Soyad</h5>
+                    <p class="text-muted"><i class="fas fa-envelope"></i> @Model.Email</p>
+                    <p><i class="fas fa-phone"></i> @Model.Telefon</p>
+                    <p><strong>Kayıt Tarihi:</strong> @Model.KayitTarihi.ToShortDateString()</p>
+                    
+                    <!-- Durum -->
+                    <p>
+                        <strong>Durum:</strong>
+                        <span class="badge" style="background-color: @(Model.Durum == 'a' ? "green" : Model.Durum == 'p' ? "yellow" : "red");">
+                            @(Model.Durum == 'a' ? "Onaylı" : Model.Durum == 'p' ? "Onaysız" : "Banlı")
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Abonelik Bilgileri -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>Abonelik Bilgileri</h5>
+                    <form method="post" action="/Admin/UpdateKullaniciAbonelik">
+                        <div class="mb-3">
+                            <label for="AbonelikTipi" class="form-label">Abonelik Tipi</label>
+                            <select id="AbonelikTipi" name="AbonelikTipi" class="form-select">
+                                @* <option value="Üye" @(Model.AbonelikTipi == "Üye" ? "selected" : "")>Üye</option>
+                                <option value="Bronz" @(Model.AbonelikTipi == "Bronz" ? "selected" : "")>Bronz</option>
+                                <option value="Gümüş" @(Model.AbonelikTipi == "Gümüş" ? "selected" : "")>Gümüş</option>
+                                <option value="Altın" @(Model.AbonelikTipi == "Altın" ? "selected" : "")>Altın</option>
+                                <option value="Platin" @(Model.AbonelikTipi == "Platin" ? "selected" : "")>Platin</option>
+                                <option value="Premium" @(Model.AbonelikTipi == "Premium" ? "selected" : "")>Premium</option>
+                                <option value="Vip" @(Model.AbonelikTipi == "Vip" ? "selected" : "")>Vip</option> *@
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="AbonelikBaslangic" class="form-label">Başlangıç Tarihi</label>
+                            <input type="date" id="AbonelikBaslangic" name="AbonelikBaslangicTarihi" 
+                                   class="form-control" value="@Model.AbonelikBaslangicTarihi?.ToString("yyyy-MM-dd")" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="AbonelikBitis" class="form-label">Bitiş Tarihi</label>
+                            <input type="date" id="AbonelikBitis" name="AbonelikBitisTarihi" 
+                                   class="form-control" value="@Model.AbonelikBitisTarihi?.ToString("yyyy-MM-dd")" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="SonKullanim" class="form-label">Son Kullanım Tarihi</label>
+                            <input type="date" id="SonKullanim" name="SonKullanimTarihi" 
+                                   class="form-control" value="@Model.SonKullanimTarihi?.ToString("yyyy-MM-dd")" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kullanıcı İlanları -->
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5>Kullanıcı İlanları</h5>
+                    <ul class="list-group">
+                        @* @foreach (var ilan in Model.EmlakIlanlari ?? new List<EmlakBahce>())
+                        {
+                            <li class="list-group-item">
+                                <strong>@ilan.IlanAdi</strong>
+                                <p>@ilan.AdresKonumuNavigation?.Il ?? "İl Bilinmiyor", 
+                                   @ilan.AdresKonumuNavigation?.Ilce ?? "İlçe Bilinmiyor"</p>
+                                <p><strong>Fiyat:</strong> @ilan.FiyatSatis?.ToString("N0") ?? "Belirtilmemiş" ₺</p>
+                                <a href="/EmlakBahce/Detail/@ilan.Id" class="btn btn-info btn-sm">Detaylar</a>
+                            </li>
+                        } *@
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .badge {
+        padding: 5px 10px;
+        color: white;
+        font-size: 0.9rem;
+        border-radius: 5px;
+    }
+</style>

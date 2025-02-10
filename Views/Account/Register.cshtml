@@ -1,0 +1,271 @@
+@model DBGoreWebApp.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Üye Ol";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        @if (TempData["MessageRegisterhata"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["MessageRegisterhata"]
+            </div>
+        }
+        @if (TempData["MessageRegister"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["MessageRegister"]
+            </div>
+        }
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Üye Ol</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Register" asp-controller="Account" method="post" enctype="multipart/form-data" id="registerForm">
+                        <!-- Ad -->
+                        <div class="mb-3">
+                            <label for="Ad" class="form-label">Ad <span class="text-danger">Zorunlu</span></label>
+                            <input type="text" class="form-control" id="Ad" name="Ad" maxlength="50" placeholder="Adınızı girin" required>
+                        </div>
+
+                        <!-- Soyad -->
+                        <div class="mb-3">
+                            <label for="Soyad" class="form-label">Soyad <span class="text-danger">Zorunlu</span></label>
+                            <input type="text" class="form-control" id="Soyad" name="Soyad" maxlength="50" placeholder="Soyadınızı girin" required>
+                        </div>
+
+                        <!-- Telefon -->
+                        <div class="mb-3">
+                            <label for="Telefon" class="form-label">Telefon</label>
+                            <input type="text" class="form-control" id="Telefon" name="Telefon" maxlength="15" placeholder="Telefon numaranız">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">E-posta</label>
+                            <input type="email" class="form-control" id="Email" name="Email" maxlength="255" placeholder="E-posta adresinizi girin">
+                        </div>
+
+                        <!-- Şifre -->
+                        <div class="mb-3">
+                            <label for="Sifre" class="form-label">Şifre <span class="text-danger">Zorunlu</span></label>
+                            <input type="password" class="form-control" id="Sifre" name="Sifre" maxlength="255" placeholder="Şifrenizi girin" required>
+                        </div>
+
+                        <!-- Şifre Tekrar -->
+                        <div class="mb-3">
+                            <label for="ConfirmSifre" class="form-label">Şifre Tekrar <span class="text-danger">Zorunlu</span></label>
+                            <input type="password" class="form-control" id="ConfirmSifre" name="ConfirmSifre" maxlength="255" placeholder="Şifrenizi tekrar girin" required>
+                        </div>
+
+                        <!-- Firma Ünvanı (Zorunlu değil) -->
+                        <div class="mb-3">
+                            <label for="FirmaUnvani" class="form-label">Firma Ünvanı</label>
+                            <input type="text" class="form-control" id="FirmaUnvani" name="FirmaUnvani" maxlength="255" placeholder="Firma Ünvanı">
+                        </div>
+
+                        <!-- Referans (Zorunlu değil) -->
+                        <div class="mb-3">
+                            <label for="Referans" class="form-label">Referans</label>
+                            <input type="text" class="form-control" id="Referans" name="Referans" maxlength="255" placeholder="Referans">
+                        </div>
+
+                        <!-- Resim (Zorunlu değil) -->
+                        <div class="mb-3">
+                            <label for="ImgUrl" class="form-label">Profil Resmi</label>
+                            <input type="file" class="form-control" id="ImgUrl" name="ImgUrl" onchange="previewImage(event)">
+                            <div id="imagePreview" class="mt-2"></div>
+                        </div>
+
+                        <!-- Gönder Butonu -->
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary w-100 mt-3">Kayıt Ol</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer text-center">
+                    <p>Zaten bir hesabınız var mı? <a asp-controller="Account" asp-action="Login" class="btn btn-link">Giriş Yap</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript Kontrol ve Profil Resmi Gösterimi -->
+<script>
+    // Form gönderilmeden önce boş alanları kontrol et
+    document.getElementById("registerForm").addEventListener("submit", function(event) {
+        var form = this;
+        var valid = true;
+        
+        // Zorunlu alanları kontrol et
+        var requiredFields = form.querySelectorAll("[required]");
+        requiredFields.forEach(function(field) {
+            if (!field.value.trim()) {
+                valid = false;
+                alert(field.previousElementSibling.textContent + " boş bırakılamaz!");
+            }
+        });
+
+        if (!valid) {
+            event.preventDefault(); // Formun gönderilmesini engelle
+        }
+    });
+
+    // Profil resmi önizlemesi ve silme
+    function previewImage(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var img = document.createElement('img');
+            img.src = reader.result;
+            img.style.width = "300px";
+            img.style.height = "300px";
+            img.style.objectFit = "cover";
+            var imagePreviewDiv = document.getElementById('imagePreview');
+            imagePreviewDiv.innerHTML = ''; // Önceki resmi temizle
+            imagePreviewDiv.appendChild(img);
+            
+            // Çarpı butonu ekle
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'X';
+            deleteButton.classList.add('btn', 'btn-danger');
+            deleteButton.style.position = 'absolute';
+            deleteButton.style.top = '5px';
+            deleteButton.style.right = '5px';
+            deleteButton.onclick = function() {
+                imagePreviewDiv.innerHTML = ''; // Resmi kaldır
+                document.getElementById('ImgUrl').value = ''; // Dosya alanını temizle
+            };
+            imagePreviewDiv.appendChild(deleteButton);
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+<style>
+    .text-danger {
+        color: red;
+    }
+</style>
+
+@* @model DBGoreWebApp.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+<div class="register-genel">
+
+    <h2>Kayıt Ol</h2>
+    <form asp-action="Register" method="post" class="form-container">
+        <div class="form-group">
+            <label asp-for="Ad" class="form-label"></label>
+            <input asp-for="Ad" class="form-input" />
+            <span asp-validation-for="Ad" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Soyad" class="form-label"></label>
+            <input asp-for="Soyad" class="form-input" />
+            <span asp-validation-for="Soyad" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefon" class="form-label"></label>
+            <input asp-for="Telefon" class="form-input" />
+            <span asp-validation-for="Telefon" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sifre" class="form-label"></label>
+            <input asp-for="Sifre" class="form-input" type="password" />
+            <span asp-validation-for="Sifre" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SifreOnay" class="form-label"></label>
+            <input asp-for="SifreOnay" class="form-input" type="password" />
+            <span asp-validation-for="SifreOnay" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirmaUnvani" class="form-label"></label>
+            <input asp-for="FirmaUnvani" class="form-input" />
+            <span asp-validation-for="FirmaUnvani" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Referans" class="form-label"></label>
+            <input asp-for="Referans" class="form-input" />
+            <span asp-validation-for="Referans" class="form-error"></span>
+        </div>
+        <button type="submit" class="form-button">Kayıt Ol</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<style>
+    /* Genel form stili */
+    .register-genel{
+        margin: auto;
+        margin-top: 120px;
+        border: 1px burlywood solid;
+        border-radius: 15px;
+
+    }
+    .form-container {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 500px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form grubu stili */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Etiket (label) stili */
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    /* Giriş alanı stili */
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    /* Hata mesajı stili */
+    .form-error {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Buton stili */
+    .form-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .form-button:hover {
+        background-color: #4cae4c;
+    }
+</style> *@

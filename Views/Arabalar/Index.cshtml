@@ -1,0 +1,109 @@
+@model List<DBGoreWebApp.Models.Entities.Araba>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        @foreach (var araba in Model)
+        {
+            var resimUrl = ViewBag.ArabaResimUrls.ContainsKey(araba.Id)
+                ? ViewBag.ArabaResimUrls[araba.Id]
+                : "/img/default-car.jpg";
+
+            var versiyonAdi = ViewBag.ArabaVersiyonlar.ContainsKey(araba.VersiyonID)
+                ? ViewBag.ArabaVersiyonlar[araba.VersiyonID]
+                : "Versiyon Yok";
+
+            <div class="col-md-4 mb-4">
+                <a asp-action="Detail" asp-route-id="@araba.Id" class="card-link">
+                    <div class="card custom-card shadow-sm">
+                        <div class="image-container">
+                            <img src="@resimUrl" class="card-img-top" alt="Araba Resmi">
+                        </div>
+                        <div class="card-body text-center">
+                            <h5 class="card-title">@araba.Marka?.Marka @araba.Model?.Model</h5>
+                            <p class="card-text" style="background-color: cadetblue;">
+                                <p style="font-size: 12px;"><strong>Adres:</strong> @araba.AdresKonumuNavigation?.Il, @araba.AdresKonumuNavigation?.Ilce</p><br />
+                                <strong>Yıl:</strong> @araba.Yil?.Yil.ToString() <br />
+                                <strong>Versiyon:</strong> @versiyonAdi <br /> <br />
+                                <p style="margin-bottom: 0px; color: rgb(159, 1, 1);"><strong>Fiyat:</strong>  @araba.Fiyat?.ToString("C0")</p>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+
+    <!-- Sayfalama -->
+    <div class="pagination-container text-center mt-4">
+        <nav aria-label="Sayfalama">
+            <ul class="pagination justify-content-center">
+                @if (ViewBag.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage - 1)">Geri</a>
+                    </li>
+                }
+
+                @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                {
+                    <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                        <a class="page-link" asp-action="Index" asp-route-page="@i">@i</a>
+                    </li>
+                }
+
+                @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" asp-action="Index" asp-route-page="@(ViewBag.CurrentPage + 1)">İleri</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<style>
+    .custom-card {
+        width: 367px;
+        height: 600px;
+        border: none; /* Kenarlıkları kaldır */
+        border-radius: 10px;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .custom-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+    }
+
+    .image-container img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .card-body {
+        text-align: center;
+        border: none; /* Alt çizgileri kaldır */
+    }
+
+    .pagination .active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+    .card-link {
+        text-decoration: none;
+    }
+</style>
+

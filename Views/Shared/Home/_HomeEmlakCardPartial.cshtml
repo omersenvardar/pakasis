@@ -1,0 +1,185 @@
+@model DBGoreWebApp.Models.ViewModels.CompositeViewModel
+@using DBGoreWebApp.Models.Entities
+@using DBGoreWebApp.Models.ViewModels
+
+@{
+    // EmlakBahce'ye ait resimleri CompositeViewModel'deki ArsaResimler'den filtreleme
+    var emlak = Model.EmlakDetay;
+    var arsaResimler = Model.ArsaResimler != null ? Model.ArsaResimler.Where(r => r.ArsaId == emlak?.IlanNo).ToList() : new List<ArsaResim>();
+    var ar = Model.ArsaResimler?.ToList() ?? new List<ArsaResim>();
+}
+
+
+<div class="card emlak-card">
+    <!-- Resim Kartı -->
+    <div class="image-container">
+        <a asp-controller="EmlakBahce" asp-action="Detail" asp-route-id="@emlak?.Id">
+            @if (arsaResimler != null && arsaResimler.Any())
+            {
+                var firstImage = arsaResimler.First();
+                <img id="mainImage-@emlak?.IlanNo" src="@firstImage.ResimArsaUrl" class="main-image" alt="Ana Resim">
+            }
+            else
+            {
+                <img src="/img/dbemlak.jpg" class="main-image" alt="Varsayılan Resim">
+            }
+        </a>
+    </div>
+    <!-- Bilgiler -->
+    <div class="card-body">
+        <h5 class="text-dark">@Html.Raw(emlak?.IlanAdi)</h5>
+        <p class="card-adreskonum"><strong>Adres:</strong> @emlak?.AdresKonumu</p>
+        <div class="">
+            <span class="aa-price">@String.Format("{0:N0} ₺", emlak?.FiyatSatis)</span>
+        </div>
+        @if (emlak?.FiyatPesin != null)
+        {
+            <div class=""><i>Bu bahçeyi @emlak.FiyatPesin peşin @emlak.TaksitBedeli TL'den başlayan taksitlerle alabilirsiniz</i></div>
+        }
+
+        @if (arsaResimler != null && arsaResimler.Any())
+{
+    <div class="scrolling-wrapper">
+        @foreach (var resim in arsaResimler)
+        {
+            <img class="thumbnail" src="@resim.ResimArsaUrl" alt="Arsa Resim"
+                 onclick="changeMainImage('@emlak?.IlanNo', '@resim.ResimArsaUrl')">
+        }
+    </div>
+}
+else
+{
+    <p>Görüntülenecek resim bulunamadı.</p>
+}
+
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+    .card.emlak-card {
+        width: 360px;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card.emlak-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container {
+        width: 360px;
+        height: 270px;
+    }
+
+    .main-image {
+        width: 360px;
+        height: 270px;
+    }
+
+    .scrolling-wrapper {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .thumbnail {
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+    }
+
+    .thumbnail:hover {
+        border-color: #007bff;
+    }
+
+    .aa-price {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #ff0000;
+        font-weight: bold;
+    }
+
+    .card-adreskonum {
+        font-size: 12px;
+        margin: 0px;
+    }
+    </style>
+    <script>
+        function changeMainImage(ilanNo, resimUrl) {
+            var mainImage = document.getElementById('mainImage-' + ilanNo);
+            mainImage.src = resimUrl;
+        }
+    </script>
+}
+
+@* <style>
+    .card.emlak-card {
+        width: 360px;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card.emlak-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container {
+        width: 360px;
+        height: 270px;
+        overflow: hidden; /* Resmin taşmasını engelle */
+    }
+
+    .main-image {
+        width: 100%; /* En geniş olan boyutu kapsayacak şekilde */
+        height: 100%; /* Yüksekliği otomatik ayarlayarak sığdırma */
+        object-fit: contain; /* Resmin oranını bozmadan boyutlandırır */
+    }
+
+    .scrolling-wrapper {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .thumbnail {
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+        object-fit: cover; /* Küçük resimlerin kutuya tam uyum sağlaması için */
+    }
+
+    .thumbnail:hover {
+        border-color: #007bff;
+    }
+
+    .aa-price {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #ff0000;
+        font-weight: bold;
+    }
+
+    .card-adreskonum {
+        font-size: 12px;
+        margin: 0px;
+    }
+</style> *@

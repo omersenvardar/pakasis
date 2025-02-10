@@ -1,0 +1,545 @@
+@model DBGoreWebApp.Models.ViewModels.ArabaViewModel
+<style>
+    .resim-card {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .resim-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .resim-card .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+</style>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
+<div class="container" style="max-width: 900px;">
+    <h3 class="m-0 mb-4">Yeni Araba Ekle</h3>
+
+    <form asp-action="Create" asp-controller="Arabalar" method="post" enctype="multipart/form-data"
+        class="p-4 border rounded bg-light">
+        <!-- Adres Seçimi -->
+        <div class="row g-3">
+            <label for="Adres" class="form-label bg-mavi">Adres Giriniz</label>
+            <div class="col-md-12">
+                <label for="Il" class="form-label">İl</label>
+                <select id="Il" name="Il" class="form-select" required>
+                    <option value="" disabled selected>İl Seçiniz</option>
+                    @if (Model.Adresler != null && Model.Adresler.Any())
+                    {
+                        @foreach (var il in Model.Adresler.Select(a => a.Il).Distinct())
+                        {
+                            <option value="@il">@il</option>
+                        }
+                    }
+                    else
+                    {
+                        <option value="">Adres bilgisi yok</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="Ilce" class="form-label">İlçe</label>
+                <select id="Ilce" name="Ilce" class="form-select" required>
+                    <option value="" disabled selected>İlçe Seçiniz</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="Mahalle" class="form-label">Mahalle</label>
+                <select id="Mahalle" name="MahalleKoyAdi" class="form-select" required>
+                    <option value="" disabled selected>Mahalle Seçiniz</option>
+                </select>
+            </div>
+        </div>
+        <input type="hidden" id="adresKonumu" name="AdresKonumu" value="">
+        <div class="mt-2" id="girilenAdres" style="font-size: 14px; color: gray;">
+            <p id="adresKonumuGoster" style="font-size: 14px; color: gray;">Adres: </p>
+        </div>
+
+        <!-- Marka Seçimi -->
+        <div class="form-group mt-4">
+    <label for="markaDropdown">Marka Seçin</label>
+    <select id="markaDropdown" name="MarkaID" class="form-control">
+        <option value="">Marka Seçin</option>
+        @if (Model.AracMarkalaris != null)
+        {
+            @foreach (var marka in Model.AracMarkalaris)
+            {
+                <option value="@marka.MarkaID">@marka.Marka</option>
+            }
+        }
+        else
+        {
+            <option value="">Veri bulunamadı</option>
+        }
+    </select>
+</div>
+
+
+        <!-- Model Seçimi -->
+        <div class="form-group">
+            <label for="modelDropdown">Model Seçin</label>
+            <select id="modelDropdown" name="ModelID" class="form-control">
+                <option value="">Model Seçin</option>
+            </select>
+        </div>
+
+        <!-- Yıl Seçimi -->
+        <div class="form-group">
+            <label for="yilDropdown">Yıl Seçin</label>
+            <select id="yilDropdown" name="YilID" class="form-control">
+                <option value="">Yıl Seçin</option>
+            </select>
+        </div>
+
+        <!-- Versiyon Seçimi -->
+        <div class="form-group">
+            <label for="versiyonDropdown">Versiyon Seçin</label>
+            <select id="versiyonDropdown" name="VersiyonID" class="form-control">
+                <option value="">Versiyon Seçin</option>
+            </select>
+        </div>
+        <!-- Fiyat Girin -->
+<div class="form-group">
+    <label for="FiyatDisplay" id="FiyatDisplay" class="form-label">Satış Fiyatı</label>
+    <input type="text" class="form-control" name="Fiyat"  placeholder="Örn: 10.000 ₺">
+    
+</div>
+
+<script>
+    document.getElementById('FiyatDisplay').addEventListener('input', function (e) {
+        // Rakam dışında tüm karakterleri çıkar
+        let value = e.target.value.replace(/\D/g, '');
+
+        // Sayıyı 3'er basamak ayırarak formatla
+        let formattedValue = new Intl.NumberFormat('tr-TR').format(value);
+
+        // Gösterim alanına formatlı değeri ekle
+        e.target.value = formattedValue ? formattedValue + ' ₺' : '';
+
+        // Gizli input alanına yalnızca sayı değerini ekle
+        document.getElementById('Fiyat').value = value;
+    });
+</script>
+
+
+        <!-- Başlık -->
+        <div class="form-group">
+            <label for="versiyonDropdown">Başlık</label>
+            <input type="text" name="VersiyonAdi" id=""class="form-control">
+        </div>
+
+        <!-- Açıklama -->
+        <div class="form-group">
+            <label for="ozellikler">Açıklama</label>
+            <textarea id="" name="Ozellikleri" class="form-control"></textarea>
+            @* <textarea id="ozellikler" name="Ozellikleri" class="form-control"></textarea> *@
+        </div>
+
+        <!-- Resim Yükleme -->
+        <div class="form-group mt-3">
+            <label for="resimler">Resim Yükleme (En fazla 10)</label>
+            <input type="file" id="resimler" name="resimler" class="form-control" accept="image/*" multiple />
+        </div>
+
+        <!-- Resim Önizleme -->
+        <div class="row mt-3" id="resimPreview" style="gap: 1rem;"></div>
+
+        <!-- Kaydet Butonu -->
+        <div class="form-group mt-3 text-center">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    const adresGruplari = @Html.Raw(Json.Serialize(ViewBag.AdresGruplari));
+
+    document.getElementById("Il").addEventListener("change", function () {
+        const selectedIl = this.value;
+        const ilceDropdown = document.getElementById("Ilce");
+        const mahalleDropdown = document.getElementById("Mahalle");
+
+        ilceDropdown.innerHTML = '<option value="" disabled selected>İlçe Seçiniz</option>';
+        mahalleDropdown.innerHTML = '<option value="" disabled selected>Mahalle Seçiniz</option>';
+
+        if (adresGruplari[selectedIl]) {
+            for (const ilce in adresGruplari[selectedIl]) {
+                const option = document.createElement("option");
+                option.value = ilce;
+                option.textContent = ilce;
+                ilceDropdown.appendChild(option);
+            }
+        }
+        updateGirilenAdres();
+    });
+
+    document.getElementById("Ilce").addEventListener("change", function () {
+        const selectedIl = document.getElementById("Il").value;
+        const selectedIlce = this.value;
+        const mahalleDropdown = document.getElementById("Mahalle");
+
+        mahalleDropdown.innerHTML = '<option value="" disabled selected>Mahalle Seçiniz</option>';
+
+        if (adresGruplari[selectedIl] && adresGruplari[selectedIl][selectedIlce]) {
+            adresGruplari[selectedIl][selectedIlce].forEach(mahalle => {
+                const option = document.createElement("option");
+                option.value = mahalle;
+                option.textContent = mahalle;
+                mahalleDropdown.appendChild(option);
+            });
+        }
+        updateGirilenAdres();
+    });
+
+    document.getElementById("Mahalle").addEventListener("change", updateGirilenAdres);
+
+    function updateGirilenAdres() {
+        const il = document.getElementById("Il").value;
+        const ilce = document.getElementById("Ilce").value;
+        const mahalle = document.getElementById("Mahalle").value;
+
+        const adres = `${il ? il : ""} ${ilce ? ilce : ""} ${mahalle ? mahalle : ""}`.trim();
+        document.getElementById("girilenAdres").textContent = adres ? `Girilen Adres: ${adres}` : "Girilen adres burada görüntülenecek...";
+
+        // Adres ID'sini sakla
+        const adresId = findAdresId(il, ilce, mahalle);
+        document.getElementById("adresKonumu").value = adresId ? adresId : '';
+        document.getElementById("adresKonumuGoster").textContent = `AdresKonumu: ${document.getElementById("adresKonumu").value}`;
+
+        console.log(`Hidden input (adresKonumu) değeri: ${document.getElementById("adresKonumu").value}`);
+
+        // AJAX çağrısı yaparak verileri filtrele
+        if (il && ilce && mahalle) {
+            fetch(`/Home/FilterEmlak?il=${il}&ilce=${ilce}&mahalle=${mahalle}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("emlakList").innerHTML = data;
+                });
+        }
+    }
+
+    function findAdresId(il, ilce, mahalle) {
+        for (const ilKey in adresGruplari) {
+            if (ilKey === il) {
+                for (const ilceKey in adresGruplari[ilKey]) {
+                    if (ilceKey === ilce) {
+                        const mahalleList = adresGruplari[ilKey][ilceKey];
+                        for (const mahalleItem of mahalleList) {
+                            if (mahalleItem.MahalleKoyAdi === mahalle) {
+                                return mahalleItem.Id; // Adres ID'sini döndür
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Marka Seçimi
+        $('#markaDropdown').change(function () {
+            const markaId = $(this).val();
+            $.getJSON(`/Arabalar/GetModels?markaId=${markaId}`, function (data) {
+                $('#modelDropdown').empty().append('<option value="">Seçin...</option>');
+                data.forEach(model => {
+                    $('#modelDropdown').append(`<option value="${model.modelID}">${model.model}</option>`);
+                });
+            });
+        });
+
+        // Model Seçimi
+        $('#modelDropdown').change(function () {
+            const modelId = $(this).val();
+            $.getJSON(`/Arabalar/GetYears?modelId=${modelId}`, function (data) {
+                $('#yilDropdown').empty().append('<option value="">Seçin...</option>');
+                data.forEach(year => {
+                    $('#yilDropdown').append(`<option value="${year.yilID}">${year.yil}</option>`);
+                });
+            });
+        });
+
+        // Yıl Seçimi
+        $('#yilDropdown').change(function () {
+            const yilId = $(this).val();
+            $.getJSON(`/Arabalar/GetVersions?yilId=${yilId}`, function (data) {
+                $('#versiyonDropdown').empty().append('<option value="">Seçin...</option>');
+                data.forEach(version => {
+                    $('#versiyonDropdown').append(`<option value="${version.versiyonID}">${version.versiyonAdi}</option>`);
+                });
+            });
+        });
+
+        // Versiyon Seçimi
+        $('#versiyonDropdown').change(function () {
+            const versiyonId = $(this).val();
+            $.getJSON(`/Arabalar/GetVersions?yilId=${$('#yilDropdown').val()}`, function (data) {
+                const selectedVersion = data.find(v => v.versiyonID == versiyonId);
+                $('#ozellikler').text(selectedVersion?.ozellikleri || 'Belirtilmemiş');
+            });
+        });
+
+        // Resim Önizleme
+        $('#resimler').change(function () {
+            const files = Array.from(this.files);
+
+            if (files.length > 10) {
+                alert('En fazla 10 resim seçebilirsiniz!');
+                this.value = ''; // Seçimi temizle
+                return;
+            }
+
+            $('#resimPreview').empty();
+
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const previewHtml = `
+                        <div class="resim-card" data-index="${index}">
+                            <img src="${e.target.result}" alt="${file.name}" />
+                            <button class="close-btn" onclick="removeImage(${index})">&times;</button>
+                        </div>
+                    `;
+                    $('#resimPreview').append(previewHtml);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+    });
+
+    // Resim Silme
+    function removeImage(index) {
+        const input = document.getElementById('resimler');
+        const dt = new DataTransfer();
+
+        Array.from(input.files).forEach((file, i) => {
+            if (i !== index) {
+                dt.items.add(file);
+            }
+        });
+
+        input.files = dt.files;
+
+        // Önizleme alanını güncelle
+        $(`.resim-card[data-index="${index}"]`).remove();
+    }
+</script>
+
+
+
+@* <div class="ana">
+    <!-- İlan Başlığı -->
+    <div class="container">
+        <h3 class="m-0">Yeni Araba Ekle</h3>
+        <hr>
+    </div>
+
+    <!-- Form -->
+    <form asp-action="Create" enctype="multipart/form-data" method="post">
+        <!-- Marka Seçimi -->
+        <div class="form-group">
+            <label for="markaDropdown">Marka Seçin</label>
+            <select id="markaDropdown" name="MarkaID" class="form-control">
+                <option value="">Marka Seçin</option>
+                @foreach (var marka in Model.AracMarkalaris)
+                {
+                    <option value="@marka.MarkaID">@marka.Marka</option>
+                }
+            </select>
+        </div>
+
+        <!-- Model Seçimi -->
+        <div class="form-group">
+            <label for="modelDropdown">Model Seçin</label>
+            <select id="modelDropdown" name="ModelID" class="form-control">
+                <option value="">Model Seçin</option>
+            </select>
+        </div>
+
+        <!-- Yıl Seçimi -->
+        <div class="form-group">
+            <label for="yilDropdown">Yıl Seçin</label>
+            <select id="yilDropdown" name="YilID" class="form-control">
+                <option value="">Yıl Seçin</option>
+            </select>
+        </div>
+
+        <!-- Versiyon Seçimi -->
+        <div class="form-group">
+            <label for="versiyonDropdown">Versiyon Seçin</label>
+            <select id="versiyonDropdown" name="VersiyonID" class="form-control">
+                <option value="">Versiyon Seçin</option>
+            </select>
+        </div>
+
+        <!-- Özellikler -->
+        <div class="form-group">
+            <label for="ozellikler">Özellikler</label>
+            <textarea id="ozellikler" class="form-control" readonly></textarea>
+        </div>
+
+        <!-- Resim Yükleme -->
+        <div class="form-group">
+            <label for="resimler">Resim Yükleme (En fazla 10)</label>
+            <input type="file" id="resimler" name="resimler" class="form-control" accept="image/*" multiple />
+        </div>
+
+        <!-- Resim Önizleme -->
+        <div class="row mt-3" id="resimPreview" style="gap: 1rem;"></div>
+
+        <!-- Kaydet Butonu -->
+        <div class="form-group mt-3 text-center">
+            <button type="submit" class="btn btn-primary">Kaydet</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Marka Seçimi
+        $('#markaDropdown').change(function () {
+            const markaId = $(this).val();
+            $.getJSON(`/Arabalar/GetModels?markaId=${markaId}`, function (data) {
+                $('#modelDropdown').empty().append('<option value="">Seçin...</option>');
+                data.forEach(model => {
+                    $('#modelDropdown').append(`<option value="${model.modelID}">${model.model}</option>`);
+                });
+            });
+        });
+
+        // Model Seçimi
+        $('#modelDropdown').change(function () {
+            const modelId = $(this).val();
+            $.getJSON(`/Arabalar/GetYears?modelId=${modelId}`, function (data) {
+                $('#yilDropdown').empty().append('<option value="">Seçin...</option>');
+                data.forEach(year => {
+                    $('#yilDropdown').append(`<option value="${year.yilID}">${year.yil}</option>`);
+                });
+            });
+        });
+
+        // Yıl Seçimi
+        $('#yilDropdown').change(function () {
+            const yilId = $(this).val();
+            $.getJSON(`/Arabalar/GetVersions?yilId=${yilId}`, function (data) {
+                $('#versiyonDropdown').empty().append('<option value="">Seçin...</option>');
+                data.forEach(version => {
+                    $('#versiyonDropdown').append(`<option value="${version.versiyonID}">${version.versiyonAdi}</option>`);
+                });
+            });
+        });
+
+        // Versiyon Seçimi
+        $('#versiyonDropdown').change(function () {
+            const versiyonId = $(this).val();
+            $.getJSON(`/Arabalar/GetVersions?yilId=${$('#yilDropdown').val()}`, function (data) {
+                const selectedVersion = data.find(v => v.versiyonID == versiyonId);
+                $('#ozellikler').text(selectedVersion?.ozellikleri || 'Belirtilmemiş');
+            });
+        });
+
+        // Resim Önizleme
+        $('#resimler').change(function () {
+            const files = Array.from(this.files);
+
+            if (files.length > 10) {
+                alert('En fazla 10 resim seçebilirsiniz!');
+                this.value = ''; // Seçimi temizle
+                return;
+            }
+
+            $('#resimPreview').empty();
+
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const previewHtml = `
+                        <div class="resim-card" data-index="${index}">
+                            <img src="${e.target.result}" alt="${file.name}" />
+                            <button class="close-btn" onclick="removeImage(${index})">&times;</button>
+                        </div>
+                    `;
+                    $('#resimPreview').append(previewHtml);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+    });
+
+    // Resim Silme
+    function removeImage(index) {
+        const input = document.getElementById('resimler');
+        const dt = new DataTransfer();
+
+        Array.from(input.files).forEach((file, i) => {
+            if (i !== index) {
+                dt.items.add(file);
+            }
+        });
+
+        input.files = dt.files;
+
+        // Önizleme alanını güncelle
+        $(`.resim-card[data-index="${index}"]`).remove();
+    }
+</script>
+
+<style>
+    .resim-card {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .resim-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .resim-card .close-btn {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: red;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+</style> *@

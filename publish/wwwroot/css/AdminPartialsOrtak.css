@@ -1,0 +1,47 @@
+.ilan-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.ilan-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.ilan-card h5 {
+    font-size: 16px;
+    margin: 0;
+}
+
+.ilan-card-actions button {
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ilan-card-actions .approve-btn {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.ilan-card-actions .reject-btn {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.ilan-card-actions .edit-btn {
+    background-color: #ffc107;
+    color: #fff;
+}

@@ -1,0 +1,159 @@
+@model List<DBGoreWebApp.Models.Entities.EmlakBahce>
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<h3>Onay Bekleyen İlanlar</h3>
+<div class="container ilan-container">
+    @foreach (var item in Model)
+    {
+        <form method="post" action="/Admin/UpdateIlanStatus" class="row ilan-card align-items-center">
+            <!-- Resim -->
+            <div class="col-md-2 text-center">
+                @if (item.ArsaResimleri != null && item.ArsaResimleri.Any())
+                {
+                    <img src="@item.ArsaResimleri.First().ResimArsaUrl" alt="İlan Resmi" class="ilan-resim">
+                }
+                else
+                {
+                    <img src="/img/dbemlak.jpg" alt="Varsayılan Resim" class="ilan-resim">
+                }
+            </div>
+
+            <!-- Bilgiler -->
+            <div class="col-md-8 ilan-bilgileri">
+                <h5>@item.IlanAdi</h5>
+                <p><strong>Konum:</strong> @item.AdresKonumuNavigation?.Il, @item.AdresKonumuNavigation?.Ilce,
+                    @item.AdresKonumuNavigation?.MahalleKoyAdi</p>
+                <p><strong>Fiyat:</strong> @String.Format("{0:N0} ₺", item.FiyatSatis)</p>
+                <p><strong>Durum:</strong>
+                    <span class="status-indicator"
+                        style="background-color: @(item.Durum == 'a' ? "green" : item.Durum == 'p' ? "orange" : "red");">
+                        @item.Durum
+                    </span>
+                </p>
+            </div>
+
+            <!-- İşlemler -->
+            <div class="col-md-2 text-end">
+                <input type="hidden" name="Id" value="@item.Id" />
+                <select name="Status" class="form-select">
+                    <option value="aktif" >Onayla</option>
+                    <option value="pasif" >Yayından Kaldır</option>
+                    <option value="kaldir" >Sil</option>
+                </select>
+                <button type="submit" class="btn btn-primary mt-2">Kaydet</button>
+            </div>
+        </form>
+    }
+</div>
+
+<style>
+    .ilan-container {
+    margin-top: 20px;
+}
+
+.ilan-card {
+    background: linear-gradient(to right, #ffffff, #f8f9fa);
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.ilan-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.ilan-resim {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+h5 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+p {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #555;
+}
+
+.status-indicator {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+.ilan-bilgileri{display: flex; justify-content: space-around;}
+
+select.form-select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    font-size: 14px;
+    transition: border-color 0.2s ease-in-out;
+}
+
+select.form-select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+button.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+.alert {
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-end {
+    text-align: end;
+}
+
+</style>

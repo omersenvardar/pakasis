@@ -1,0 +1,81 @@
+@* @model List<DBGoreWebApp.Models.Entities.Kullanici>
+
+<h3>Kullanıcılar</h3>
+<div class="container">
+    @foreach (var kullanici in Model)
+    {
+        <div class="card mb-3 shadow">
+            <a asp-controller="Admin" asp-action="KullaniciDetay" asp-route-id="@kullanici.Id" class="btn">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <!-- Resim Alanı -->
+                    <div>
+                        
+                        @if (string.IsNullOrEmpty(kullanici.ImgUrl))
+{
+    <img src="@Url.Content("~/img/default-profile.jpg")" alt="Varsayılan Profil Resmi" class="rounded-circle"
+         style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #ddd;">
+}
+else
+{
+    <img src="@kullanici.ImgUrl" alt="Kullanıcı Resmi" class="rounded-circle"
+         style="width: 80px; height: 80px; object-fit: cover; border: 1px solid #ddd;">
+}
+
+                        <p style="margin-top: 20px;">
+                            <strong>Durum:</strong>
+                            <span class="badge"
+                                style="background-color: @(kullanici.Durum == 'a' ? "green" : kullanici.Durum == 'p' ? "yellow" : "red"); color: white;">
+                                @(kullanici.Durum == 'a' ? "Onaylı" : kullanici.Durum == 'p' ? "Onaysız" : "Banlı")
+                            </span>
+                        </p>
+                    </div>
+
+                    <!-- Bilgi Alanı -->
+                    <div>
+                        <h5>@kullanici.Ad @kullanici.Soyad</h5>
+                        <p><strong>Email:</strong> @kullanici.Email</p>
+                        <p><strong>Telefon:</strong> @kullanici.Telefon</p>
+                        <p><strong>Firma:</strong> @kullanici.FirmaUnvani</p>
+                        <p><strong>Kayıt Tarihi:</strong> @kullanici.KayitTarihi.ToShortDateString()</p>
+
+                    </div>
+
+                    <!-- Abonelik ve İlan Bilgileri -->
+                    <div>
+                        <p><strong>Abonelik:</strong> @kullanici.AbonelikTipi</p>
+                        <p><strong>Başlangıç:</strong> @kullanici.AbonelikBaslangicTarihi?.ToShortDateString()</p>
+                        <p><strong>Bitiş:</strong> @kullanici.AbonelikBitisTarihi?.ToShortDateString()</p>
+                        <p><strong>Son Kullanım:</strong> @kullanici.SonKullanimTarihi?.ToShortDateString()</p>
+                    </div>
+
+                    <!-- İlan Bilgileri -->
+                    <div>
+                        <p><strong>Emlak İlan Sayısı:</strong> @kullanici.EmlakIlanlari?.Count</p>
+                        <p><strong>Araç İlan Sayısı:</strong> @kullanici.ArabaIlanlari?.Count</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    }
+</div>
+
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+    }
+
+    .card-body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .badge {
+        padding: 5px 10px;
+        color: white;
+        font-size: 0.9rem;
+        border-radius: 5px;
+    }
+</style> *@

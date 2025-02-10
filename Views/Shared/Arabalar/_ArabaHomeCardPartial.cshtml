@@ -1,0 +1,101 @@
+
+@model DBGoreWebApp.Models.ViewModels.ArabaViewModel
+@using DBGoreWebApp.Models.Entities
+@using DBGoreWebApp.Models.ViewModels
+
+@{
+    var araba = Model.ArabaDetay;
+   // var arabaResimler = Model.ArabaResimler.Where(r => r.Id == araba.Id).ToList();
+}
+
+<div class="card araba-card">
+    <!-- Resim Kartı -->
+    <div class="image-container">
+        <a asp-controller="Araba" asp-action="Detail" asp-route-id="@araba.Id">
+            @* @if (arabaResimler != null && arabaResimler.Any())
+            {
+                var firstImage = arabaResimler.First();
+                <img id="mainImage-@araba.Id" src="@firstImage.ResimArabaUrl" class="main-image" alt="Ana Resim">
+            }
+            else
+            {
+                <img src="/img/default-car.jpg" class="main-image" alt="Varsayilan Resim">
+            } *@
+        </a>
+    </div>
+    <!-- Bilgiler -->
+    <div class="card-body"> çikop çikop
+        <h5 class="text-dark">@araba.VersiyonAdi</h5>
+        <p class="card-adreskonum"><strong>Adres:</strong> @araba.AdresKonumu</p>
+        <p class="card-marka"><strong>Marka:</strong> @araba.MarkaID</p>
+        <p class="card-model"><strong>Model:</strong> @araba.ModelID</p>
+        <p class="card-year"><strong>Yıl:</strong> @araba.YilID</p>
+        <div class="scrolling-wrapper">
+            @* @foreach (var resim in arabaResimler)
+            {
+                <img class="thumbnail" src="@resim.ResimArabaUrl" alt="Araba Resim"
+                     onclick="changeMainImage('@araba.Id', '@resim.ResimArabaUrl')">
+            } *@
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <style>
+    .card.araba-card {
+        width: 360px;
+        height: 600px;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card.araba-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .image-container {
+        width: 360px;
+        height: 270px;
+    }
+
+    .main-image {
+        width: 360px;
+        height: 270px;
+    }
+
+    .scrolling-wrapper {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+
+    .thumbnail {
+        cursor: pointer;
+        width: 70px;
+        height: 70px;
+        border-radius: 5px;
+        border: 2px solid transparent;
+        transition: border-color 0.3s;
+    }
+
+    .thumbnail:hover {
+        border-color: #007bff;
+    }
+
+    .card-adreskonum, .card-marka, .card-model, .card-year {
+        font-size: 12px;
+        margin: 0px;
+    }
+    </style>
+    <script>
+        function changeMainImage(arabaId, resimUrl) {
+            var mainImage = document.getElementById('mainImage-' + arabaId);
+            mainImage.src = resimUrl;
+        }
+    </script>
+}

@@ -1,0 +1,86 @@
+@using DBGoreWebApp.Models.Entities
+@model DBGoreWebApp.Models.Entities.Arsa
+
+<div class="container bg-light">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a class="btn" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+            <li class="breadcrumb-item"><a class="btn" asp-controller="Home" asp-action="Index">Arsa</a></li>
+            <li class="breadcrumb-item"><a class="btn" asp-controller="Home" asp-action="Index">Ankara</a></li>
+            <li class="breadcrumb-item active" aria-current="page"><a class="btn" asp-controller="Home"
+                    asp-action="Index">ilgili ilan ismi gelecek</a></li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-7">
+            <div class="col">
+                <div class="card h-100">
+                    <img src="/img/DBGoreEmlak.png" class="card-img-top" alt="..." width="400px" height="400px">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <span class="aa-price h5">
+                                @String.Format("{0:N0} ₺", @Model.Fiyat)
+                            </span>
+                        </h5>
+                        <p class="card-text">
+                            İlan verilme tarihi: @Model.IlanTarihi.ToString("dd MMMM yyyy") 
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">5 gün önce güncellendi</small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <h5>Sahib Bilgileri</h5>
+                        <p><strong>Ad:</strong> @Model.Sahib?.Ad</p>
+                        <p><strong>Soyad:</strong> @Model.Sahib?.Soyad</p>
+                        <p><strong>Telefon:</strong> @Model.Sahib?.Telefon</p>
+                        <p><strong>Email:</strong> @Model.Sahib?.Email</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- İlan detaları başı  -->
+        <div class="col-md-4">
+            <div class="container bg-light p-5">
+                <div class="row mb-4">
+                    <div class="col text-center">
+                        <h3 class="text-dark">İlan Bilgileri</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 ">
+                        <p><strong>İlan Numarası:</strong> @Model.Id</p>
+                        <p><strong>İl:</strong> @Model.Il</p>
+                        <p><strong>İlçe:</strong> @Model.Ilce</p>
+                        <p><strong>Mahalle:</strong> @Model.Mahalle</p>
+                        <p><strong>Konut Türü:</strong> @Model.KonutTuru</p>
+                        <p><strong>Tip:</strong> @Model.Tip</p>
+                        <p><strong>Fiyat:</strong>
+                            <span class="aa-price h5">
+                                @String.Format("{0:N0} ₺", @Model.Fiyat)
+                            </span>
+                        </p>
+                        <p><strong>Alan:</strong> @Model.Alan m²</p>
+                    </div>
+                    <div class="row">
+                        <h5>Ek Bilgiler</h5>
+                        <p><strong>Açıklama:</strong> @Model.Aciklama</p>
+                        <p><strong>İlan Tarihi:</strong> @Model.IlanTarihi.ToString("dd MMMM yyyy")</p>
+                        <p><strong>Satıldı Mı:</strong> @(Model.SatildiMi ? "Evet" : "Hayır")</p>
+                    </div>
+                </div>
+            </div>
+            <!-- İlan detayları sonu -->
+        </div>
+
+    </div>
+
+</div>
+</div>

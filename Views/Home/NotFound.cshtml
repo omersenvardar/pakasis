@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Sayfa Bulunamadı";
+}
+
+<div class="not-found-container">
+    <div class="overlay">
+        <h1>404</h1>
+        <p>Aradığınız sayfa bulunamadı.</p>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Ana Sayfaya Dön</a>
+    </div>
+</div>
+
+<style>
+    .not-found-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/img/notfound.png') no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay {
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6); /* Arka planı karartma */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.overlay h1 {
+    font-size: 6rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.overlay p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.overlay .btn {
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.overlay .btn:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+</style>

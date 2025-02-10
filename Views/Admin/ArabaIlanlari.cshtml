@@ -1,0 +1,27 @@
+@model List<DBGoreWebApp.Models.Entities.Araba>
+
+<h3>Araç İlanları</h3>
+@* <div class="container">
+    @foreach (var araba in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5>@araba.MarkaID @araba.ModelID</h5>
+                    <p><strong>Yıl:</strong> @araba.YilID</p>
+                    <p><strong>Fiyat:</strong> @araba.Fiyat ₺</p>
+                    <p><strong>Durum:</strong> @araba.Durum</p>
+                </div>
+                <form method="post" action="/Admin/UpdateArabaDurum">
+                    <input type="hidden" name="Id" value="@araba.Id" />
+                    <select name="Durum" class="form-select">
+                        <option value="Aktif">Aktif</option>
+                        <option value="Pasif">Pasif</option>
+                        <option value="Kaldirildi">Kaldırıldı</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary mt-2">Güncelle</button>
+                </form>
+            </div>
+        </div>
+    }
+</div> *@

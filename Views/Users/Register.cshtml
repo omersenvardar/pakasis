@@ -1,0 +1,118 @@
+@* @model DBGoreWebApp.Models.ViewModels.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Kayıt Ol";
+}
+<div class="register-genel">
+
+    <h2>Kayıt Ol</h2>
+    <form asp-action="Register" method="post" class="form-container">
+        <div class="form-group">
+            <label asp-for="Ad" class="form-label"></label>
+            <input asp-for="Ad" class="form-input" />
+            <span asp-validation-for="Ad" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Soyad" class="form-label"></label>
+            <input asp-for="Soyad" class="form-input" />
+            <span asp-validation-for="Soyad" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Telefon" class="form-label"></label>
+            <input asp-for="Telefon" class="form-input" />
+            <span asp-validation-for="Telefon" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Sifre" class="form-label"></label>
+            <input asp-for="Sifre" class="form-input" type="password" />
+            <span asp-validation-for="Sifre" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SifreOnay" class="form-label"></label>
+            <input asp-for="SifreOnay" class="form-input" type="password" />
+            <span asp-validation-for="SifreOnay" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="FirmaUnvani" class="form-label"></label>
+            <input asp-for="FirmaUnvani" class="form-input" />
+            <span asp-validation-for="FirmaUnvani" class="form-error"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Referans" class="form-label"></label>
+            <input asp-for="Referans" class="form-input" />
+            <span asp-validation-for="Referans" class="form-error"></span>
+        </div>
+        <button type="submit" class="form-button">Kayıt Ol</button>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+
+<style>
+    /* Genel form stili */
+    .register-genel{
+        margin: auto;
+        margin-top: 120px;
+        border: 1px burlywood solid;
+        border-radius: 15px;
+        
+    }
+    .form-container {
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 500px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form grubu stili */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    /* Etiket (label) stili */
+    .form-label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    /* Giriş alanı stili */
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+
+    /* Hata mesajı stili */
+    .form-error {
+        color: #e74c3c;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    /* Buton stili */
+    .form-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #5cb85c;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .form-button:hover {
+        background-color: #4cae4c;
+    }
+</style> *@

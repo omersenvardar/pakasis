@@ -1,0 +1,19 @@
+@model DBGoreWebApp.Models.Entities.Araba
+
+<h2>Araba Sil</h2>
+<p>Bu arabayı silmek istediğinize emin misiniz?</p>
+<dl>
+    <dt>Kullanıcı ID</dt>
+    <dd>@Model.KullaniciId</dd>
+    <dt>Marka</dt>
+    <dd>@Model.MarkaID</dd>
+    <dt>Model</dt>
+    <dd>@Model.ModelID</dd>
+    <dt>Yıl</dt>
+    <dd>@Model.YilID</dd>
+</dl>
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">İptal</a>
+</form>

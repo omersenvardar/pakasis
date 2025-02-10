@@ -1,0 +1,15 @@
+@* @model IEnumerable<DBGoreWebApp.Models.ViewModels.AreaSerachViewModel> *@
+@* <link rel="stylesheet" href="~/css/Areas/searchresults.css"> *@
+<div class="arama-sonuclari">
+    @foreach (var item in Model)
+    {
+        <div class="sonuc-karti">
+            <p><strong>İl:</strong> @item.City</p>
+            <p><strong>İlçe:</strong> @item.District</p>
+            <p><strong>Kategori:</strong> @item.Tip</p>
+            <p><strong>Tür:</strong> @item.Tur</p>
+            <p><strong>Alan (m²):</strong> @item.Area</p>
+            <p><strong>Fiyat:</strong> @item.Price</p>
+        </div>
+    }
+</div>

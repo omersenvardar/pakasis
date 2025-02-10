@@ -1,0 +1,822 @@
+@model DBGoreWebApp.Models.ViewModels.ArabaViewModel
+@{
+        var seciliDetay = Model.AracYilVersiyons?.FirstOrDefault(v => v.VersiyonID == Model.ArabaDetay?.VersiyonID);
+    }
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+<div class="container">
+    <div class="row">
+        @if (TempData["UpdateArabaDetayMessage"] != null)
+      {
+        <div class="alert alert-info">
+          @TempData["UpdateArabaDetayMessage"]
+        </div>
+      }
+    </div>
+</div>
+<div class="ana">
+
+    <!-- Resimler ve İlan Başlığı -->
+    <div class="inline-box alan1 bg-light col-md-4">
+            <h3 class="m-0">@Model.ArabaDetay?.VersiyonAdi</h3>
+        
+        <!-- Ana Resim -->
+        <div class="text-center mt-3" style="height: 347px; overflow: hidden;">
+            @if (Model.ArabaDetay?.ArabaResimleri != null && Model.ArabaDetay?.ArabaResimleri.Count > 0)
+            {
+                <img src="@Model.ArabaDetay?.ArabaResimleri.FirstOrDefault()?.ResimArabaUrl" id="ana-resim"
+                    class="img-fluid border" style="width: 100%; height: 100%; object-fit: cover;" alt="Ana Resim">
+            }
+            else
+            {
+                <img src="/img/default-car.jpg" class="main-image img-fluid border"
+                    style="width: 100%; height: 100%; object-fit: cover;" alt="Varsayılan Resim">
+            }
+        </div>
+
+        <!-- Küçük Resimler -->
+        <div class="mt-3 d-flex justify-content-center flex-wrap">
+            @if (Model.ArabaDetay?.ArabaResimleri != null && Model.ArabaDetay.ArabaResimleri.Count > 0)
+            {
+                @foreach (var resim in Model.ArabaDetay.ArabaResimleri)
+                {
+                        <div class="küçük-resim-container position-relative mx-1">
+                        <img src="@resim.ResimArabaUrl" class="img-thumbnail küçük-resim border" 
+                             style="width: 80px; height: 80px; cursor: pointer;" alt="Küçük Resim"
+                             onclick="updateAnaResim(this.src)">
+                        <button type="button" class="close-btn" onclick="removeExistingImage(@resim.Id)">×</button>
+                    </div>
+                }
+            }
+            else
+            {
+                <p class="text-muted">Küçük resim bulunamadı.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Emlak Detayları -->
+    <div class="inline-box alan2 col-md-5">
+    <!-- Emlak Bilgileri -->
+    <div class="row-md-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="mt-3">
+                    <h3>@Model.ArabaDetay?.VersiyonAdi</h3>
+                    <p>@Html.Raw(Model.Ozellikleri)</p>
+                </div>
+                <!-- Emlak Bilgileri -->
+                <div class="row-md-4">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h5>Araç Bilgileri</h5>
+
+                            <form method="post" action="/Admin/UpdateArabaDetay" enctype="multipart/form-data">
+                                <input type="hidden" name="Id" value="@Model.ArabaDetay?.Id" />
+                                <div class="row g-3">
+                                    <label for="Adres" class="form-label bg-mavi">Adres Bilgisi</label>
+                                    <div class="col-md-12">
+                                        <p><strong>Mevcut Adres:</strong> @Model.ArabaDetay?.AdresKonumuNavigation?.Il,
+                                            @Model.ArabaDetay?.AdresKonumuNavigation?.Ilce,
+                                            @Model.ArabaDetay?.AdresKonumuNavigation?.MahalleKoyAdi</p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="Il" class="form-label">İl</label>
+                                        <select id="Il" name="Il" class="form-select">
+                                            <option value="" selected>İl Seçiniz</option>
+                                            @foreach (var il in ViewBag.AdresGruplari.Keys)
+                                            {
+                                                <option value="@il">@il</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="Ilce" class="form-label">İlçe</label>
+                                        <select id="Ilce" name="Ilce" class="form-select">
+                                            <option value="" selected>İlçe Seçiniz</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="Mahalle" class="form-label">Mahalle</label>
+                                        <select id="Mahalle" name="MahalleKoyAdi" class="form-select">
+                                            <option value="" selected>Mahalle Seçiniz</option>
+                                        </select>
+                                    </div>
+                                    <input type="hidden" id="AdresKonumu" name="AdresKonumu"
+                                        value="@Model.AdresKonumu" />
+                                </div>
+                                <input type="hidden" id="adresKonumu" name="AdresKonumu" value="">
+                                <div class="mt-2" id="girilenAdres" style="font-size: 14px; color: gray;">
+                                    <p id="adresKonumuGoster" style="font-size: 14px; color: gray;">Adres: </p>
+                                </div>
+                                <!-- İlan bilgileri -->
+<div class="form-group">
+    @{
+        var seciliMarka = Model.AracMarkalaris?.FirstOrDefault(v => v.MarkaID == Model.ArabaDetay?.MarkaID);
+    }
+    <label for="markaDropdown">Marka @(seciliMarka != null ? seciliMarka.Marka : ": Seçiniz") </label>
+    @if (Model.AracMarkalaris != null && Model.ArabaDetay != null)
+    {
+        <select id="markaDropdown" name="MarkaID" class="form-control">
+            <option value="">Marka Seçin</option>
+            @foreach (var marka in Model.AracMarkalaris)
+            {
+                var isSelected = marka.MarkaID == Model.ArabaDetay.MarkaID ? "selected" : "";
+                <option value="@marka.MarkaID" isSelected>@marka.Marka</option> // @isSelected
+            }
+        </select>
+    }
+    else
+    {
+        <select id="markaDropdown" name="MarkaID" class="form-control">
+            <option value="">Marka Verisi Yok</option>
+        </select>
+    }
+</div>
+
+
+<div class="form-group">
+    @{
+        var seciliModel = Model.AracModelListesis?.FirstOrDefault(v => v.ModelID == Model.ArabaDetay?.ModelID);
+    }
+    <label for="modelDropdown">Model @(seciliModel != null ? seciliModel.Model : ": Seçiniz")</label>
+    @if (Model.AracModelListesis != null && Model.ArabaDetay != null)
+    {
+        <select id="modelDropdown" name="ModelID" class="form-control">
+            <option value="">Model Seçin</option>
+            @foreach (var modeli in Model.AracModelListesis)
+            {
+                var isSelected = modeli.ModelID == Model.ArabaDetay.ModelID ? "selected" : "";
+                <option value="@modeli.ModelID" isSelected>@modeli.Model</option> // @isSelected
+            }
+        </select>
+    }
+    else
+    {
+        <select id="modelDropdown" name="ModelID" class="form-control">
+            <option value="">Model Verisi Yok</option>
+        </select>
+    }
+</div>
+<!-- Yıl Seçimi -->
+<div class="form-group">
+    @{
+        var seciliYil = Model.AracModelYillaris?.FirstOrDefault(v => v.YilID == Model.ArabaDetay?.YilID);
+    }
+    <label for="yilDropdown">Yıl @(seciliYil != null ? seciliYil.Yil : ": Seçiniz") </label>
+    <select id="yilDropdown" name="YilID" class="form-control">
+        <option value="">Yıl Seçin</option>
+        
+        @if (Model.AracModelYillaris != null)
+        {
+            @foreach (var yil in Model.AracModelYillaris)
+            {
+                @if(Model.ArabaDetay?.YilID == yil.YilID)
+                {
+                    
+                    @* <option value="@yil.YilID" >@(yil.YilID == Model.ArabaDetay.YilID ? "selected" : "")
+                    @yil.Yil
+                </option> *@
+                }                
+            }
+        }
+    </select>
+</div>
+<!-- Versiyon Seçimi -->
+<div class="form-group">
+    @{
+        var seciliVersiyon = Model.AracYilVersiyons?.FirstOrDefault(v => v.VersiyonID == Model.ArabaDetay?.VersiyonID);
+    }
+
+    <!-- Özellikleri aç/kapat butonu -->
+    <button type="button" class="btn btn-info btn-sm mt-2" id="toggleFeatures">Özellikler</button>
+
+    <!-- Özellikler içeriği (Başlangıçta gizli) -->
+    <div id="featuresContent" class="border p-2 mt-2" style="display: none;">
+        @if (!string.IsNullOrEmpty(seciliVersiyon?.Ozellikleri))
+        {
+            // Özellikler içindeki veriyi işleme
+            var rawData = seciliVersiyon.Ozellikleri.Trim('{', '}'); // Başındaki ve sonundaki süslü parantezleri kaldır
+            var keyValuePairs = rawData.Split(';'); // Her özelliği ayır
+
+            foreach (var pair in keyValuePairs)
+            {
+                var keyValue = pair.Split(new[] { ':' }, 2); // İlk ':' işaretine göre böler
+                if (keyValue.Length == 2)
+                {
+                    var key = keyValue[0].Trim('"', ' '); // Key değerini temizle
+                    var value = keyValue[1].Trim('"', ' '); // Value değerini temizle
+
+                    <p><strong>@key</strong>: @value</p>
+                }
+            }
+        }
+        else
+        {
+            <p>Özellik bilgisi bulunamadı</p>
+        }
+    </div>
+    <br />
+
+    <label for="versiyonDropdown">
+        Seri: @(seciliVersiyon != null ? seciliVersiyon.VersiyonAdi : "Seçiniz")
+    </label>
+    
+    <select id="versiyonDropdown" name="VersiyonID" class="form-control mt-2">
+        <option value="@Model.ArabaDetay?.VersiyonID" selected>
+            @(seciliVersiyon != null ? seciliVersiyon.VersiyonAdi : "Seçiniz")
+        </option>
+        @if (Model.AracYilVersiyons != null)
+        {
+            @foreach (var versiyon in Model.AracYilVersiyons)
+            {
+                var isSelected = versiyon.VersiyonID == Model.ArabaDetay?.VersiyonID ? "selected" : "";
+                <option value="@versiyon.VersiyonID" isSelected>@versiyon.VersiyonAdi</option>
+            }
+        }
+    </select>
+</div>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var toggleButton = document.getElementById("toggleFeatures");
+        var featuresContent = document.getElementById("featuresContent");
+
+        toggleButton.addEventListener("click", function (event) {
+            featuresContent.style.display = (featuresContent.style.display === "none" || featuresContent.style.display === "") ? "block" : "none";
+            event.stopPropagation(); // Sayfa kapanmasını önler
+        });
+
+        document.addEventListener("click", function (event) {
+            if (!featuresContent.contains(event.target) && !toggleButton.contains(event.target)) {
+                featuresContent.style.display = "none";
+            }
+        });
+    });
+</script>
+<!-- #region -->
+<div class="form-group">
+    <label for="modelDropdown">Başlık </label>
+    @if (Model.ArabaDetay?.VersiyonAdi != null && Model.ArabaDetay != null)
+    {
+    <input type="text" class="form-control" name="VersiyonAdi" value="@Model.ArabaDetay.VersiyonAdi" id="">
+        
+        
+    }
+    else
+    {
+    <input type="text" class="form-control" name="VersiyonAdi" value="@Model.ArabaDetay?.VersiyonAdi" id="">
+    }
+</div>
+    
+<div class="form-group">
+    <label for="ozellikler">Özellikler</label>
+    <textarea id="ozellikler" name="Ozellikleri"  class="form-control" >@Model.ArabaDetay?.Ozellikleri</textarea>
+</div>
+
+<div class="form-group">
+    <label for="Fiyat" id="FiyatSatis" class="form-label">Satış Fiyatı: @Model.ArabaDetay?.Fiyat</label>
+    <input type="text" 
+           class="form-control"
+           value="@Model.ArabaDetay?.Fiyat"
+           name="Fiyat" 
+           placeholder="Örn: 10.000 ₺" 
+           >
+</div>
+
+
+                                <div class="form-group mt-3">
+                                    <h5>Yeni Resimler Yükle</h5>
+                                    <input type="file" id="resimler" name="yeniResimler" class="form-control"
+                                        accept="image/*" multiple />
+                                    <div class="row mt-3" id="newImagePreview" style="gap: 1rem;"></div>
+                                </div>
+
+                                <input type="hidden" id="silinecekResimler" name="silinecekResimler" value="" />
+
+                                <button type="submit" class="btn btn-primary w-100">Güncelle</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+    <!-- Kullanıcı Bilgileri -->
+    <div class="inline-box alan3 col-md-2">
+    <div class="border rounded shadow text-center p-3 bg-light">
+        <img src="@(Model.ArabaDetay?.Kullanici?.ImgUrl ?? "/img/default-profile.jpg")"
+            class="img-fluid rounded-circle border" style="width: 120px; height: 120px;" alt="Kullanıcı Profil Resmi">
+
+        <h4 class="mt-2">
+            @if (Model.ArabaDetay?.Kullanici != null)
+            {
+                <a href="/Admin/KullaniciDetay/@Model.ArabaDetay.Kullanici.Id"
+                    class="text-decoration-none">@Model.ArabaDetay.Kullanici.Ad</a>
+            }
+            else
+            {
+                <a href="#" class="text-muted text-decoration-none">Kullanıcı Bilgisi Eksik</a>
+            }
+        </h4>
+        <p><strong>E-Posta:</strong> @(Model.ArabaDetay?.Kullanici?.Email ?? "E-posta bilgisi bulunamadı")</p>
+        <p><strong>Telefon:</strong> @(Model.ArabaDetay?.Kullanici?.Telefon ?? "Telefon bilgisi bulunamadı")</p>
+
+        <!-- Durum güncelleme  -->
+        @if(!string.IsNullOrEmpty(ViewContext.HttpContext.Session.GetString("KullaniciYetki")))
+        {
+        <!-- Durum -->
+            <strong>Durum:</strong>
+        <form method="post" action="/Admin/UpdateArabaDurum" style="display: inline;">
+            <input type="hidden" name="Id" value="@Model.ArabaDetay?.Id" />
+            <select name="Durum" class="form-select-inline"
+                style="background-color: @(Model.ArabaDetay?.Durum == 'a' ? "green" : Model.ArabaDetay?.Durum == 'v' ? "blue" : Model.ArabaDetay?.Durum == 'p' ? "orange" : "red"); color: white;"
+                onchange="this.form.submit()">
+                    @if (Model.ArabaDetay?.Durum == 'a')
+                    {
+                    <option value="a">Onaylı</option>
+                    }
+                    else if (Model.ArabaDetay?.Durum == 'v')
+                    {
+                    <option value="p">Vitrinde</option>
+                    }
+                    else if (Model.ArabaDetay?.Durum == 'p')
+                    {
+                    <option value="p">Onaysız</option>
+                    }
+                    else if (Model.ArabaDetay?.Durum == 'k')
+                    {
+                    <option value="k">Kaldırılmış</option>
+                    }
+                <option value="a">Onayla</option>
+                <option value="v">Vitrine al</option>
+                <option value="p">Onaysız</option>
+                <option value="k">Kaldır</option>
+            </select>
+        </form>
+        
+        }
+        else
+        {
+            <p>Seçin bilgileri ğyesiş kendine gel</p>
+        }
+    </div>
+    </div>
+    
+
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+@section Scripts {
+    
+<script>
+    const adresGruplari = @Html.Raw(Json.Serialize(ViewBag.AdresGruplari));
+
+    document.getElementById("Il").addEventListener("change", function () {
+        const selectedIl = this.value;
+        const ilceDropdown = document.getElementById("Ilce");
+        const mahalleDropdown = document.getElementById("Mahalle");
+
+        ilceDropdown.innerHTML = '<option value="" disabled selected>İlçe Seçiniz</option>';
+        mahalleDropdown.innerHTML = '<option value="" disabled selected>Mahalle Seçiniz</option>';
+
+        if (adresGruplari[selectedIl]) {
+            for (const ilce in adresGruplari[selectedIl]) {
+                const option = document.createElement("option");
+                option.value = ilce;
+                option.textContent = ilce;
+                ilceDropdown.appendChild(option);
+            }
+        }
+        updateGirilenAdres();
+    });
+
+    document.getElementById("Ilce").addEventListener("change", function () {
+        const selectedIl = document.getElementById("Il").value;
+        const selectedIlce = this.value;
+        const mahalleDropdown = document.getElementById("Mahalle");
+
+        mahalleDropdown.innerHTML = '<option value="" disabled selected>Mahalle Seçiniz</option>';
+
+        if (adresGruplari[selectedIl] && adresGruplari[selectedIl][selectedIlce]) {
+            adresGruplari[selectedIl][selectedIlce].forEach(mahalle => {
+                const option = document.createElement("option");
+                option.value = mahalle;
+                option.textContent = mahalle;
+                mahalleDropdown.appendChild(option);
+            });
+        }
+        updateGirilenAdres();
+    });
+
+    document.getElementById("Mahalle").addEventListener("change", updateGirilenAdres);
+
+    function updateGirilenAdres() {
+        const il = document.getElementById("Il").value;
+        const ilce = document.getElementById("Ilce").value;
+        const mahalle = document.getElementById("Mahalle").value;
+
+        const adres = `${il ? il : ""} ${ilce ? ilce : ""} ${mahalle ? mahalle : ""}`.trim();
+        document.getElementById("girilenAdres").textContent = adres ? `Girilen Adres: ${adres}` : "Girilen adres burada görüntülenecek...";
+
+        // Adres ID'sini sakla
+        const adresId = findAdresId(il, ilce, mahalle);
+        document.getElementById("adresKonumu").value = adresId ? adresId : '';
+        document.getElementById("adresKonumuGoster").textContent = `AdresKonumu: ${document.getElementById("adresKonumu").value}`;
+
+        console.log(`Hidden input (adresKonumu) değeri: ${document.getElementById("adresKonumu").value}`);
+
+        // AJAX çağrısı yaparak verileri filtrele
+        if (il && ilce && mahalle) {
+            fetch(`/Home/FilterEmlak?il=${il}&ilce=${ilce}&mahalle=${mahalle}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById("adresKonumuGoster").innerHTML = data;
+                });
+        }
+    }
+
+    function findAdresId(il, ilce, mahalle) {
+        for (const ilKey in adresGruplari) {
+            if (ilKey === il) {
+                for (const ilceKey in adresGruplari[ilKey]) {
+                    if (ilceKey === ilce) {
+                        const mahalleList = adresGruplari[ilKey][ilceKey];
+                        for (const mahalleItem of mahalleList) {
+                            if (mahalleItem.MahalleKoyAdi === mahalle) {
+                                return mahalleItem.Id; // Adres ID'sini döndür
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+</script>
+
+
+<!-- Güncelleme için marka model yıl versiyonDropdown seçimi -->
+<script>
+    $(document).ready(function () {
+    // Marka Seçimi
+    const selectedMarkaId = '@Model.ArabaDetay?.MarkaID';
+    const selectedModelId = '@Model.ArabaDetay?.ModelID';
+    const selectedYilId = '@Model.ArabaDetay?.YilID';
+
+    // Marka Dropdown
+    $('#markaDropdown').change(function () {
+        const markaId = $(this).val();
+        $.getJSON(`/Arabalar/GetModels?markaId=${markaId}`, function (data) {
+            $('#modelDropdown').empty().append('<option value="">Seçin...</option>');
+            data.forEach(model => {
+                const isSelected = model.modelID == selectedModelId ? 'selected' : '';
+                $('#modelDropdown').append(`<option value="${model.modelID}" ${isSelected}>${model.model || "Ulaşılamıyor"}</option>`);
+            });
+
+            // Eğer ModelID boşsa "Ulaşılamıyor" ekleyin
+            if (!data.find(model => model.modelID == selectedModelId)) {
+                $('#modelDropdown').append('<option value="" selected>Ulaşılamıyor</option>');
+            }
+        });
+    });
+    $(document).ready(function () {
+    // Model Dropdown Güncelleme
+    $('#modelDropdown').change(function () {
+        const modelId = $(this).val();
+        $.getJSON(`/Arabalar/GetYears?modelId=${modelId}`, function (data) {
+            $('#yilDropdown').empty().append('<option value="">Yıl Seçin</option>');
+            data.forEach(year => {
+                $('#yilDropdown').append(`<option value="${year.yilID}">${year.yil}</option>`);
+            });
+        });
+    });
+
+    // Yıl Dropdown Güncelleme
+    $('#yilDropdown').change(function () {
+        const yilId = $(this).val();
+        $.getJSON(`/Arabalar/GetVersions?yilId=${yilId}`, function (data) {
+            $('#versiyonDropdown').empty().append('<option value="">Versiyon Seçin</option>');
+            data.forEach(version => {
+                $('#versiyonDropdown').append(`<option value="${version.versiyonID}">${version.versiyonAdi}</option>`);
+            });
+        });
+    });
+});
+
+    // İlk Yükleme için Marka ve Model eşleştirme
+    if (selectedMarkaId) {
+        $('#markaDropdown').val(selectedMarkaId).trigger('change');
+    }
+
+    // Model Dropdown
+    $('#modelDropdown').change(function () {
+        const modelId = $(this).val();
+        $.getJSON(`/Arabalar/GetYears?modelId=${modelId}`, function (data) {
+            $('#yilDropdown').empty().append('<option value="">Seçin...</option>');
+            data.forEach(year => {
+                const isSelected = year.yilID == selectedYilId ? 'selected' : '';
+                $('#yilDropdown').append(`<option value="${year.yilID}" ${isSelected}>${year.yil || "Ulaşılamıyor"}</option>`);
+            });
+
+            // Eğer YilID boşsa "Ulaşılamıyor" ekleyin
+            if (!data.find(year => year.yilID == selectedYilId)) {
+                $('#yilDropdown').append('<option value="" selected>Ulaşılamıyor</option>');
+            }
+        });
+    });
+
+    // İlk Yükleme için Model ve Yıl eşleştirme
+    if (selectedModelId) {
+        $('#modelDropdown').val(selectedModelId).trigger('change');
+    }
+});
+
+    // Fiyatı formatlama
+    
+    document.getElementById("FiyatSatis").addEventListener("input", function (event) {
+        let value = event.target.value.replace(/\D/g, ""); // Sadece rakamları al
+        if (value) {
+            event.target.value = new Intl.NumberFormat('tr-TR', {
+                style: 'decimal'
+            }).format(value) + " ₺";
+        }
+    });
+</script>
+    <style>
+        .resim-card {
+            width: 150px;
+            height: 150px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resim-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resim-card .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .küçük-resim-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .küçük-resim-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .küçük-resim-container .close-btn {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+    </style>
+
+    
+    <!-- Detay sayfasının düzeni -->
+    <style>
+        .bg-mavi {
+            background: linear-gradient(to bottom right, rgb(0, 174, 255), #e5e5e4);
+            color: white;
+            transition: all 1s ease;
+        }
+
+        .bg-mavi:hover {
+            background-color: rgb(134, 217, 255);
+        }
+
+        #girilenAdres {
+            padding: 5px;
+            border: 1px dashed gray;
+            border-radius: 5px;
+        }
+
+        #resimPreview {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .resim-card {
+            width: 300px;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .resim-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .resim-card .close-btn {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .ana {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .inline-box {
+            flex: 1 1 auto;
+            margin: 5px;
+        }
+
+        .alan1,
+        .alan2 {
+            background: linear-gradient(to bottom right, #ffffff, #f2fffd);
+        }
+
+        .küçük-resim:hover {
+            transform: scale(1.1);
+            border: 2px solid #007bff;
+        }
+    </style>
+
+}
+<!-- #region                                       -->
+
+    <script>
+        // Yeni resimleri önizleme ve yükleme
+        $('#resimler').change(function () {
+            const files = Array.from(this.files);
+
+            if (files.length > 10) {
+                alert('En fazla 10 resim seçebilirsiniz!');
+                this.value = ''; // Seçimi temizle
+                return;
+            }
+
+            $('#newImagePreview').empty();
+
+            files.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const previewHtml = `
+                                                        <div class="resim-card" data-index="${index}">
+                                                            <img src="${e.target.result}" alt="${file.name}" />
+                                                            <button class="close-btn" type="button" onclick="removeNewImage(${index})">&times;</button>
+                                                        </div>
+                                                    `;
+                    $('#newImagePreview').append(previewHtml);
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function removeNewImage(index) {
+            const input = document.getElementById('resimler');
+            const dt = new DataTransfer();
+
+            Array.from(input.files).forEach((file, i) => {
+                if (i !== index) {
+                    dt.items.add(file);
+                }
+            });
+
+            input.files = dt.files;
+
+            $(`.resim-card[data-index="${index}"]`).remove();
+        }
+
+        function removeExistingImage(id) {
+            const deletedImagesInput = document.getElementById('silinecekResimler');
+            const currentDeletedIds = deletedImagesInput.value ? deletedImagesInput.value.split(',') : [];
+            currentDeletedIds.push(id);
+
+            deletedImagesInput.value = currentDeletedIds.join(',');
+            $(`.resim-card[data-id="${id}"]`).remove();
+        }
+    </script>
+
+
+    <!-- Sayfa detayları düzenleme alanının ayarları  -->
+    <script>
+        
+        // Fiyat alanları noktalıklı gösteriyor
+
+        function formatAndDisplay(input) {
+            const value = input.value;
+            const formattedValue = new Intl.NumberFormat('tr-TR', {
+                minimumFractionDigits: 0
+            }).format(value);
+
+            const labelId = input.id + "Label";
+            document.getElementById(labelId).innerText = formattedValue ? formattedValue : '';
+        }
+
+        
+        // Tüm küçük resimlere click event'i ekle
+        document.querySelectorAll('.küçük-resim').forEach(kucukResim => {
+            kucukResim.addEventListener('click', function () {
+                // Tıklanan küçük resmin URL'sini al
+                const yeniResimUrl = this.src;
+                // Ana resmi güncelle
+                document.getElementById('ana-resim').src = yeniResimUrl;
+            });
+        });
+
+        //# ana küçük-resim-container altındaki küçük buttonlara konulan çarpı addEventListener
+        function updateAnaResim(resimUrl) {
+            // Ana resmin URL'sini güncelle
+            document.getElementById('ana-resim').src = resimUrl;
+        }
+
+        function removeExistingImage(id) {
+            const deletedImagesInput = document.getElementById('silinecekResimler');
+            const currentDeletedIds = deletedImagesInput.value ? deletedImagesInput.value.split(',') : [];
+
+            // Eğer ID zaten listede değilse ekle
+            if (!currentDeletedIds.includes(id.toString())) {
+                currentDeletedIds.push(id);
+            }
+
+            deletedImagesInput.value = currentDeletedIds.join(',');
+
+            // Görseli arayüzden kaldır
+            const imageContainer = document.querySelector(`.küçük-resim-container button[onclick="removeExistingImage(${id})"]`).parentNode;
+            imageContainer.remove();
+        }
+
+
+        //# whatsappdan paylaşım yapmak için icona basınca çalışıyor.
+        document.getElementById("whatsapp-share").addEventListener("click", function () {
+            const ilanBasligi = "Satılık Arsa - Muhteşem Fırsat!"; // İlan Başlığını Dinamik Getirin
+            const ilanLinki = window.location.href; // Şu anki sayfa URL'sini alın
+            const mesaj = `${ilanBasligi}\n${ilanLinki}`;
+
+            // WhatsApp URL'sini oluştur
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mesaj)}`;
+
+            // Kullanıcıyı WhatsApp'a yönlendir
+            window.open(whatsappUrl, "_blank");
+        });
+    </script>
+   
+
+
+<script>
+    // Küçük resimlere tıklayınca ana resmi güncelle
+    document.querySelectorAll('.küçük-resim').forEach(kucukResim => {
+        kucukResim.addEventListener('click', function () {
+            const yeniResimUrl = this.src;
+            document.getElementById('ana-resim').src = yeniResimUrl;
+        });
+    });
+</script>

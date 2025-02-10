@@ -1,0 +1,124 @@
+@model List<DBGoreWebApp.Models.Entities.EmlakBahce>
+
+<div class="ilan-container">
+    @foreach (var ilan in Model)
+    {
+        <div class="ilan-card">
+            <!-- Resim -->
+            <div>
+                @if (ilan.ArsaResimleri != null && ilan.ArsaResimleri.Any())
+                {
+                    <img src="@ilan.ArsaResimleri.First().ResimArsaUrl" alt="İlan Resmi">
+                }
+                else
+                {
+                    <img src="/img/default-image.jpg" alt="Varsayılan Resim">
+                }
+            </div>
+
+            <!-- Bilgiler -->
+            <div>
+                <h5>@ilan.IlanAdi</h5>
+                <p><strong>Adres:</strong> @ilan.AdresKonumuNavigation?.Il ?? "Bilinmiyor"</p>
+                <p><strong>Fiyat:</strong> @String.Format("{0:N0} ₺", ilan.FiyatSatis)</p>
+            </div>
+
+            <!-- İşlemler -->
+            <form method="post" action="/Admin/UpdateIlanStatus">
+                <input type="hidden" name="Id" value="@ilan.Id" />
+                <select name="Status" class="form-select">
+                    <option value="aktif">Aktif</option>
+                    <option value="pasif">Pasif</option>
+                    <option value="kaldir">Kaldır</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    }
+</div>
+
+
+<style>
+    .ilan-container {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .ilan-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 15px;
+        background-color: #fff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .ilan-resim img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 5px;
+    }
+
+    .ilan-bilgiler {
+        flex: 1;
+        margin-left: 15px;
+    }
+
+    .ilan-bilgiler h5 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .ilan-bilgiler p {
+        margin: 5px 0;
+        font-size: 14px;
+        color: #666;
+    }
+
+    .ilan-islem {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .ilan-islem .dropdown {
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+<script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".dropdown").on("change", function () {
+            let selectedValue = $(this).val();
+            if (selectedValue === "kaldir") {
+                alert("Bu ilan kaldırılacaktır.");
+            }
+        });
+    });
+</script>
+
+</script>

@@ -1,0 +1,81 @@
+﻿<!-- Emlak Arama başı  -->
+    <form id="home-index-AreaSearch" asp-controller="Areas" asp-action="AreaSearch" method="post" class="p-3 border rounded">
+    <div class="row g-2 align-items-center">
+        <!-- İl -->
+        <div class="col-md-3">
+            <label for="city" class="form-label mb-1">İl</label>
+            <select id="city" name="City" class="form-select form-select-sm" onchange="updateDistricts()" required>
+                <option value="" disabled selected>İl Seçiniz</option>
+                @foreach (var city in Model.CityCounts)
+                {
+                    <option value="@city.Il">@city.Il (@city.Count)</option>
+                }
+            </select>
+        </div>
+        <!-- İlçe -->
+        <div class="col-md-3">
+            <label for="district" class="form-label mb-1">İlçe</label>
+            <select id="district1" name="District" class="form-select form-select-sm" required onchange="updateMahalle()">
+                <option value="" disabled selected>İlçe Seçiniz</option>
+                @foreach(var ilce in Model.DistrictCounts)
+                {
+                    <option value="@ilce.Ilce">@ilce.Ilce (@ilce.Count)</option>
+                }
+            </select>
+        </div>
+        <!-- Mahalle -->
+        <div class="col-md-3">
+            <label for="mahalle" class="form-label mb-1">Mahalle</label>
+            <select id="mahalle" name="Mahalle" class="form-select form-select-sm" required>
+                <option value="" disabled selected>Mahalle Seçiniz</option>
+                @foreach(var mah in Model.MahalleCounts)
+                {
+                    <option value="@mah.Mahalle">@mah.Mahalle (@mah.Count)</option>
+                }
+            </select>
+        </div>
+        <!-- Konut Tipi -->
+        <div class="col-md-3">
+            <label for="konutTipi" class="form-label mb-1">Konut Seç</label>
+            <select id="konutTipi" name="konutTipi" class="form-select form-select-sm">
+                <option value="">Kategori</option>
+                @foreach(var tur in Model.KonutTuruCounts)
+                {
+                <option value="@tur.KonutTuru">@tur.KonutTuru (@tur.Count)</option>
+                }
+            </select>
+        </div>
+        <!-- Tür -->
+        <div class="col-md-3">
+            <label for="Tur" class="form-label mb-1">Tür</label>
+            <select id="konutTipi" name="konutTipi" class="form-select form-select-sm">
+                <option value="">Kategori</option>
+                @foreach(var ktipi in Model.TipiCounts)
+                {
+                <option value="@ktipi.Tip">@ktipi.Tip (@ktipi.Count)</option>
+                }
+            </select>
+        </div>
+        <!-- Alan (m²) -->
+        <div class="col-md-3">
+            <label for="AreaMin" class="form-label mb-1">Alan (m²)</label>
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" id="AreaMin" name="AreaMin" placeholder="En Az">
+                <input type="text" class="form-control" id="AreaMax" name="AreaMax" placeholder="En Çok">
+            </div>
+        </div>
+        <!-- Fiyat -->
+        <div class="col-md-3">
+            <label for="AreaPriceMin" class="form-label mb-1">Fiyat</label>
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control" id="AreaPriceMin" name="PriceMin" placeholder="En Az">
+                <input type="text" class="form-control" id="AreaPriceMax" name="PriceMax" placeholder="En Çok">
+            </div>
+        </div>
+        <!-- Ara Butonu -->
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary btn-sm w-100 mt-3">ARA</button>
+        </div>
+    </div>
+</form>
+    <!-- Emlak Arama sonu  -->

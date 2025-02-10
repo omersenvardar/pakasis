@@ -1,0 +1,68 @@
+@model DBGoreWebApp.Models.Entities.Kullanici
+<style>
+    .container {
+        padding: 0px 0px 20px 0px;
+        margin: 0 auto;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center">
+            <h4>Profil Resmini Değiştir</h4>
+            <!-- Mevcut Profil Resmi -->
+            <img id="currentProfileImage" src="@Model.ImgUrl" alt="Mevcut Profil Resmi" class="img-fluid rounded-circle mb-3"
+                style="width: 150px; height: 150px; object-fit: cover;">
+            
+            <!-- Yeni Profil Resmi Önizleme -->
+            <div id="imagePreviewContainer" class="mb-3" style="display: none;">
+                <p><strong>Yeni Profil Resmi Önizleme:</strong></p>
+                <img id="previewImage" class="img-fluid rounded-circle"
+                    style="width: 150px; height: 150px; object-fit: cover;" alt="Yeni Profil Resmi Önizleme">
+                <button type="button" class="btn btn-danger mt-2" onclick="cancelPreview()">İptal</button>
+            </div>
+
+            <!-- Profil Resmi Güncelleme Formu -->
+            <form asp-action="UpdateProfilResimi" asp-controller="Account" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="@Model.Id" />
+                <div class="mb-3">
+                    <label for="ImgUrl" class="form-label">Yeni Profil Resmi</label>
+                    <input type="file" class="form-control" id="ImgUrl" name="ImgUrl" onchange="previewImage(event)" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function previewImage(event) {
+        const fileInput = event.target;
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        const previewImage = document.getElementById('previewImage');
+
+        if (fileInput.files && fileInput.files[0]) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                previewImage.src = e.target.result;
+                previewContainer.style.display = 'block';
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+    }
+
+    function cancelPreview() {
+        const fileInput = document.getElementById('ImgUrl');
+        const previewContainer = document.getElementById('imagePreviewContainer');
+        const previewImage = document.getElementById('previewImage');
+
+        // Dosya alanını temizle
+        fileInput.value = '';
+
+        // Önizleme alanını gizle
+        previewImage.src = '';
+        previewContainer.style.display = 'none';
+    }
+</script>
