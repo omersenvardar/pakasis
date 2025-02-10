@@ -1,2 +1,46 @@
 publish/wwwroot/resimaraba/*
 publish/wwwroot/resimaraba/
+# Derlenmiş (build edilmiş) dosyalar
+bin/
+obj/
+
+# Kullanıcı ayarları
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Geliştirme ve IDE dosyaları
+.vscode/
+.idea/
+*.log
+*.DS_Store
+Thumbs.db
+
+# Uygulama ayar dosyaları (Hassas bilgiler içerir)
+appsettings.json
+appsettings.Development.json
+
+# Geçici dosyalar
+*.tmp
+*.bak
+*.swp
+
+# Paket yöneticisi klasörleri
+node_modules/
+wwwroot/lib/
+wwwroot/uploads/
+wwwroot/img/
+wwwroot/emlakresimler
+wwwroot/resimaraba
+wwwroot/uploads
+
+# Yayınlama ve dağıtım dosyaları
+publish/
+*.publishsettings
+
+# Çeşitli IDE dosyaları
+.ReSharper
+*.resharper
+.vs/
+
