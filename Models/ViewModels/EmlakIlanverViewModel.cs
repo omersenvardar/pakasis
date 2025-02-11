@@ -46,7 +46,7 @@ namespace DBGoreWebApp.Models.ViewModels
         public int? FiyatSatis { get; set; }
         public int? FiyatPesin { get; set; }
         public int? Kapora { get; set; }
-       public string? Taksitlimi { get; set; }
+        public string? Taksitlimi { get; set; }
         public string? TaksitBedeli { get; set; }
         public string? TaksitSayisi { get; set; }
 

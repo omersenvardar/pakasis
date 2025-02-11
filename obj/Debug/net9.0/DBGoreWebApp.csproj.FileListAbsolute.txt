@@ -475,3 +475,4 @@ C:\Projes\Pakasis\DBGoreWebApp\obj\Debug\net9.0\DBGoreWebApp.pdb
 C:\Projes\Pakasis\DBGoreWebApp\obj\Debug\net9.0\DBGoreWebApp.genruntimeconfig.cache
 C:\Projes\Pakasis\DBGoreWebApp\obj\Debug\net9.0\ref\DBGoreWebApp.dll
 C:\Projes\Pakasis\DBGoreWebApp\obj\Debug\net9.0\DBGoreWebApp.sourcelink.json
+C:\Projes\Pakasis\DBGoreWebApp\obj\Debug\net9.0\compressed\vyd9tib2xr-8bqb6rgzu6.gz

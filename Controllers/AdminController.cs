@@ -707,7 +707,7 @@ namespace DBGoreWebApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Message"] = "Güncelleme sırasında bir hata oluştu.";
+                TempData["Message"] = "Güncelleme sırasında bir hata oluştu." + ex.Message;
                 return RedirectToAction("Kullanicilar");
             }
 

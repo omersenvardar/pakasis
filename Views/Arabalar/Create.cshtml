@@ -126,7 +126,7 @@
     
 </div>
 
-<script>
+@* <script>
     document.getElementById('FiyatDisplay').addEventListener('input', function (e) {
         // Rakam dışında tüm karakterleri çıkar
         let value = e.target.value.replace(/\D/g, '');
@@ -140,7 +140,7 @@
         // Gizli input alanına yalnızca sayı değerini ekle
         document.getElementById('Fiyat').value = value;
     });
-</script>
+</script> *@
 
 
         <!-- Başlık -->
@@ -158,8 +158,10 @@
 
         <!-- Resim Yükleme -->
         <div class="form-group mt-3">
-            <label for="resimler">Resim Yükleme (En fazla 10)</label>
-            <input type="file" id="resimler" name="resimler" class="form-control" accept="image/*" multiple />
+            <label for="resimler">Resim Yükleme</label>
+            <label class="text-warning fs-6" for="resimler">En fazla 12 adet resim ve toplam 50MB olmalıdır. Resim formatları jpg, jpeg, yada png olmalıdır</label>
+            <input type="file" id="resimler" name="resimler" class="form-control" accept="image/png, image/jpeg, image/jpg" multiple />
+            <p class="text-danger" id="file-error" style="display: none;"></p>
         </div>
 
         <!-- Resim Önizleme -->
@@ -167,7 +169,7 @@
 
         <!-- Kaydet Butonu -->
         <div class="form-group mt-3 text-center">
-            <button type="submit" class="btn btn-primary">Kaydet</button>
+            <button type="submit" class="btn btn-primary" id="submit-btn">Kaydet</button>
         </div>
     </form>
 </div>
@@ -350,134 +352,46 @@
     }
 </script>
 
-
-
-@* <div class="ana">
-    <!-- İlan Başlığı -->
-    <div class="container">
-        <h3 class="m-0">Yeni Araba Ekle</h3>
-        <hr>
-    </div>
-
-    <!-- Form -->
-    <form asp-action="Create" enctype="multipart/form-data" method="post">
-        <!-- Marka Seçimi -->
-        <div class="form-group">
-            <label for="markaDropdown">Marka Seçin</label>
-            <select id="markaDropdown" name="MarkaID" class="form-control">
-                <option value="">Marka Seçin</option>
-                @foreach (var marka in Model.AracMarkalaris)
-                {
-                    <option value="@marka.MarkaID">@marka.Marka</option>
-                }
-            </select>
-        </div>
-
-        <!-- Model Seçimi -->
-        <div class="form-group">
-            <label for="modelDropdown">Model Seçin</label>
-            <select id="modelDropdown" name="ModelID" class="form-control">
-                <option value="">Model Seçin</option>
-            </select>
-        </div>
-
-        <!-- Yıl Seçimi -->
-        <div class="form-group">
-            <label for="yilDropdown">Yıl Seçin</label>
-            <select id="yilDropdown" name="YilID" class="form-control">
-                <option value="">Yıl Seçin</option>
-            </select>
-        </div>
-
-        <!-- Versiyon Seçimi -->
-        <div class="form-group">
-            <label for="versiyonDropdown">Versiyon Seçin</label>
-            <select id="versiyonDropdown" name="VersiyonID" class="form-control">
-                <option value="">Versiyon Seçin</option>
-            </select>
-        </div>
-
-        <!-- Özellikler -->
-        <div class="form-group">
-            <label for="ozellikler">Özellikler</label>
-            <textarea id="ozellikler" class="form-control" readonly></textarea>
-        </div>
-
-        <!-- Resim Yükleme -->
-        <div class="form-group">
-            <label for="resimler">Resim Yükleme (En fazla 10)</label>
-            <input type="file" id="resimler" name="resimler" class="form-control" accept="image/*" multiple />
-        </div>
-
-        <!-- Resim Önizleme -->
-        <div class="row mt-3" id="resimPreview" style="gap: 1rem;"></div>
-
-        <!-- Kaydet Butonu -->
-        <div class="form-group mt-3 text-center">
-            <button type="submit" class="btn btn-primary">Kaydet</button>
-        </div>
-    </form>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
 <script>
     $(document).ready(function () {
-        // Marka Seçimi
-        $('#markaDropdown').change(function () {
-            const markaId = $(this).val();
-            $.getJSON(`/Arabalar/GetModels?markaId=${markaId}`, function (data) {
-                $('#modelDropdown').empty().append('<option value="">Seçin...</option>');
-                data.forEach(model => {
-                    $('#modelDropdown').append(`<option value="${model.modelID}">${model.model}</option>`);
-                });
-            });
-        });
-
-        // Model Seçimi
-        $('#modelDropdown').change(function () {
-            const modelId = $(this).val();
-            $.getJSON(`/Arabalar/GetYears?modelId=${modelId}`, function (data) {
-                $('#yilDropdown').empty().append('<option value="">Seçin...</option>');
-                data.forEach(year => {
-                    $('#yilDropdown').append(`<option value="${year.yilID}">${year.yil}</option>`);
-                });
-            });
-        });
-
-        // Yıl Seçimi
-        $('#yilDropdown').change(function () {
-            const yilId = $(this).val();
-            $.getJSON(`/Arabalar/GetVersions?yilId=${yilId}`, function (data) {
-                $('#versiyonDropdown').empty().append('<option value="">Seçin...</option>');
-                data.forEach(version => {
-                    $('#versiyonDropdown').append(`<option value="${version.versiyonID}">${version.versiyonAdi}</option>`);
-                });
-            });
-        });
-
-        // Versiyon Seçimi
-        $('#versiyonDropdown').change(function () {
-            const versiyonId = $(this).val();
-            $.getJSON(`/Arabalar/GetVersions?yilId=${$('#yilDropdown').val()}`, function (data) {
-                const selectedVersion = data.find(v => v.versiyonID == versiyonId);
-                $('#ozellikler').text(selectedVersion?.ozellikleri || 'Belirtilmemiş');
-            });
-        });
-
-        // Resim Önizleme
         $('#resimler').change(function () {
             const files = Array.from(this.files);
+            const allowedExtensions = ['image/png', 'image/jpeg', 'image/jpg'];
+            const maxFileSize = 50 * 1024 * 1024; // 50MB
+            let totalSize = 0;
+            $('#resimPreview').empty();
+            $('#file-error').hide();
 
-            if (files.length > 10) {
-                alert('En fazla 10 resim seçebilirsiniz!');
-                this.value = ''; // Seçimi temizle
+            if (files.length > 12) {
+                $('#file-error').text('En fazla 12 resim yükleyebilirsiniz.').show();
+                this.value = '';
                 return;
             }
 
-            $('#resimPreview').empty();
-
+            let validFiles = [];
             files.forEach((file, index) => {
+                totalSize += file.size;
+                if (!allowedExtensions.includes(file.type)) {
+                    $('#file-error').text('Geçersiz dosya türü: ' + file.name + ' sadece PNG, JPG, JPEG dosyaları kabul edilir.').show();
+                } else if (totalSize > maxFileSize) {
+                    $('#file-error').text('Toplam resim boyutu 50MB'ı geçemez. Lütfen daha küçük dosyalar seçin.').show();
+                    this.value = '';
+                    return;
+                } else {
+                    validFiles.push(file);
+                }
+            });
+
+            if (validFiles.length === 0) {
+                this.value = '';
+                return;
+            }
+
+            const dt = new DataTransfer();
+            validFiles.forEach(file => dt.items.add(file));
+            this.files = dt.files;
+
+            validFiles.forEach((file, index) => {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const previewHtml = `
@@ -493,53 +407,17 @@
         });
     });
 
-    // Resim Silme
     function removeImage(index) {
         const input = document.getElementById('resimler');
         const dt = new DataTransfer();
-
+        
         Array.from(input.files).forEach((file, i) => {
             if (i !== index) {
                 dt.items.add(file);
             }
         });
-
+        
         input.files = dt.files;
-
-        // Önizleme alanını güncelle
         $(`.resim-card[data-index="${index}"]`).remove();
     }
 </script>
-
-<style>
-    .resim-card {
-        width: 100px;
-        height: 100px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        overflow: hidden;
-        position: relative;
-    }
-
-    .resim-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-
-    .resim-card .close-btn {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        background: red;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
-</style> *@

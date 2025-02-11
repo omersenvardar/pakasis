@@ -1,6 +1,7 @@
 using DBGoreWebApp.Data;
 using DBGoreWebApp.Services.Arabalar;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,6 +46,13 @@ builder.Logging.AddConsole();
 builder.Logging.SetMinimumLevel(LogLevel.Debug);
 
 var app = builder.Build();
+// resimler 50 mb olacak
+app.Use((context, next) =>
+{
+    context.Features.Get<IHttpMaxRequestBodySizeFeature>().MaxRequestBodySize = 52428800; // 50 MB
+    return next();
+});
+
 
 // Kategorileri otomatik olarak almak için
 var scope = app.Services.CreateScope();
