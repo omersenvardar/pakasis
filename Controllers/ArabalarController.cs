@@ -276,7 +276,7 @@ namespace DBGoreWebApp.Controllers
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Bir hata oluştu. Lütfen tekrar deneyiniz.");
+                ModelState.AddModelError("", "Bir hata oluştu. Lütfen tekrar deneyiniz."+ex.Message);
                 return View(model);
             }
         }

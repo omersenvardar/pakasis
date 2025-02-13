@@ -390,7 +390,7 @@ namespace DBGoreWebApp.Controllers
             catch (Exception ex)
             {
                 // Eğer bir hata oluşursa, hata mesajını yazdır ve kullanıcıya bilgi ver.
-                TempData["UpdateEmlakDetayMessage"] = "Emlak ilanı güncellenirken bir hata oluştu.";
+                TempData["UpdateEmlakDetayMessage"] = "Emlak ilanı güncellenirken bir hata oluştu." + ex.Message;
             }
 
             // Kullanıcıyı IlanGuncellendi sayfasına yönlendir
@@ -507,7 +507,7 @@ namespace DBGoreWebApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["UpdateArabaDetayMessage"] = "Araç ilanı güncellenirken bir hata oluştu.";
+                TempData["UpdateArabaDetayMessage"] = "Araç ilanı güncellenirken bir hata oluştu." + ex.Message;
             }
 
             return RedirectToAction("ArabaGuncellendi");//, new { id = araba.Id }

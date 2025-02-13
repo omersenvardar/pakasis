@@ -650,7 +650,7 @@ namespace DBGoreWebApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["UpdateArabaDetayMessage"] = "Araç ilanı güncellenirken bir hata oluştu.";
+                TempData["UpdateArabaDetayMessage"] = "Araç ilanı güncellenirken bir hata oluştu."+ex.Message;
             }
 
             return RedirectToAction("ArabaDetay", new { id = araba.Id });
@@ -718,7 +718,7 @@ namespace DBGoreWebApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["Message"] = "Kaydetme işlemi sırasında bir hata oluştu.";
+                TempData["Message"] = "Kaydetme işlemi sırasında bir hata oluştu." + ex.Message;
                 return RedirectToAction("Kullanicilar");
             }
 

@@ -1,232 +1,260 @@
-@* @model DBGoreWebApp.Models.ViewModels.ArsaViewModel
-@using DBGoreWebApp.Models.Entities
+@using DBGoreWebApp.Models.ViewModels
+@model List<IlanViewModel>
 
-@{
-    ViewData["Title"] = "Ana Sayfa";
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Message"]
+    </div>
 }
-<link rel="stylesheet" href="~/css/HomeIndex.css" asp-append-version="true" />
 
-<div class="container bg-light">
-    @* <h1>Hoş Geldiniz!</h1> *@
-    <!-- <p>@ViewBag.Message</p> -->
-
-    <!-- Emlak Arama başı -->
-    @* <form id="home-index-AreaSearch" asp-controller="Areas" asp-action="AreaSearch" method="post" class="p-3 border rounded">
-        <div class="row g-2 align-items-center">
-            <div class="col-md-3">
-                <label for="city" class="form-label mb-1">İl</label>
-                <select id="city" name="City" class="form-select form-select-sm" onchange="updateDistricts()" required>
-                    <option value="" disabled selected>İl Seçiniz</option>
-                    @if (Model.UniqueIller != null)
-                    {
-                        @foreach (var city in Model.UniqueIller)
-                        {
-                            <option value="@city.Il">@city.Il</option>
-                        }
-                    }
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <label for="district" class="form-label mb-1">İlçe</label>
-                <select id="district" name="District" class="form-select form-select-sm" required onchange="updateMahalle()">
-                    <option value="" disabled selected>İlçe Seçiniz</option>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <label for="mahalle" class="form-label mb-1">Mahalle</label>
-                <select id="mahalle" name="Mahalle" class="form-select form-select-sm" required>
-                    <option value="" disabled selected>Mahalle Seçiniz</option>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <label for="Tur" class="form-label mb-1">Konut Seç</label>
-                <select id="Tur" name="Tur" class="form-select form-select-sm">
-                    <option value="">Kategori</option>
-                    @if (Model.KonutTuruCounts != null)
-                    {
-                        @foreach(var tur in Model.KonutTuruCounts)
-                        {
-                            <option value="@tur.KonutTuru">@tur.KonutTuru (@tur.Count)</option>
-                        }
-                    }
-                    else
-                    {
-                        <option value="" disabled>Konut türü bulunamadı</option>
-                    }
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <label for="Tip" class="form-label mb-1">Tür</label>
-                <select id="Tip" name="Tip" class="form-select form-select-sm">
-                    <option value="">Kategori</option>
-                    @if(Model.TipiCounts != null)
-                    {
-                        @foreach(var ktipi in Model.TipiCounts)
-                        {
-                            <option value="@ktipi.Tip">@ktipi.Tip (@ktipi.Count)</option>
-                        }
-                    }
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <label for="AreaMin" class="form-label mb-1">Alan (m²)</label>
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" id="AreaMin" name="AreaMin" placeholder="En Az">
-                    <input type="text" class="form-control" id="AreaMax" name="AreaMax" placeholder="En Çok">
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <label for="AreaPriceMin" class="form-label mb-1">Fiyat</label>
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control" id="AreaPriceMin" name="PriceMin" placeholder="En Az">
-                    <input type="text" class="form-control" id="AreaPriceMax" name="PriceMax" placeholder="En Çok">
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <button type="submit" class="btn btn-primary btn-sm w-100 mt-3">ARA</button>
-            </div>
-        </div>
-    </form> *@
-    <!-- Emlak Arama sonu -->
-
-    <!-- Emlak ilanları başı -->
-@* <div class="row mt-3">
-    @if (Model.Arsalar != null && Model.Arsalar.Any())
-    {
-        var displayedArsalar = Model.Arsalar;  // Model.Arsalar zaten sınırlanmış
-        @foreach (var i in displayedArsalar)
-        {
-            <div class="col-md-4">
-                <div class="card">
-                    <a asp-controller="Areas" asp-action="Detail" asp-route-id="@i.Id" class="aa-properties-item-img">
-                        <img class="card-img-top" src="/img/blog-img-1.jpg" alt="img">
-                    </a>
-                    <div class="card-body">
-                        <div class="aa-tag badge badge-success mb-2 bg-primary">Daire</div>
-                        <div class="aa-properties-item-content">
-                            <a asp-controller="Areas" asp-action="Detail" asp-route-id="@i.Id" class="btn">
-                                <div class="aa-properties-info d-flex justify-content-between mb-3">
-                                    <span>@i.Il</span>
-                                    <span>@i.Ilce</span>
-                                    <span>@i.Mahalle</span>
-                                    <span>@String.Format("{0:N0} M2", i.Alan)</span>
-                                </div>
-                            </a>
-                            <div class="aa-properties-about mb-3">
-                                <p>İlan Tarihi:</p>
-                                <h5 class="card-title text-dark"><a asp-controller="Areas" asp-action="Detail" asp-route-id="@i.Id" style="text-decoration: none;">@i.IlanTarihi.ToString("dd MMMM yyyy")</a></h5>
-                                <p class="card-text yazi-kaymasini-engelle">@i.Aciklama</p>
-                            </div>
-                            <div class="aa-properties-detail d-flex justify-content-between align-items-center">
-                                <span class="aa-price h5">
-                                    @String.Format("{0:N0} ₺", i.Fiyat)
-                                </span>
-                                @if (i.SatildiMi)
-                                {
-                                    <a asp-controller="Areas" asp-action="Detail" asp-route-id="@i.Id" class="btn btn-primary">Satıldı</a>
-                                }
-                                else
-                                {
-                                    <a asp-controller="Areas" asp-action="Detail" asp-route-id="@i.Id" class="btn btn-success">Satılık</a>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+@section Scripts {
+    <style>
+        .ilan-card {
+            width: 100%;
+            height: 400px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            background-color: #fff;
         }
 
-        <!-- Sayfalama -->
-        <div class="col-12 mt-4">
-            <nav>
-                <ul class="pagination justify-content-center">
-                    @if (Model.CurrentPage > 1)
-                    {
-                        <li class="page-item">
-                            <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@(Model.CurrentPage - 1)">Geri</a>
-                        </li>
-                    }
-                    
-                    @for (var i = 1; i <= Model.TotalPages; i++)
-                    {
-                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
-                            <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@i">@i</a>
-                        </li>
-                    }
+        .ilan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
 
-                    @if (Model.CurrentPage < Model.TotalPages)
-                    {
-                        <li class="page-item">
-                            <a class="page-link" asp-controller="Home" asp-action="Index" asp-route-page="@(Model.CurrentPage + 1)">İleri</a>
-                        </li>
-                    }
-                </ul>
-            </nav>
-        </div>
-    }
-    else
-    {
-        <h1>Arsa Bulunamadı</h1>
-    }
-</div> *@
-<!-- Emlak ilanları sonu -->
+        .ilan-turu-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            color: white;
+            border-radius: 5px;
+            z-index: 10;
+        }
 
+        .ilan-resim {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.5rem;
+        }
+
+        .ilan-adres {
+            font-size: 0.9rem;
+            color: #666;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ilan-fiyat {
+            font-size: 1.2rem;
+            color: #dc3545;
+            font-weight: bold;
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100%;
+        }
+
+        .card-body {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+
+        .ilan-turu-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+            color: white;
+            border-radius: 5px;
+            z-index: 10;
+        }
+
+        
+
+        /* sayfalama css başı*/
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .pagination .page-link {
+            color: #007bff;
+            text-decoration: none;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination .page-link:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+
+        /* sayfalama css sonu*/
+    </style>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // İl dropdown'unu doldur
+            const groupedAddresses = @Html.Raw(Json.Serialize(ViewBag.AdresGruplari)); // Backend'den gelen adres verisi
+
+            if (groupedAddresses) {
+                Object.keys(groupedAddresses).forEach(function (city) {
+                    $("#Il").append(`<option value="${city}">${city}</option>`);
+                });
+            }
+
+            // İl değiştiğinde ilçe dropdown'unu doldur
+            $("#Il").change(function () {
+                const selectedCity = $(this).val();
+                $("#Ilce").empty().append('<option value="">Seçiniz</option>');
+                $("#Mahalle").empty().append('<option value="">Seçiniz</option>').prop("disabled", true);
+
+                if (selectedCity && groupedAddresses[selectedCity]) {
+                    Object.keys(groupedAddresses[selectedCity]).forEach(function (district) {
+                        $("#Ilce").append(`<option value="${district}">${district}</option>`);
+                    });
+                    $("#Ilce").prop("disabled", false);
+                } else {
+                    $("#Ilce").prop("disabled", true);
+                }
+            });
+
+            // İlçe değiştiğinde mahalle dropdown'unu doldur
+            $("#Ilce").change(function () {
+                const selectedCity = $("#Il").val();
+                const selectedDistrict = $(this).val();
+                $("#Mahalle").empty().append('<option value="">Seçiniz</option>');
+
+                if (selectedCity && selectedDistrict && groupedAddresses[selectedCity][selectedDistrict]) {
+                    groupedAddresses[selectedCity][selectedDistrict].forEach(function (neighborhood) {
+                        $("#Mahalle").append(
+                            `<option value="${neighborhood}">${neighborhood}</option>`
+                        );
+                    });
+                    $("#Mahalle").prop("disabled", false);
+                } else {
+                    $("#Mahalle").prop("disabled", true);
+                }
+            });
+
+            // Filtrele butonuna tıklanınca formu gönder
+            $("#searchBtn").click(function () {
+                const formData = $("#filterForm").serialize();
+                window.location.href = `/Home/Index?${formData}`;
+            });
+        });
+    </script>
+
+}
+
+<div class="container mt-4">
+    <div class="row">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var ilan in Model)
+            {
+                <div class="@ViewBag.IlanKolonSayisi mb-4">
+                    <div class="card ilan-card shadow">
+                        <!-- Resim ve Link -->
+                        <a asp-controller="@(ilan.IlanTuru == "Emlak" ? "EmlakBahce" : "Arabalar")" asp-action="Detail"
+                            asp-route-id="@ilan.Id" class="text-decoration-none">
+                            <img src="@ilan.ResimUrl" alt="@ilan.IlanAdi" class="card-img-top ilan-resim">
+                        </a>
+
+                        <!-- Bilgi -->
+                       <div class="card-body">
+                            <h5 class="card-title text-truncate text-center" title="@ilan.IlanAdi">@ilan.IlanAdi</h5>
+                            <p class="card-text ilan-adres text-truncate text-center" title="@ilan.Adres">
+                                <strong>Adres:</strong> @ilan.Adres
+                            </p>
+                            @if(ilan.MarkaID != null)
+                            { 
+                                <p class="card-text">@ilan.Marka  @ilan.Model</p> 
+                            }
+                            @if(ilan.Yil != null)
+                            { 
+                                <p class="card-text">@ilan.Yil</p> 
+                            }
+                            @if(ilan.YuzOlcum != null) 
+                            { 
+                                <p class="card-text">@ilan.YuzOlcum m&sup2; @ilan.Turu</p> 
+                            }
+                            <p class="card-text ilan-fiyat text-center">
+                                <strong>Fiyat:</strong> @ilan.Fiyat?.ToString("N0") ₺
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center">
+                <p>İlan bulunamadı.</p>
+            </div>
+        }
+    </div>
 </div>
-@* @section Scripts { *@
-        <script>
-            async function updateDistricts() {
-                var citySelect = document.getElementById("city");
-                var districtSelect = document.getElementById("district");
-                districtSelect.innerHTML = '<option value="" disabled selected>İlçe Seçiniz</option>';
 
-                try {
-                    const response = await fetch(`/Home/GetDistricts?city=${citySelect.value}`);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const districts = await response.json();
 
-                    districts.forEach(ilce => {
-                        var option = document.createElement("option");
-                        option.value = ilce;
-                        option.text = ilce;
-                        districtSelect.appendChild(option);
-                    });
-
-                    updateMahalle();
-                } catch (error) {
-                    console.error('İlçeleri getirirken hata oluştu:', error);
-                }
+<!-- Sayfalama başı -->
+<div class="row justify-content-center mt-4">
+    <nav>
+        <ul class="pagination">
+            @if (ViewBag.CurrentPage > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage - 1 })">Önceki</a>
+                </li>
             }
 
-            async function updateMahalle() {
-                var districtSelect = document.getElementById("district");
-                var mahalleSelect = document.getElementById("mahalle");
-                mahalleSelect.innerHTML = '<option value="" disabled selected>Mahalle Seçiniz</option>';
-
-                try {
-                    const response = await fetch(`/Home/GetMahalleler?district=${districtSelect.value}`);
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    const mahalleler = await response.json();
-
-                    mahalleler.forEach(mahalle => {
-                        var option = document.createElement("option");
-                        option.value = mahalle;
-                        option.text = mahalle;
-                        mahalleSelect.appendChild(option);
-                    });
-                } catch (error) {
-                    console.error('Mahalleleri getirirken hata oluştu:', error);
-                }
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                </li>
             }
-        </script>
-} 
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" href="@Url.Action("Index", new { page = ViewBag.CurrentPage + 1 })">Sonraki</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<!-- Sayfalama sonu -->
+
