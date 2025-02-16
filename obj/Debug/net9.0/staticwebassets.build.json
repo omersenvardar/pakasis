@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "yPVySEttI8ywsjaour/5iMc2W89WkeUWiqzZ5nyWwtk=",
+  "Hash": "KT+iwWW2dZ7TP6pfta3Yah9YIYpoiBlVMKY+JcxxEYk=",
   "Source": "DBGoreWebApp",
   "BasePath": "_content/DBGoreWebApp",
   "Mode": "Default",
@@ -1611,6 +1611,111 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "emlakresimler/0045fc5f-6828-4d3e-9e59-2f991cb2cb73#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bcbr4gsfne",
+      "Integrity": "1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emlakresimler\\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "emlakresimler/8a4f0d62-e980-44a2-bd96-ebaf9ad60d75#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8myvgldbk9",
+      "Integrity": "ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emlakresimler\\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8d13e8dd-3fba-435e-a33e-5441935b991f.png",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "emlakresimler/8d13e8dd-3fba-435e-a33e-5441935b991f#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ssquwuz2r0",
+      "Integrity": "1BTASQbttrK1gd/JPbn7jI9qCyzm+GgTqprNRgUemzw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emlakresimler\\8d13e8dd-3fba-435e-a33e-5441935b991f.png"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\93318844-acb2-403b-b175-b673dabee3a4.png",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "emlakresimler/93318844-acb2-403b-b175-b673dabee3a4#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sk776ckayx",
+      "Integrity": "HFhQ7KjcYXMus66JGMGIi0wCeYapRqbKSGf4N/3dOGU=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emlakresimler\\93318844-acb2-403b-b175-b673dabee3a4.png"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\96fc0f0e-55d6-4846-b631-84b4e944ac59.png",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "emlakresimler/96fc0f0e-55d6-4846-b631-84b4e944ac59#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "3pb9ntu0tt",
+      "Integrity": "d45dPzz2+rMMGBaKFKWR5ITlbRUKsoWUPk5EZKTLY5I=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\emlakresimler\\96fc0f0e-55d6-4846-b631-84b4e944ac59.png"
     },
     {
       "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\favicon.ico",
@@ -3228,6 +3333,216 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "resimaraba/4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "35qq5v3sta",
+      "Integrity": "KcgBPpIq/zW8Rs0tIuis0qv3TsVJDHJQVYg43ufg5b4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resimaraba\\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "resimaraba/6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "rjwbji3l7l",
+      "Integrity": "eZs9FESk1e/EouyJeLU6VmB6tgMD8bRk5SIT/MNipg4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resimaraba\\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "resimaraba/cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9hms73w6uo",
+      "Integrity": "zTP9j7U3bHFYVN7VJCLOMnxpK9qJ5dYuTSIXpC1bdlY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resimaraba\\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "resimaraba/dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "w8p4e304fv",
+      "Integrity": "MO2R0XXidbP+Qde4bbyyvYW2ga5tL4LaCIbKYl2F+tw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\resimaraba\\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "uploads/02eddb42-fa7e-4576-a4f3-69939bf0331e#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "bcbr4gsfne",
+      "Integrity": "1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "uploads/8309a140-0fb8-4d5e-b699-2e06251deeec#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "yljspm4nln",
+      "Integrity": "utwbFBUJYvb3xHcSHYcbNK8dP6yn+0lBVpQrmsu6WDw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "uploads/99a33223-b64e-4a83-a103-ccccb4c5bd97#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "syp4opa8qx",
+      "Integrity": "jOfUwEoO0cjnWF3mPW/2/UUTnN2idY3qmdUfG/BSAw4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "uploads/9d4d2532-583e-4882-8e10-71cfd3ebdb45#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8myvgldbk9",
+      "Integrity": "ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "uploads/ab973f1a-eca5-4f4d-9e7f-67b86a1477b7#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vo01uxzvx0",
+      "Integrity": "QVQlzkRF4pjUNqoIvVAWmNc4xciCfdc2iH4hkQFYPaw=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg"
+    },
+    {
+      "Identity": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\e9487a37-2659-443a-846a-da86c0d255f4.jpg",
+      "SourceId": "DBGoreWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\",
+      "BasePath": "_content/DBGoreWebApp",
+      "RelativePath": "uploads/e9487a37-2659-443a-846a-da86c0d255f4#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8myvgldbk9",
+      "Integrity": "ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\e9487a37-2659-443a-846a-da86c0d255f4.jpg"
     }
   ],
   "Endpoints": [
@@ -4746,7 +5061,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4799,7 +5114,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4836,7 +5151,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4883,7 +5198,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4944,7 +5259,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -4989,7 +5304,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5044,7 +5359,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5105,7 +5420,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5150,7 +5465,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5205,7 +5520,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5258,7 +5573,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5295,7 +5610,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 12 Feb 2025 07:20:15 GMT"
+          "Value": "Thu, 13 Feb 2025 19:15:22 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5314,6 +5629,416 @@
         {
           "Name": "integrity",
           "Value": "sha256-7rY8w1t3OksnvbKbxdYv52a3W0qeN3ZJkGD+vd6LaqY="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/0045fc5f-6828-4d3e-9e59-2f991cb2cb73.bcbr4gsfne.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "112372"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:25:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bcbr4gsfne"
+        },
+        {
+          "Name": "label",
+          "Value": "emlakresimler/0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "112372"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:25:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.8myvgldbk9.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50527"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:25:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8myvgldbk9"
+        },
+        {
+          "Name": "label",
+          "Value": "emlakresimler/8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50527"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:25:43 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/8d13e8dd-3fba-435e-a33e-5441935b991f.png",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8d13e8dd-3fba-435e-a33e-5441935b991f.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2755467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1BTASQbttrK1gd/JPbn7jI9qCyzm+GgTqprNRgUemzw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:18:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1BTASQbttrK1gd/JPbn7jI9qCyzm+GgTqprNRgUemzw="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/8d13e8dd-3fba-435e-a33e-5441935b991f.ssquwuz2r0.png",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8d13e8dd-3fba-435e-a33e-5441935b991f.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2755467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1BTASQbttrK1gd/JPbn7jI9qCyzm+GgTqprNRgUemzw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:18:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ssquwuz2r0"
+        },
+        {
+          "Name": "label",
+          "Value": "emlakresimler/8d13e8dd-3fba-435e-a33e-5441935b991f.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1BTASQbttrK1gd/JPbn7jI9qCyzm+GgTqprNRgUemzw="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/93318844-acb2-403b-b175-b673dabee3a4.png",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\93318844-acb2-403b-b175-b673dabee3a4.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1788346"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HFhQ7KjcYXMus66JGMGIi0wCeYapRqbKSGf4N/3dOGU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:18:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HFhQ7KjcYXMus66JGMGIi0wCeYapRqbKSGf4N/3dOGU="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/93318844-acb2-403b-b175-b673dabee3a4.sk776ckayx.png",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\93318844-acb2-403b-b175-b673dabee3a4.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1788346"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HFhQ7KjcYXMus66JGMGIi0wCeYapRqbKSGf4N/3dOGU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:18:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sk776ckayx"
+        },
+        {
+          "Name": "label",
+          "Value": "emlakresimler/93318844-acb2-403b-b175-b673dabee3a4.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HFhQ7KjcYXMus66JGMGIi0wCeYapRqbKSGf4N/3dOGU="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/96fc0f0e-55d6-4846-b631-84b4e944ac59.3pb9ntu0tt.png",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\96fc0f0e-55d6-4846-b631-84b4e944ac59.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1606977"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d45dPzz2+rMMGBaKFKWR5ITlbRUKsoWUPk5EZKTLY5I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:18:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3pb9ntu0tt"
+        },
+        {
+          "Name": "label",
+          "Value": "emlakresimler/96fc0f0e-55d6-4846-b631-84b4e944ac59.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-d45dPzz2+rMMGBaKFKWR5ITlbRUKsoWUPk5EZKTLY5I="
+        }
+      ]
+    },
+    {
+      "Route": "emlakresimler/96fc0f0e-55d6-4846-b631-84b4e944ac59.png",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\96fc0f0e-55d6-4846-b631-84b4e944ac59.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1606977"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"d45dPzz2+rMMGBaKFKWR5ITlbRUKsoWUPk5EZKTLY5I=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:18:04 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-d45dPzz2+rMMGBaKFKWR5ITlbRUKsoWUPk5EZKTLY5I="
         }
       ]
     },
@@ -25020,6 +25745,826 @@
         {
           "Name": "integrity",
           "Value": "sha256-JKWeHUaANNuffeRatdc54UCb84RoxjEw/nTq8Mops8Y="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.35qq5v3sta.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4794767"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KcgBPpIq/zW8Rs0tIuis0qv3TsVJDHJQVYg43ufg5b4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "35qq5v3sta"
+        },
+        {
+          "Name": "label",
+          "Value": "resimaraba/4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KcgBPpIq/zW8Rs0tIuis0qv3TsVJDHJQVYg43ufg5b4="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4794767"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KcgBPpIq/zW8Rs0tIuis0qv3TsVJDHJQVYg43ufg5b4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KcgBPpIq/zW8Rs0tIuis0qv3TsVJDHJQVYg43ufg5b4="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3876455"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eZs9FESk1e/EouyJeLU6VmB6tgMD8bRk5SIT/MNipg4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eZs9FESk1e/EouyJeLU6VmB6tgMD8bRk5SIT/MNipg4="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.rjwbji3l7l.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3876455"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"eZs9FESk1e/EouyJeLU6VmB6tgMD8bRk5SIT/MNipg4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "rjwbji3l7l"
+        },
+        {
+          "Name": "label",
+          "Value": "resimaraba/6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-eZs9FESk1e/EouyJeLU6VmB6tgMD8bRk5SIT/MNipg4="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.9hms73w6uo.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4783535"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zTP9j7U3bHFYVN7VJCLOMnxpK9qJ5dYuTSIXpC1bdlY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9hms73w6uo"
+        },
+        {
+          "Name": "label",
+          "Value": "resimaraba/cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-zTP9j7U3bHFYVN7VJCLOMnxpK9qJ5dYuTSIXpC1bdlY="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4783535"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"zTP9j7U3bHFYVN7VJCLOMnxpK9qJ5dYuTSIXpC1bdlY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-zTP9j7U3bHFYVN7VJCLOMnxpK9qJ5dYuTSIXpC1bdlY="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4699328"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MO2R0XXidbP+Qde4bbyyvYW2ga5tL4LaCIbKYl2F+tw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-MO2R0XXidbP+Qde4bbyyvYW2ga5tL4LaCIbKYl2F+tw="
+        }
+      ]
+    },
+    {
+      "Route": "resimaraba/dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.w8p4e304fv.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4699328"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"MO2R0XXidbP+Qde4bbyyvYW2ga5tL4LaCIbKYl2F+tw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 14:45:41 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "w8p4e304fv"
+        },
+        {
+          "Name": "label",
+          "Value": "resimaraba/dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-MO2R0XXidbP+Qde4bbyyvYW2ga5tL4LaCIbKYl2F+tw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/02eddb42-fa7e-4576-a4f3-69939bf0331e.bcbr4gsfne.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "112372"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:51:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "bcbr4gsfne"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "112372"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:51:47 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8309a140-0fb8-4d5e-b699-2e06251deeec.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14088"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"utwbFBUJYvb3xHcSHYcbNK8dP6yn+0lBVpQrmsu6WDw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:52:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-utwbFBUJYvb3xHcSHYcbNK8dP6yn+0lBVpQrmsu6WDw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/8309a140-0fb8-4d5e-b699-2e06251deeec.yljspm4nln.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "14088"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"utwbFBUJYvb3xHcSHYcbNK8dP6yn+0lBVpQrmsu6WDw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:52:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "yljspm4nln"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/8309a140-0fb8-4d5e-b699-2e06251deeec.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-utwbFBUJYvb3xHcSHYcbNK8dP6yn+0lBVpQrmsu6WDw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "117806"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jOfUwEoO0cjnWF3mPW/2/UUTnN2idY3qmdUfG/BSAw4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-jOfUwEoO0cjnWF3mPW/2/UUTnN2idY3qmdUfG/BSAw4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/99a33223-b64e-4a83-a103-ccccb4c5bd97.syp4opa8qx.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "117806"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"jOfUwEoO0cjnWF3mPW/2/UUTnN2idY3qmdUfG/BSAw4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "syp4opa8qx"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-jOfUwEoO0cjnWF3mPW/2/UUTnN2idY3qmdUfG/BSAw4="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/9d4d2532-583e-4882-8e10-71cfd3ebdb45.8myvgldbk9.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50527"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:53:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8myvgldbk9"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50527"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:53:29 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "122773"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QVQlzkRF4pjUNqoIvVAWmNc4xciCfdc2iH4hkQFYPaw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:45:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-QVQlzkRF4pjUNqoIvVAWmNc4xciCfdc2iH4hkQFYPaw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.vo01uxzvx0.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "122773"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"QVQlzkRF4pjUNqoIvVAWmNc4xciCfdc2iH4hkQFYPaw=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 12:45:59 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vo01uxzvx0"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-QVQlzkRF4pjUNqoIvVAWmNc4xciCfdc2iH4hkQFYPaw="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e9487a37-2659-443a-846a-da86c0d255f4.8myvgldbk9.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\e9487a37-2659-443a-846a-da86c0d255f4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50527"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:51:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8myvgldbk9"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/e9487a37-2659-443a-846a-da86c0d255f4.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/e9487a37-2659-443a-846a-da86c0d255f4.jpg",
+      "AssetFile": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\e9487a37-2659-443a-846a-da86c0d255f4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "50527"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Feb 2025 09:51:34 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ="
         }
       ]
     }

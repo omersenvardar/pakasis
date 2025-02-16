@@ -25,6 +25,26 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8d13e8dd-3fba-435e-a33e-5441935b991f.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\8d13e8dd-3fba-435e-a33e-5441935b991f.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\93318844-acb2-403b-b175-b673dabee3a4.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\93318844-acb2-403b-b175-b673dabee3a4.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\96fc0f0e-55d6-4846-b631-84b4e944ac59.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\96fc0f0e-55d6-4846-b631-84b4e944ac59.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -331,6 +351,46 @@
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\lib\\jquery\\dist\\jquery.slim.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.slim.min.map"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg",
+      "PackagePath": "staticwebassets\\uploads\\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg",
+      "PackagePath": "staticwebassets\\uploads\\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg",
+      "PackagePath": "staticwebassets\\uploads\\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg",
+      "PackagePath": "staticwebassets\\uploads\\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg",
+      "PackagePath": "staticwebassets\\uploads\\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\e9487a37-2659-443a-846a-da86c0d255f4.jpg",
+      "PackagePath": "staticwebassets\\uploads\\e9487a37-2659-443a-846a-da86c0d255f4.jpg"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.DBGoreWebApp.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

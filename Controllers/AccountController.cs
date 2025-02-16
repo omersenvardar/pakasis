@@ -24,6 +24,20 @@ namespace DBGoreWebApp.Controllers
             _context = context;
             _hostingEnvironment = hostingEnvironment;
         }
+        private void LogHata(Exception ex)
+        {
+            string logPath = Path.Combine(_hostingEnvironment.WebRootPath, "logs", "error_log.txt");
+
+            // Eğer logs klasörü yoksa oluştur
+            if (!Directory.Exists(Path.GetDirectoryName(logPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            }
+
+            // Hata mesajını dosyaya ekle
+            System.IO.File.AppendAllText(logPath,
+                $"{DateTime.Now}: Hata oluştu - {ex.Message}\nStackTrace: {ex.StackTrace}\n\n");
+        }
 
         // Giriş Sayfası - GET
         [AllowAnonymous]
@@ -94,76 +108,214 @@ namespace DBGoreWebApp.Controllers
         }
 
         // Kullanıcı Kayıt İşlemi - POST
-[HttpPost]
-[ValidateAntiForgeryToken]
-public IActionResult Register(RegisterViewModel model)
-{
-    if (ModelState.IsValid)
-    {
-        // E-posta benzersizliğini kontrol et
-        if (_context.Kullanicilar.Any(u => u.Email == model.Email))
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Register(RegisterViewModel model)
         {
-            ModelState.AddModelError("Email", "Bu e-posta adresi zaten kullanımda.");
-            return View(model);
-        }
-
-        try
-        {
-            // Yeni kullanıcı oluştur
-            var kullanici = new Kullanici
+            if (ModelState.IsValid)
             {
-                Ad = model.Ad,
-                Soyad = model.Soyad,
-                Telefon = model.Telefon,
-                Email = model.Email,
-                SifreHash = BCrypt.Net.BCrypt.HashPassword(model.Sifre),
-                FirmaUnvani = model.FirmaUnvani,
-                Referans = model.Referans,
-                Rol = "üye",  // Rol burada string olarak kaydediliyor.
-                Durum = 'p',
-                AbonelikTipi = null,
-                KayitTarihi = DateTime.Now,
-                AbonelikStatusu = "aktif" // Abonelik durumu metin olarak kaydediliyor.
-            };
-
-            // Resim yükleme işlemi
-            if (model.ImgUrl != null && model.ImgUrl.Length > 0)
-            {
-                var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(model.ImgUrl.FileName);
-                var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", uniqueFileName);
-
-                using (var stream = new FileStream(uploadPath, FileMode.Create, FileAccess.Write))
+                if (_context.Kullanicilar.Any(u => u.Email == model.Email))
                 {
-                    model.ImgUrl.CopyTo(stream);
+                    ModelState.AddModelError("Email", "Bu e-posta adresi zaten kullanımda.");
+                    return View(model);
                 }
 
-                kullanici.ImgUrl = "/uploads/" + uniqueFileName;
+                try
+                {
+                    var kullanici = new Kullanici
+                    {
+                        Ad = model.Ad,
+                        Soyad = model.Soyad,
+                        Telefon = model.Telefon,
+                        Email = model.Email,
+                        SifreHash = BCrypt.Net.BCrypt.HashPassword(model.Sifre),
+                        FirmaUnvani = model.FirmaUnvani,
+                        Referans = model.Referans,
+                        Rol = "üye",
+                        Durum = 'p',
+                        AbonelikTipi = null,
+                        KayitTarihi = DateTime.Now,
+                        AbonelikStatusu = "aktif"
+                    };
+
+                    bool resimKaydedildi = false;
+
+                    // **Profil Resmi Yükleme**
+                    if (model.ImgUrl != null && model.ImgUrl.Length > 0)
+                    {
+                        try
+                        {
+                            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+                            var extension = Path.GetExtension(model.ImgUrl.FileName).ToLower();
+
+                            if (!allowedExtensions.Contains(extension))
+                            {
+                                ModelState.AddModelError("", "Sadece .jpg, .jpeg, .png ve .gif uzantılı dosyalar yüklenebilir.");
+                                return View(model);
+                            }
+
+                            // **Doğru dosya yolu (Plesk İçin)**
+                            string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "uploads");
+
+                            // Eğer klasör yoksa oluştur
+                            if (!Directory.Exists(uploadsFolder))
+                            {
+                                Directory.CreateDirectory(uploadsFolder);
+                            }
+
+                            // **Benzersiz dosya adı oluştur**
+                            var uniqueFileName = Guid.NewGuid().ToString() + extension;
+                            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                            // **Dosyayı kaydet**
+                            using (var stream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.None))
+                            {
+                                model.ImgUrl.CopyTo(stream);
+                            }
+
+                            kullanici.ImgUrl = "/uploads/" + uniqueFileName;
+                            resimKaydedildi = true;
+                        }
+                        catch (UnauthorizedAccessException ex)
+                        {
+                            TempData["MessageRegisterHata"] = "Yetki hatası: '/uploads/' klasörüne yazma izni yok!";
+                            LogHata(ex);
+                        }
+                        catch (Exception ex)
+                        {
+                            TempData["MessageRegisterHata"] = "Resim yükleme sırasında bir hata oluştu. " + ex.Message;
+                            LogHata(ex);
+                        }
+                    }
+                    else
+                    {
+                        kullanici.ImgUrl = "/img/default-profile.jpg"; // Varsayılan resim
+                    }
+
+                    // **Null kontrolü yaparak oturuma kaydet**
+                    string profilResmi = string.IsNullOrEmpty(kullanici.ImgUrl) ? "/img/default-profile.jpg" : kullanici.ImgUrl;
+                    HttpContext.Session.SetString("KullaniciProfilResmi", profilResmi);
+
+                    // Kullanıcıyı veritabanına kaydet
+                    _context.Kullanicilar.Add(kullanici);
+                    _context.SaveChanges();
+
+                    // Kullanıcı oturum bilgilerini ayarla
+                    HttpContext.Session.SetString("KullaniciAd", kullanici.Ad);
+                    HttpContext.Session.SetString("KullaniciId", kullanici.Id.ToString());
+                    HttpContext.Session.SetString("KullaniciYetki", kullanici.Rol);
+
+                    // Başarı mesajı
+                    TempData["MessageRegister"] = "Kaydınız başarılı!";
+                    TempData["MessageRegisterResim"] = resimKaydedildi ? "Profil resminiz başarıyla yüklendi!" : "Profil resmi yüklenemedi, varsayılan resim atanmıştır.";
+
+                    return RedirectToAction("RegisterSuccess");
+                }
+                catch (Exception ex)
+                {
+                    TempData["MessageRegisterHata"] = "Kayıt sırasında bir hata oluştu. " + ex.Message;
+                    LogHata(ex);
+                    return View(model);
+                }
             }
 
-            // Kullanıcıyı veritabanına kaydet
-            _context.Kullanicilar.Add(kullanici);
-            _context.SaveChanges();
-
-            // Kullanıcıyı otomatik olarak login yap
-            HttpContext.Session.SetString("KullaniciAd", kullanici.Ad);
-            HttpContext.Session.SetString("KullaniciId", kullanici.Id.ToString());
-            HttpContext.Session.SetString("KullaniciYetki", kullanici.Rol);
-            HttpContext.Session.SetString("KullaniciProfilResmi", kullanici.ImgUrl ?? "/img/default-user.jpg");
-
-            TempData["MessageRegister"] = "Kaydınız başarılı! Giriş yapıldı ve ana sayfaya yönlendiriliyorsunuz.";
-            return RedirectToAction("RegisterSuccess");
-        }
-        catch (Exception ex)
-        {
-            ModelState.AddModelError(string.Empty, "Bir hata oluştu: " + ex.Message);
+            TempData["MessageRegisterHata"] = "Form bilgileri eksik veya hatalı.";
             return View(model);
         }
-    }
 
-    TempData["MessageRegisterhata"] = "Form bilgileri eksik veya hatalı.";
-    return View(model);
-}
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public IActionResult Register(RegisterViewModel model)
+        // {
+        //     if (ModelState.IsValid)
+        //     {
+        //         if (_context.Kullanicilar.Any(u => u.Email == model.Email))
+        //         {
+        //             ModelState.AddModelError("Email", "Bu e-posta adresi zaten kullanımda.");
+        //             return View(model);
+        //         }
 
+        //         try
+        //         {
+        //             var kullanici = new Kullanici
+        //             {
+        //                 Ad = model.Ad,
+        //                 Soyad = model.Soyad,
+        //                 Telefon = model.Telefon,
+        //                 Email = model.Email,
+        //                 SifreHash = BCrypt.Net.BCrypt.HashPassword(model.Sifre),
+        //                 FirmaUnvani = model.FirmaUnvani,
+        //                 Referans = model.Referans,
+        //                 Rol = "üye",
+        //                 Durum = 'p',
+        //                 AbonelikTipi = null,
+        //                 KayitTarihi = DateTime.Now,
+        //                 AbonelikStatusu = "aktif"
+        //             };
+
+        //             bool resimKaydedildi = false;
+
+        //             if (model.ImgUrl != null && model.ImgUrl.Length > 0)
+        //             {
+        //                 var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif" };
+        //                 var extension = Path.GetExtension(model.ImgUrl.FileName).ToLower();
+
+        //                 if (!allowedExtensions.Contains(extension))
+        //                 {
+        //                     ModelState.AddModelError(string.Empty, "Sadece .jpg, .jpeg, .png ve .gif uzantılı dosyalar yüklenebilir.");
+        //                     return View(model);
+        //                 }
+
+        //                 var uniqueFileName = Guid.NewGuid().ToString() + extension;
+        //                 var uploadsFolder = Path.Combine("/httpdocs/wwwroot/uploads/");
+
+        //                 if (!Directory.Exists(uploadsFolder))
+        //                 {
+        //                     Directory.CreateDirectory(uploadsFolder);
+        //                 }
+
+        //                 var uploadPath = Path.Combine(uploadsFolder, uniqueFileName);
+
+        //                 if (System.IO.File.Exists(uploadPath))
+        //                 {
+        //                     ViewBag.mesaj = "Dosya zaten mevcut.";
+        //                     return View(model);
+        //                 }
+
+        //                 using (var stream = new FileStream(uploadPath, FileMode.Create, FileAccess.Write, FileShare.None))
+        //                 {
+        //                     model.ImgUrl.CopyTo(stream);
+        //                 }
+
+        //                 ViewBag.mesaj = "Profil resmi başarıyla yüklendi.";
+        //                 kullanici.ImgUrl = "/uploads/" + uniqueFileName;
+        //                 resimKaydedildi = true;
+        //             }
+        //             else
+        //             {
+        //                 kullanici.ImgUrl = "/img/default-profile.jpg";
+        //             }
+
+        //             _context.Kullanicilar.Add(kullanici);
+        //             _context.SaveChanges();
+
+        //             TempData["MessageRegister"] = "Kaydınız başarılı!";
+        //             TempData["MessageRegisterResim"] = resimKaydedildi ? "Profil resminiz başarıyla yüklendi!" : "Profil resmi yüklenemedi.";
+
+        //             return RedirectToAction("RegisterSuccess");
+        //         }
+        //         catch (Exception ex)
+        //         {
+        //             Console.WriteLine($"⚠️ Hata: {ex.Message}\nStackTrace: {ex.StackTrace}");
+        //             TempData["MessageRegisterHata"] = "Kayıt sırasında bir hata oluştu. " + ex.Message;
+        //             return View(model);
+        //         }
+        //     }
+
+        //     TempData["MessageRegisterHata"] = "Form bilgileri eksik veya hatalı.";
+        //     return View(model);
+        // }
         // Kayıt başarılı sayfası
         [HttpGet]
         [AllowAnonymous]
@@ -218,8 +370,8 @@ public IActionResult Register(RegisterViewModel model)
                 }
                 catch (Exception ex)
                 {
-                    TempData["ErrorMessage"] = "Profil resmi güncellenirken bir hata oluştu. Lütfen tekrar deneyin.";
-                    return RedirectToAction("Edit", new { id = user.Id });
+                    TempData["ErrorMessage"] = "Profil resmi güncellenirken bir hata oluştu. Lütfen tekrar deneyin." + ex.Message;
+                    return RedirectToAction("Detail", "Users", new { Id = id });
                 }
             }
             else

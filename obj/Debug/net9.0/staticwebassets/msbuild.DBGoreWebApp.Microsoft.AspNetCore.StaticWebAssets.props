@@ -108,6 +108,96 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\DBGoreWebApp.qdkduo5qzb.bundle.scp.css'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>emlakresimler/0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bcbr4gsfne</Fingerprint>
+      <Integrity>1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\0045fc5f-6828-4d3e-9e59-2f991cb2cb73.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>emlakresimler/8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8myvgldbk9</Fingerprint>
+      <Integrity>ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\8a4f0d62-e980-44a2-bd96-ebaf9ad60d75.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\8d13e8dd-3fba-435e-a33e-5441935b991f.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>emlakresimler/8d13e8dd-3fba-435e-a33e-5441935b991f.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ssquwuz2r0</Fingerprint>
+      <Integrity>1BTASQbttrK1gd/JPbn7jI9qCyzm+GgTqprNRgUemzw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\8d13e8dd-3fba-435e-a33e-5441935b991f.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\93318844-acb2-403b-b175-b673dabee3a4.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>emlakresimler/93318844-acb2-403b-b175-b673dabee3a4.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>sk776ckayx</Fingerprint>
+      <Integrity>HFhQ7KjcYXMus66JGMGIi0wCeYapRqbKSGf4N/3dOGU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\93318844-acb2-403b-b175-b673dabee3a4.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\96fc0f0e-55d6-4846-b631-84b4e944ac59.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>emlakresimler/96fc0f0e-55d6-4846-b631-84b4e944ac59.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>3pb9ntu0tt</Fingerprint>
+      <Integrity>d45dPzz2+rMMGBaKFKWR5ITlbRUKsoWUPk5EZKTLY5I=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\emlakresimler\96fc0f0e-55d6-4846-b631-84b4e944ac59.png'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))">
       <SourceType>Package</SourceType>
       <SourceId>DBGoreWebApp</SourceId>
@@ -1493,6 +1583,186 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>resimaraba/4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>35qq5v3sta</Fingerprint>
+      <Integrity>KcgBPpIq/zW8Rs0tIuis0qv3TsVJDHJQVYg43ufg5b4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\4704650b-eee6-435d-9b23-8ddd8b42fe26_20240429_105550.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>resimaraba/6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>rjwbji3l7l</Fingerprint>
+      <Integrity>eZs9FESk1e/EouyJeLU6VmB6tgMD8bRk5SIT/MNipg4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\6cef77b7-91c3-4a49-9eeb-48c9abb0507d_20240429_105629.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>resimaraba/cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>9hms73w6uo</Fingerprint>
+      <Integrity>zTP9j7U3bHFYVN7VJCLOMnxpK9qJ5dYuTSIXpC1bdlY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\cba7c33d-c9e2-4ced-aaf2-57c3ceb1dc2b_20240429_105555.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>resimaraba/dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>w8p4e304fv</Fingerprint>
+      <Integrity>MO2R0XXidbP+Qde4bbyyvYW2ga5tL4LaCIbKYl2F+tw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\resimaraba\dae9b7bd-f832-4515-8396-b7eac0aaafef_20240429_105619.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>uploads/02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>bcbr4gsfne</Fingerprint>
+      <Integrity>1Ukht/t0/fL/OQb8Zl7/203wyotagvdUTV8gY14bu14=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\02eddb42-fa7e-4576-a4f3-69939bf0331e.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>uploads/8309a140-0fb8-4d5e-b699-2e06251deeec.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>yljspm4nln</Fingerprint>
+      <Integrity>utwbFBUJYvb3xHcSHYcbNK8dP6yn+0lBVpQrmsu6WDw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\8309a140-0fb8-4d5e-b699-2e06251deeec.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>uploads/99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>syp4opa8qx</Fingerprint>
+      <Integrity>jOfUwEoO0cjnWF3mPW/2/UUTnN2idY3qmdUfG/BSAw4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\99a33223-b64e-4a83-a103-ccccb4c5bd97.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>uploads/9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8myvgldbk9</Fingerprint>
+      <Integrity>ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\9d4d2532-583e-4882-8e10-71cfd3ebdb45.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>uploads/ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>vo01uxzvx0</Fingerprint>
+      <Integrity>QVQlzkRF4pjUNqoIvVAWmNc4xciCfdc2iH4hkQFYPaw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\ab973f1a-eca5-4f4d-9e7f-67b86a1477b7.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e9487a37-2659-443a-846a-da86c0d255f4.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>DBGoreWebApp</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/DBGoreWebApp</BasePath>
+      <RelativePath>uploads/e9487a37-2659-443a-846a-da86c0d255f4.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>8myvgldbk9</Fingerprint>
+      <Integrity>ANW48GEWepVYowPfMjTbGSnyY+oZCevjulvBVU/dfhQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\e9487a37-2659-443a-846a-da86c0d255f4.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

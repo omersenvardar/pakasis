@@ -1,4 +1,5 @@
-@model List<DBGoreWebApp.Models.Entities.Araba>
+@using DBGoreWebApp.Models.ViewModels
+@model List<IlanArabaViewModel>
 @{
     var arabaResimler = ViewBag.arabaResimleri as List<DBGoreWebApp.Models.Entities.ArabaResim>;
 }
@@ -81,42 +82,54 @@
     }
 </style>
 
-<h4>Toplam @Model.Count ilanınız var</h4>
+@if(@Model.Count > 0) { <h4 style="color: orange;">@Model.Count Adet onay bekleyen ilanınız var</h4> }
+else { 
+    <a asp-controller="Arabalar" asp-action="Create" style="text-decoration: none;">
+    <h4 style="text-decoration: none; color: orange;" >Henüz ilanınınız yok. Hemen ilan verebilirsiniz</h4>
+    <h4 style="text-decoration: none; color: orange;" >İlan vermek için buraya tıklayın</h4>
+    </a>
+     }
+
 
 @foreach (var araba in Model)
 {
     var arabaResim = arabaResimler?.FirstOrDefault(r => r.ArabaId == araba.Id);
-
+    
     <a asp-controller="Users" asp-action="EditAraba" asp-route-id="@araba.Id" class="ilan-kapsayici text-decoration-none">
         <!-- Resim Alanı -->
         <div class="ilan-resim">
             <img src="@(!string.IsNullOrEmpty(arabaResim?.ResimArabaUrl) 
-                ? arabaResim.ResimArabaUrl 
-                : "/img/default-car.jpg")" alt="Araba Resmi" class="rounded"
-                style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd;">
+                 ? arabaResim.ResimArabaUrl 
+                 : "/img/default-car.jpg")" alt="Araba Resmi" class="rounded"
+                 style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd;"> 
         </div>
 
         <!-- Bilgi Alanı -->
         <div class="ilan-detay">
-            <div class="ilan-baslik">@araba.Marka</div>
+            <div class="ilan-baslik">@araba.VersiyonAdi</div>
             <div class="ilan-icerik">
+                <div class="ilan-bilgi">
+                    <span class="ilan-ust">Marka:</span>
+                    <span class="ilan-alt">@araba.Marka</span>
+                </div>
                 <div class="ilan-bilgi">
                     <span class="ilan-ust">Model:</span>
                     <span class="ilan-alt">@araba.Model</span>
                 </div>
                 <div class="ilan-bilgi">
-                    <span class="ilan-ust">Fiyat:</span>
-                    <span class="ilan-alt">@araba.Fiyat?.ToString("N0") ₺</span>
-                </div>
-                <div class="ilan-bilgi">
                     <span class="ilan-ust">Yıl:</span>
                     <span class="ilan-alt">@araba.Yil</span>
+                </div>
+                <div class="ilan-bilgi">
+                    <span class="ilan-ust">Fiyat:</span>
+                    <span class="ilan-alt">@araba.Fiyat?.ToString("N0") ₺</span>
                 </div>
             </div>
         </div>
         
         <!-- Durum Alanı -->
         <div>
+            <span><strong>İlan Tarihi:</strong> @araba.CreatedDate.ToString("dd/MM/yyyy")</span>
             <p>
                 <strong>Durum:</strong>
                 <span class="badge"

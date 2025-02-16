@@ -78,89 +78,96 @@
 
         <!-- Marka Seçimi -->
         <div class="form-group mt-4">
-    <label for="markaDropdown">Marka Seçin</label>
-    <select id="markaDropdown" name="MarkaID" class="form-control">
-        <option value="">Marka Seçin</option>
-        @if (Model.AracMarkalaris != null)
-        {
-            @foreach (var marka in Model.AracMarkalaris)
-            {
-                <option value="@marka.MarkaID">@marka.Marka</option>
-            }
-        }
-        else
-        {
-            <option value="">Veri bulunamadı</option>
-        }
-    </select>
-</div>
+            <label for="markaDropdown">Marka Seçin</label>
+            <select id="markaDropdown" name="MarkaID" class="form-control">
+                <option value="">Marka Seçin</option>
+                @if (Model.AracMarkalaris != null)
+                {
+                    @foreach (var marka in Model.AracMarkalaris)
+                    {
+                        <option value="@marka.MarkaID">@marka.Marka</option>
+                    }
+                }
+                else
+                {
+                    <option value="">Veri bulunamadı</option>
+                }
+            </select>
+        </div>
 
 
         <!-- Model Seçimi -->
         <div class="form-group">
-            <label for="modelDropdown">Model Seçin</label>
-            <select id="modelDropdown" name="ModelID" class="form-control">
+            <label for="modelDropdown">Model Seçin <span class="text-danger">*</span></label>
+            <select id="modelDropdown" name="ModelID" class="form-control" required>
                 <option value="">Model Seçin</option>
             </select>
+            <div class="invalid-feedback">Lütfen bir model seçin.</div>
         </div>
 
         <!-- Yıl Seçimi -->
         <div class="form-group">
-            <label for="yilDropdown">Yıl Seçin</label>
-            <select id="yilDropdown" name="YilID" class="form-control">
+            <label for="yilDropdown">Yıl Seçin <span class="text-danger">*</span></label>
+            <select id="yilDropdown" name="YilID" class="form-control" required>
                 <option value="">Yıl Seçin</option>
             </select>
+            <div class="invalid-feedback">Lütfen bir yıl seçin.</div>
         </div>
 
         <!-- Versiyon Seçimi -->
         <div class="form-group">
-            <label for="versiyonDropdown">Versiyon Seçin</label>
-            <select id="versiyonDropdown" name="VersiyonID" class="form-control">
+            <label for="versiyonDropdown">Versiyon Seçin <span class="text-danger">*</span></label>
+            <select id="versiyonDropdown" name="VersiyonID" class="form-control" required>
                 <option value="">Versiyon Seçin</option>
             </select>
+            <div class="invalid-feedback">Lütfen bir versiyon seçin.</div>
         </div>
+
         <!-- Fiyat Girin -->
-<div class="form-group">
-    <label for="FiyatDisplay" id="FiyatDisplay" class="form-label">Satış Fiyatı</label>
-    <input type="text" class="form-control" name="Fiyat"  placeholder="Örn: 10.000 ₺">
-    
-</div>
-
-@* <script>
-    document.getElementById('FiyatDisplay').addEventListener('input', function (e) {
-        // Rakam dışında tüm karakterleri çıkar
-        let value = e.target.value.replace(/\D/g, '');
-
-        // Sayıyı 3'er basamak ayırarak formatla
-        let formattedValue = new Intl.NumberFormat('tr-TR').format(value);
-
-        // Gösterim alanına formatlı değeri ekle
-        e.target.value = formattedValue ? formattedValue + ' ₺' : '';
-
-        // Gizli input alanına yalnızca sayı değerini ekle
-        document.getElementById('Fiyat').value = value;
-    });
-</script> *@
-
+        <div class="form-group">
+            <label for="FiyatDisplay" id="FiyatDisplay" class="form-label">Satış Fiyatı <span
+                    class="text-danger">*</span></label>
+            <input type="number" class="form-control" name="Fiyat" id="Fiyat" placeholder="Örn: 10000" required min="1">
+            <div class="invalid-feedback">Lütfen geçerli bir fiyat girin.</div>
+        </div>
 
         <!-- Başlık -->
         <div class="form-group">
-            <label for="versiyonDropdown">Başlık</label>
-            <input type="text" name="VersiyonAdi" id=""class="form-control">
+            <label for="VersiyonAdi">Başlık <span class="text-danger">*</span></label>
+            <input type="text" name="VersiyonAdi" id="VersiyonAdi" class="form-control" required>
+            <div class="invalid-feedback">Lütfen başlık girin.</div>
         </div>
 
         <!-- Açıklama -->
         <div class="form-group">
-            <label for="ozellikler">Açıklama</label>
-            <textarea id="" name="Ozellikleri" class="form-control"></textarea>
-            @* <textarea id="ozellikler" name="Ozellikleri" class="form-control"></textarea> *@
+            <label for="Ozellikleri">Açıklama <span class="text-danger">*</span></label>
+            <textarea name="Ozellikleri" id="Ozellikleri" class="form-control" required></textarea>
+            <div class="invalid-feedback">Lütfen açıklama girin.</div>
         </div>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const form = document.getElementById("arabaForm");
+
+                form.addEventListener("submit", function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+
+                    form.classList.add("was-validated");
+                });
+            });
+        </script>
+
 
         <!-- Resim Yükleme -->
         <div class="form-group mt-3">
             <label for="resimler">Resim Yükleme</label>
-            <label class="text-warning fs-6" for="resimler">En fazla 12 adet resim ve toplam 50MB olmalıdır. Resim formatları jpg, jpeg, yada png olmalıdır</label>
-            <input type="file" id="resimler" name="resimler" class="form-control" accept="image/png, image/jpeg, image/jpg" multiple />
+            <label class="text-warning fs-6" for="resimler">En fazla 12 adet resim ve toplam 50MB olmalıdır. Resim
+                formatları jpg, jpeg, yada png olmalıdır</label>
+            <input type="file" id="resimler" name="resimler" class="form-control"
+                accept="image/png, image/jpeg, image/jpg" multiple />
             <p class="text-danger" id="file-error" style="display: none;"></p>
         </div>
 
@@ -374,7 +381,7 @@
                 if (!allowedExtensions.includes(file.type)) {
                     $('#file-error').text('Geçersiz dosya türü: ' + file.name + ' sadece PNG, JPG, JPEG dosyaları kabul edilir.').show();
                 } else if (totalSize > maxFileSize) {
-                    $('#file-error').text('Toplam resim boyutu 50MB'ı geçemez. Lütfen daha küçük dosyalar seçin.').show();
+                    $('#file-error').text('Toplam resim boyutu 50MB'ı geçemez.Lütfen daha küçük dosyalar seçin.').show();
                     this.value = '';
                     return;
                 } else {
@@ -410,13 +417,13 @@
     function removeImage(index) {
         const input = document.getElementById('resimler');
         const dt = new DataTransfer();
-        
+
         Array.from(input.files).forEach((file, i) => {
             if (i !== index) {
                 dt.items.add(file);
             }
         });
-        
+
         input.files = dt.files;
         $(`.resim-card[data-index="${index}"]`).remove();
     }

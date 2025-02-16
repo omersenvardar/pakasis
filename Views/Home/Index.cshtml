@@ -1,5 +1,5 @@
 ﻿@using DBGoreWebApp.Models.ViewModels
-@model List<IlanViewModel>
+@model List<IlanViewModel>    
 
 @if (TempData["Message"] != null)
 {
@@ -39,7 +39,6 @@
         .ilan-resim {
             width: 100%;
             height: 200px;
-            object-fit: cover;
         }
 
         .card-title {
@@ -178,6 +177,7 @@
 }
 
 <div class="container mt-4">
+    <p>@Model[1].IlanAdi @Model[1].Id</p>
     <div class="row">
         @if (Model != null && Model.Any())
         {
@@ -199,21 +199,20 @@
                             </p>
                             @if(ilan.MarkaID != null)
                             { 
-                                <p class="card-text">@ilan.Marka  @ilan.Model</p> 
+                                <p class="card-text">@ilan.Marka  @ilan.Model</p>
                             }
                             @if(ilan.Yil != null)
                             { 
-                                <p class="card-text">@ilan.Yil</p> 
+                                <p class="card-text">@ilan.Yil</p>
                             }
-                            @if(ilan.YuzOlcum != null) 
-                            { 
-                                <p class="card-text">@ilan.YuzOlcum m&sup2; @ilan.Turu</p> 
+                            @if(ilan.YuzOlcum != null)
+                            {
+                                <p class="card-text">@ilan.YuzOlcum m&sup2; @ilan.Turu</p>
                             }
                             <p class="card-text ilan-fiyat text-center">
                                 <strong>Fiyat:</strong> @ilan.Fiyat?.ToString("N0") ₺
                             </p>
                         </div>
-
                     </div>
                 </div>
             }
@@ -254,7 +253,5 @@
             }
         </ul>
     </nav>
-</div>
-
+</div>          
 <!-- Sayfalama sonu -->
-

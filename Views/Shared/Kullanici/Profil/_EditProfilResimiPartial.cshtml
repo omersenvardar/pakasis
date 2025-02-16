@@ -12,7 +12,10 @@
         <div class="col-md-6 text-center">
             <h4>Profil Resmini Değiştir</h4>
             <!-- Mevcut Profil Resmi -->
-            <img id="currentProfileImage" src="@Model.ImgUrl" alt="Mevcut Profil Resmi" class="img-fluid rounded-circle mb-3"
+            @{
+                var kullaniciProfilResmi = ViewContext.HttpContext.Session.GetString("KullaniciProfilResmi");
+            }
+            <img id="currentProfileImage" src="@kullaniciProfilResmi" alt="Mevcut Profil Resmi" class="img-fluid rounded-circle mb-3"
                 style="width: 150px; height: 150px; object-fit: cover;">
             
             <!-- Yeni Profil Resmi Önizleme -->

@@ -1,75 +1,142 @@
-@model List<DBGoreWebApp.Models.Entities.Araba>
+@using DBGoreWebApp.Models.ViewModels
+@model List<IlanArabaViewModel>
+
+@{
+    var arabaResimler = ViewBag.arabaResimleri as List<DBGoreWebApp.Models.Entities.ArabaResim>;
+}
+@if(@Model.Count > 0) { <h4 class="color: blue;">@Model.Count adet onaylı ilanınız var.</h4> }
+else { 
+    <a asp-controller="Arabalar" asp-action="Create" style="text-decoration: none;">
+    <h4 style="text-decoration: none; color: blue; " >Henüz ilanınınz yok. Hemen ilan verebilirsiniz</h4>
+    <h4 style="text-decoration: none; color: blue; " >İlan vermek için buraya tıklayın</h4>
+    </a>
+     }
+
+@foreach (var araba in Model)
+{
+    var arabaResim = arabaResimler?.FirstOrDefault(r => r.ArabaId == araba.Id);
+    
+    <a asp-controller="Admin" asp-action="ArabaDetay" asp-route-id="@araba.Id" class="ilan-kapsayici text-decoration-none btn">
+        <!-- Resim Alanı -->
+        <div class="ilan-resim">
+            <img src="@(!string.IsNullOrEmpty(arabaResim?.ResimArabaUrl) 
+                 ? arabaResim.ResimArabaUrl 
+                 : "/img/default-car.jpg")" alt="Araba Resmi" class="rounded"
+                 style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd;"> 
+        </div>
+
+        <!-- Bilgi Alanı -->
+        <div class="ilan-detay">
+            <div class="ilan-baslik">@araba.VersiyonAdi</div>
+            <div class="ilan-icerik">
+                <div class="ilan-bilgi">
+                    <span class="ilan-ust">Marka:</span>
+                    <span class="ilan-alt">@araba.Marka</span>
+                </div>
+                <div class="ilan-bilgi">
+                    <span class="ilan-ust">Model:</span>
+                    <span class="ilan-alt">@araba.Model</span>
+                </div>
+                <div class="ilan-bilgi">
+                    <span class="ilan-ust">Yıl:</span>
+                    <span class="ilan-alt">@araba.Yil</span>
+                </div>
+                <div class="ilan-bilgi">
+                    <span class="ilan-ust">Fiyat:</span>
+                    <span class="ilan-alt">@araba.Fiyat?.ToString("N0") ₺</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Durum Alanı -->
+        <div class="ilan-bilgi">
+            <span class="ilan-ust">İlan Tarihi: </span>
+            <span class="ilan-alt">@araba.CreatedDate.ToString("dd/MM/yyyy")</span>
+            <div class="ilan-bilgi">
+                <span class="ilan-ust">Durum:</span>
+                <span class="badge ilan-alt"
+                    style="background-color: @(araba.Durum == 'a' ? "green" : araba.Durum == 'v' ? "blue" : araba.Durum == 'p' ? "orange" : "red"); color: white;">
+                    @(araba.Durum == 'a' ? "Onaylı" : araba.Durum == 'v' ? "Vitrinde" : araba.Durum == 'p' ? "Onaysız" : "Kaldırılmış")
+                </span>
+            </div>
+        </div>
+    </a>
+}
 
 <style>
-    .card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 10px;
-        background-color: #fff;
-        transition: box-shadow 0.3s ease;
+    h4 {
+        color: #1a73e8;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 24px;
     }
 
-    .card:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .card-body {
+    .ilan-kapsayici {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        padding: 15px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        background-color: #fff;
+        text-decoration: none;
+        color: inherit;
     }
 
-    .badge {
-        padding: 5px 10px;
-        font-size: 0.9rem;
-        border-radius: 5px;
+    .ilan-kapsayici:hover {
+        background-color: #f0f0f0;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .form-select {
-        width: auto;
-        display: inline-block;
+    .ilan-resim {
+        flex: 0 0 120px;
+        height: 120px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-right: 20px;
+        border: 1px solid #ddd;
     }
 
-    .btn-sm {
-        padding: 5px 10px;
-        font-size: 0.9rem;
+    .ilan-resim img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .ilan-detay {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+    }
+
+    .ilan-baslik {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .ilan-icerik {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        column-gap: 30px;
+        row-gap: 10px;
+    }
+
+    .ilan-bilgi {
+        text-align: left;
+    }
+
+    .ilan-ust {
+        font-weight: bold;
+        color: #555;
+    }
+
+    .ilan-alt {
+        font-size: 15px;
+        color: #333;
     }
 </style>
-<h3 class="text-center mt-3">Araç İlanları</h3>
-<div class="container mt-4">
-    @foreach (var araba in Model)
-    {
-        <div class="card mb-3 shadow">
-            <a asp-controller="Admin" asp-action="ArabaDetay" asp-route-id="@araba.Id" class="btn">
-                <div class="card-body d-flex justify-content-between align-items-center">
-                    <!-- Resim Alanı -->
-                    <div>
-                        <img src="@(!string.IsNullOrEmpty(araba.ArabaResimleri?.FirstOrDefault()?.ResimArabaUrl) ? araba.ArabaResimleri?.FirstOrDefault()?.ResimArabaUrl : "/img/dboto.jpg")"
-                            alt="Araç Resmi" class="rounded"
-                            style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd;">
-                    </div>
-
-                    <!-- Bilgi Alanı -->
-                    <div style="flex: 1; margin-left: 20px;">
-                        @* <h5>@araba.MarkaNavigation?.Marka @araba.ModelNavigation?.Model</h5> *@
-                        <p><strong>Adres:</strong> @araba.AdresKonumuNavigation?.Il, @araba.AdresKonumuNavigation?.Ilce</p>
-                        <p><strong>Fiyat:</strong> @araba.Fiyat?.ToString("N0") ₺</p>
-                    </div>
-
-                    <!-- Durum Alanı -->
-                    <div>
-                        <p>
-                            <strong>Durum:</strong>
-                            <span class="badge"
-                                style="background-color: @(araba.Durum == 'a' ? "green" : araba.Durum == 'v' ? "blue" : araba.Durum == 'p' ? "orange" : "red"); color: white;">
-                                @(araba.Durum == 'a' ? "Onaylı" : araba.Durum == 'v' ? "Vitrinde" : araba.Durum == 'p' ? "Onaysız" : "Kaldırılmış")
-                            </span>
-                        </p>
-                    </div>
-                </div>
-            </a>
-        </div>
-    }
-</div>
-
-

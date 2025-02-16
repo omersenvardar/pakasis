@@ -64,7 +64,7 @@ namespace DBGoreWebApp.Controllers
             var kullaniciAd = HttpContext.Session.GetString("KullaniciAd");
             var kullaniciId = HttpContext.Session.GetString("KullaniciId");
 
-            
+
 
             var emlakIlanlari = _context.EmlakBahceler
                .Where(e => e.KullaniciId == id)
@@ -74,7 +74,7 @@ namespace DBGoreWebApp.Controllers
                .Where(a => a.KullaniciId == id)
                .OrderByDescending(a => a.CreatedDate)
                .ToList(); // Tüm ilanları liste olarak getir
-               
+
             // Kullanıcının toplam ilanları (emlak ve araba ayrı ayrı)
             ViewBag.AktifEmlakIlanlarim = emlakIlanlari.Count(e => e.Durum == 'a' || e.Durum == 'v');
             ViewBag.PasifEmlakIlanlarim = emlakIlanlari.Count(e => e.KullaniciId == id && e.Durum == 'p');
@@ -185,10 +185,10 @@ namespace DBGoreWebApp.Controllers
             }
             var adres = GetAdresGruplari();
             var emlakIlanlari = _context.EmlakBahceler
-               .Where(e => e.KullaniciId == kullaniciId && (e.Durum == 'a' || e.Durum == 'v'))
+               .Where(e => e.KullaniciId == kullaniciId && (e.Durum == 'a' || e.Durum == 'v') )
                .OrderByDescending(e => e.CreatedDate)
                .ToList(); // Tüm ilanları liste olarak getir
-            
+
             var ilkResimler = await _context.ArsaResimleri
                 .Where(ar => ar.IsDeleted == 0 && emlakIlanlari.Select(i => i.IlanNo).Contains(ar.ArsaId))
                 .GroupBy(ar => ar.ArsaId)
@@ -202,7 +202,7 @@ namespace DBGoreWebApp.Controllers
 
         public async Task<IActionResult> EmlakIlanlarimOnaysiz()
         {
-             if (HttpContext.Session.GetString("KullaniciYetki") != "admin" && HttpContext.Session.GetString("KullaniciYetki") != "üye")
+            if (HttpContext.Session.GetString("KullaniciYetki") != "admin" && HttpContext.Session.GetString("KullaniciYetki") != "üye")
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
@@ -217,7 +217,7 @@ namespace DBGoreWebApp.Controllers
                .Where(e => e.KullaniciId == kullaniciId && (e.Durum == 'p'))
                .OrderByDescending(e => e.CreatedDate)
                .ToList(); // Tüm ilanları liste olarak getir
-            
+
             var ilkResimler = await _context.ArsaResimleri
                 .Where(ar => ar.IsDeleted == 0 && emlakIlanlari.Select(i => i.IlanNo).Contains(ar.ArsaId))
                 .GroupBy(ar => ar.ArsaId)
@@ -225,65 +225,150 @@ namespace DBGoreWebApp.Controllers
                 .ToListAsync();
             // İlanları ve ilk resimleri ViewBag'e ekle
             ViewBag.IlkResimler = ilkResimler;
-            return PartialView("~/Views/Shared/Kullanici/IlanEmlak/_EmlakOnaysiz.cshtml",emlakIlanlari);
+            return PartialView("~/Views/Shared/Kullanici/IlanEmlak/_EmlakOnaysiz.cshtml", emlakIlanlari);
         }
+
+        // public async Task<IActionResult> ArabaIlanlarimOnayli()
+        // {
+        //     if (HttpContext.Session.GetString("KullaniciYetki") != "admin" && HttpContext.Session.GetString("KullaniciYetki") != "üye")
+        //     {
+        //         return RedirectToAction("AccessDenied", "Account");
+        //     }
+        //     var kullaniciIdString = HttpContext.Session.GetString("KullaniciId");
+
+        //     if (!int.TryParse(kullaniciIdString, out int kullaniciId))
+        //     {
+        //         return BadRequest("Geçersiz Kullanıcı ID!");
+        //     }
+        //     var adres = GetAdresGruplari();
+
+
+        //     // List<Araba> ilanlar = _context.Arabalar
+        //     //             .Where(i => i.KullaniciId == kullaniciId && (i.Durum == 'a' || i.Durum == 'v')) // 'a' veya 'p'
+        //     //             .ToList();
+
+        //     // marka model yıl getirme
+        //     var ilanlar = (from i in _context.Arabalar
+        //        join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
+        //        join model in _context.AracModelListesis on i.ModelID equals model.ModelID
+        //        join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
+        //        where i.KullaniciId == kullaniciId && (i.Durum == 'a' || i.Durum == 'v')
+        //        select new
+        //        {
+        //            i.Id,
+        //            i.VersiyonAdi,
+        //            Marka = marka.Marka,
+        //            Model = model.Model,
+        //            Yil = yil.Yil,
+        //            Fiyat = i.Fiyat,
+        //            ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
+        //        }).ToList();
+        //     // marka model yıl getirme sonu
+
+        //     var arabaResim = await _context.ArabaResimleri
+        //                 .Where(ar => ar.IsDeleted == 0 && ilanlar.Select(i => i.Id).Contains(ar.ArabaId))
+        //                 .GroupBy(ar => ar.ArabaId)
+        //                 .Select(g => g.FirstOrDefault())
+        //                 .ToListAsync();
+        //     // İlanları ve ilk resimleri ViewBag'e ekle
+        //     ViewBag.arabaResimleri = arabaResim;
+        //     return PartialView("~/Views/Shared/Kullanici/IlanAraba/_ArabaOnayli.cshtml", ilanlar);
+        // }
 
         public async Task<IActionResult> ArabaIlanlarimOnayli()
         {
+            // ✅ Kullanıcı Yetkisini Kontrol Et
             if (HttpContext.Session.GetString("KullaniciYetki") != "admin" && HttpContext.Session.GetString("KullaniciYetki") != "üye")
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
+
             var kullaniciIdString = HttpContext.Session.GetString("KullaniciId");
 
             if (!int.TryParse(kullaniciIdString, out int kullaniciId))
             {
                 return BadRequest("Geçersiz Kullanıcı ID!");
             }
-            var adres = GetAdresGruplari();
-            
-            
-            List<Araba> ilanlar = _context.Arabalar
-                        .Where(i => i.KullaniciId == kullaniciId && (i.Durum == 'a' || i.Durum == 'v')) // 'a' veya 'p'
-                        .ToList();
-                        
+
+            // ✅ Marka, Model, Yıl ve Resimleri Getir
+            var ilanlar = await (from i in _context.Arabalar
+                     join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
+                     join model in _context.AracModelListesis on i.ModelID equals model.ModelID
+                     join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
+                     where i.KullaniciId == kullaniciId && (i.Durum == 'a' || i.Durum == 'v')
+                     orderby i.CreatedDate descending // En son eklenen ilanları en üste almak için
+                     select new IlanArabaViewModel
+                     {
+                         Id = i.Id,
+                         VersiyonAdi = i.VersiyonAdi,
+                         Marka = marka.Marka,
+                         Model = model.Model,
+                         Yil = int.Parse(yil.Yil.ToString()),
+                         Fiyat = i.Fiyat,
+                         Durum = i.Durum,
+                         CreatedDate = i.CreatedDate, // İlanın eklenme tarihini ekledik
+                         ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
+                     }).ToListAsync();
+
+
+            // ✅ İlk Resmi Getir
             var arabaResim = await _context.ArabaResimleri
-                        .Where(ar => ar.IsDeleted == 0 && ilanlar.Select(i => i.Id).Contains(ar.ArabaId))
-                        .GroupBy(ar => ar.ArabaId)
-                        .Select(g => g.FirstOrDefault())
-                        .ToListAsync();
-            // İlanları ve ilk resimleri ViewBag'e ekle
+                                .Where(ar => ar.IsDeleted == 0 && ilanlar.Select(i => i.Id).Contains(ar.ArabaId))
+                                .GroupBy(ar => ar.ArabaId)
+                                .Select(g => g.FirstOrDefault())
+                                .ToListAsync();
+
+            // ✅ Verileri ViewBag ile View'e Gönder
             ViewBag.arabaResimleri = arabaResim;
+
             return PartialView("~/Views/Shared/Kullanici/IlanAraba/_ArabaOnayli.cshtml", ilanlar);
         }
 
-        public async Task <IActionResult> ArabaIlanlarimOnaysiz()
+        public async Task<IActionResult> ArabaIlanlarimOnaysiz()
         {
+             // ✅ Kullanıcı Yetkisini Kontrol Et
             if (HttpContext.Session.GetString("KullaniciYetki") != "admin" && HttpContext.Session.GetString("KullaniciYetki") != "üye")
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
+
             var kullaniciIdString = HttpContext.Session.GetString("KullaniciId");
 
             if (!int.TryParse(kullaniciIdString, out int kullaniciId))
             {
                 return BadRequest("Geçersiz Kullanıcı ID!");
             }
-            var adres = GetAdresGruplari();
-            
-            
-            List<Araba> ilanlar = _context.Arabalar
-                        .Where(i => i.KullaniciId == kullaniciId && i.Durum == 'p') // 'a' veya 'p'
-                        .ToList();
-                        
+
+             // ✅ Marka, Model, Yıl ve Resimleri Getir
+            var ilanlar = await (from i in _context.Arabalar
+                                 join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
+                                 join model in _context.AracModelListesis on i.ModelID equals model.ModelID
+                                 join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
+                                 where i.KullaniciId == kullaniciId && (i.Durum == 'p')
+                                 orderby i.CreatedDate descending // En son eklenen ilanları en üste almak için
+                                 select new IlanArabaViewModel
+                                 {
+                                     Id = i.Id,
+                                     VersiyonAdi = i.VersiyonAdi,
+                                     Marka = marka.Marka,
+                                     Model = model.Model,
+                                     Yil = int.Parse(yil.Yil.ToString()),
+                                     Fiyat = i.Fiyat,
+                                     Durum = i.Durum,
+                                     CreatedDate = i.CreatedDate,
+                                     ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
+                                 }).ToListAsync();
+
+            // ✅ İlk Resmi Getir
             var arabaResim = await _context.ArabaResimleri
-                        .Where(ar => ar.IsDeleted == 0 && ilanlar.Select(i => i.Id).Contains(ar.ArabaId))
-                        .GroupBy(ar => ar.ArabaId)
-                        .Select(g => g.FirstOrDefault())
-                        .ToListAsync();
-            // İlanları ve ilk resimleri ViewBag'e ekle
+                                .Where(ar => ar.IsDeleted == 0 && ilanlar.Select(i => i.Id).Contains(ar.ArabaId))
+                                .GroupBy(ar => ar.ArabaId)
+                                .Select(g => g.FirstOrDefault())
+                                .ToListAsync();
+
+            // ✅ Verileri ViewBag ile View'e Gönder
             ViewBag.arabaResimleri = arabaResim;
-            return PartialView("~/Views/Shared/Kullanici/IlanAraba/_ArabaOnaysiz.cshtml",ilanlar);
+            return PartialView("~/Views/Shared/Kullanici/IlanAraba/_ArabaOnaysiz.cshtml", ilanlar);
         }
 
         public async Task<IActionResult> GetFirstArsaResimi(int id)

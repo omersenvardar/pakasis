@@ -1,13 +1,14 @@
 @model DBGoreWebApp.Models.ViewModels.ArabaViewModel
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
+
 @section Styles {
     <style>
         .ana {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
-            gap: 10px;
+            gap: 15px;
             margin-top: 20px;
         }
 
@@ -20,6 +21,9 @@
         .alan2,
         .alan3 {
             background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .fixed-width-card {
@@ -31,6 +35,8 @@
         .küçük-resim {
             cursor: pointer;
             transition: transform 0.2s ease;
+            border-radius: 5px;
+            object-fit: contain;
         }
 
         .küçük-resim:hover {
@@ -43,29 +49,30 @@
             margin: 10px 0;
         }
 
+        /* Buton Paneli */
         .button-panel {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 20px 0;
+            margin-top: 15px;
         }
 
         .button {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
+            font-size: 20px;
             color: white;
             text-decoration: none;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .button:hover {
-            transform: scale(1.2);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .phone {
@@ -92,117 +99,252 @@
             background-color: #0056b3;
         }
 
-        @@media(max - width: 992px) {
-                .ana {
-                    flex-direction: column;
-                    align-items: center;
+        /* Ana resim alanı */
+        .ana-resim-container {
+            width: 100%;
+            height: 350px;
+            /* EmlakDetay sayfasıyla aynı */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            overflow: hidden;
+        }
+
+        #ana-resim {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* Resmi alanı dolduracak şekilde ölçeklendir */
+            border-radius: 5px;
+        }
+
+        /* Küçük resimler alanı */
+        .resim-carousel {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .resim-container {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 8px;
+            padding: 5px 0;
+        }
+
+        .küçük-resim {
+            width: 90px;
+            /* Küçük resimler için genişlik */
+            height: 90px;
+            /* Küçük resimler için yükseklik */
+            object-fit: contain;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .küçük-resim:hover {
+            transform: scale(1.1);
+        }
+
+        /* Scroll butonları */
+        .carousel-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background-color: #0056b3;
+        }
+
+        .carousel-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+
+        .left {
+            margin-right: 10px;
+        }
+
+        .right {
+            margin-left: 10px;
+        }
+
+        /* Mobil uyum için */
+        @@media(max - width: 600px) {
+                .küçük-resim {
+                    width: 70px;
+                    height: 70px;
+                    object-fit: contain;
+                }
+
+                #ana-resim {
+                    height: 250px;
+                    object-fit: contain;
+                }
+
+                .carousel-btn {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 14px;
                 }
             }
 
-            @@media(max - width: 517px) {
 
-                    .alan1,
-                    .alan2,
-                    .alan3 {
+            @@media(max - width: 768px) {
+                    .ana {
+                        flex-direction: column;
+                        align-items: center;
+                    }
+
+                    .inline-box {
                         width: 100%;
-                        background: linear-gradient(to bottom right, rgb(255, 255, 255), #f2fffd);
                     }
                 }
             </style>
-
         }
+
         <div class="ana">
-            <!-- Alan 1 -->
+            <!-- Alan 1: Resimler ve Açıklama -->
             <div class="inline-box alan1">
-                <div class="container">
-                    <h3 class="m-0">@Model.ArabaDetay?.VersiyonAdi</h3>
-                    <hr>
-                </div>
-                <div class="text-center mt-3" style="height: 347px; overflow: hidden;">
+                <!-- Ana Resim -->
+                <div class="ana-resim-container">
                     @if (Model.ArabaResimler != null && Model.ArabaResimler.Count > 0)
                     {
-                        <img src="@Model.ArabaResimler[0].ResimArabaUrl" id="ana-resim" class="img-fluid border"
-                            style="width: 100%; height: 100%; object-fit: cover;" alt="Ana Resim">
+                        <img src="@Model.ArabaResimler[0].ResimArabaUrl" id="ana-resim" alt="Ana Resim" style="width: 100%; height: 100%; object-fit: contain;">
                     }
                     else
                     {
-                        <img src="/img/default-car.jpg" class="main-image img-fluid border"
-                            style="width: 100%; height: 100%; object-fit: cover;" alt="Varsayılan Resim">
+                        <img src="/img/default-car.jpg" id="ana-resim" alt="Varsayılan Resim" style="width: 100%; height: 100%; object-fit: contain;">
                     }
                 </div>
-                <div class="mt-3 d-flex justify-content-center flex-wrap">
-                    @if (Model.ArabaResimler != null && Model.ArabaResimler.Count > 0)
-                    {
-                        @foreach (var resim in Model.ArabaResimler)
-                        {
-                            <img src="@resim.ResimArabaUrl" class="img-thumbnail küçük-resim mx-1 border"
-                                style="width: 80px; height: 80px; cursor: pointer;" alt="Küçük Resim">
-                        }
-                    }
-                    else
-                    {
-                        <p class="text-muted">Küçük resim bulunamadı.</p>
-                    }
+
+                <!-- Küçük Resimler Carousel -->
+                <div class="mt-3 d-flex justify-content-center align-items-center">
+                    <!-- Sol Buton -->
+                    <button class="carousel-btn left" id="scrollLeftBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <!-- Resimlerin Bulunduğu Alan -->
+                    <div class="resim-carousel">
+                        <div class="resim-container" id="resimContainer">
+                            @if (Model.ArabaResimler != null && Model.ArabaResimler.Count > 0)
+                            {
+                                @foreach (var resim in Model.ArabaResimler)
+                                {
+                                    <img src="@resim.ResimArabaUrl" class="küçük-resim" alt="Küçük Resim">
+                                }
+                            }
+                            else
+                            {
+                                <p class="text-muted text-center">Küçük resim bulunamadı.</p>
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Sağ Buton -->
+                    <button class="carousel-btn right" id="scrollRightBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
-                <div class="mt-3">
-                    <p>@Html.Raw(Model.ArabaDetay?.Ozellikleri ?? "Belirtilmemiş")</p>
-                </div>
+
             </div>
 
-            <!-- Alan 2 -->
+            <!-- Alan 2: Araba Detayları -->
             <div class="inline-box alan2">
-                <div class="ilan-detaylari">
-                    <div class="card shadow fixed-width-card">
-                        <div class="card-body">
-                            <h4 class="text-center">Araba Detayları</h4>
-                            <div class="row">
-                                <div class="col-4"><strong>Marka:</strong></div>
-                                <div class="col-8">@Model.MarkaAdi</div>
-                            </div>
-                            <div class="line-separator"></div>
-                            <div class="row">
-                                <div class="col-4"><strong>Model:</strong></div>
-                                <div class="col-8">@Model.ModelAdi</div>
-                            </div>
-                            <div class="line-separator"></div>
-                            <div class="row">
-                                <div class="col-4"><strong>Yıl:</strong></div>
-                                <div class="col-8">@Model.YilAdi</div>
-                            </div>
-                            <div class="line-separator"></div>
-                            <div class="row">
-                                <div class="col-4"><strong>Fiyat:</strong></div>
-                                <div class="col-8">@String.Format("{0:N0} ₺", @Model.ArabaDetay?.Fiyat)</div>
-                            </div>
+                <div class="card shadow fixed-width-card">
+                    <div class="card-body">
+                        <h4 class="text-center">Araba Detayları</h4>
+                        <div class="row">
+                            <div class="col-4"><strong>Marka:</strong></div>
+                            <div class="col-8">@Model.MarkaAdi</div>
+                        </div>
+                        <div class="line-separator"></div>
+                        <div class="row">
+                            <div class="col-4"><strong>Model:</strong></div>
+                            <div class="col-8">@Model.ModelAdi</div>
+                        </div>
+                        <div class="line-separator"></div>
+                        <div class="row">
+                            <div class="col-4"><strong>Yıl:</strong></div>
+                            <div class="col-8">@Model.YilAdi</div>
+                        </div>
+                        <div class="line-separator"></div>
+                        <div class="row">
+                            <div class="col-4"><strong>Fiyat:</strong></div>
+                            <div class="col-8">@String.Format("{0:N0} ₺", @Model.ArabaDetay?.Fiyat)</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Alan 3 -->
+            <!-- Alan 3: Kullanıcı Bilgileri -->
             <div class="inline-box alan3">
                 <div class="border rounded shadow text-center p-3">
-                    <img src="@(!string.IsNullOrEmpty(Model.KullaniciDetay?.ImgUrl) ? Model.KullaniciDetay.ImgUrl : "/img/default-profile.jpg")"
-                        class="img-fluid rounded-circle border" style="width: 120px; height: 120px;"
-                        alt="Kullanıcı Profil Resmi">
-
+                    <img src="@Model.KullaniciDetay?.ImgUrl" class="img-fluid rounded-circle border"
+                        style="width: 120px; height: 120px;">
                     <h4 class="mt-2">@Model.KullaniciDetay?.Ad</h4>
                     <p><strong>Telefon:</strong> @Model.KullaniciDetay?.Telefon</p>
                 </div>
-                <div class="button-panel">
-                    <a href="tel:+90@Model.KullaniciDetay?.Telefon" class="button phone" title="Telefon"><i
-                            class="fas fa-phone"></i></a>
-                    <a href="https://wa.me/90@Model.KullaniciDetay?.Telefon" class="button whatsapp" title="WhatsApp"><i
-                            class="fab fa-whatsapp"></i></a>
-                    <a href="#" class="button share" title="Paylaş"><i class="fas fa-share-alt"></i></a>
-                </div>
             </div>
         </div>
+
 
         <script>
             document.querySelectorAll('.küçük-resim').forEach(kucukResim => {
                 kucukResim.addEventListener('click', function () {
                     document.getElementById('ana-resim').src = this.src;
                 });
+            });
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const resimContainer = document.getElementById("resimContainer");
+                const leftButton = document.getElementById("scrollLeftBtn");
+                const rightButton = document.getElementById("scrollRightBtn");
+
+                // Butonların aktif/pasif durumlarını güncelle
+                function updateButtons() {
+                    leftButton.disabled = resimContainer.scrollLeft <= 0;
+                    rightButton.disabled = resimContainer.scrollLeft >= (resimContainer.scrollWidth - resimContainer.clientWidth);
+                }
+
+                // Resimleri sola kaydırma fonksiyonu
+                function scrollLeft() {
+                    resimContainer.scrollBy({ left: -120, behavior: 'smooth' });
+                }
+
+                // Resimleri sağa kaydırma fonksiyonu
+                function scrollRight() {
+                    resimContainer.scrollBy({ left: 120, behavior: 'smooth' });
+                }
+
+                // Butonlara tıklanınca kaydırma işlemi başlat
+                leftButton.addEventListener("click", scrollLeft);
+                rightButton.addEventListener("click", scrollRight);
+                resimContainer.addEventListener("scroll", updateButtons);
+
+                // Sayfa yüklendiğinde butonları güncelle
+                updateButtons();
             });
         </script>

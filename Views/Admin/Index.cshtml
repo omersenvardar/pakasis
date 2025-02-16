@@ -2,11 +2,11 @@
   <!-- Sol Panel -->
   <div class="admin-sol-panel">
     <p>İlan Yönetimi</p>
-    <a class="panel-item" onclick="loadContent('/Admin/EmlakIlanlari', 'contentArea')">Emlak İlanları</a>
-    <a class="panel-item" onclick="loadContent('/Admin/ArabaIlanlari', 'contentArea')">Araç İlanları</a>
+    <a class="panel-item" onclick="loadContent('/Admin/EmlakIlanlari', 'contentArea')">Emlak İlanları ( @ViewBag.Emlaklar )</a>
+    <a class="panel-item" onclick="loadContent('/Admin/ArabaIlanlari', 'contentArea')">Araç İlanları ( @ViewBag.Arabalar )</a>
 
     <p>Kullanıcı Yönetimi</p>
-    <a class="panel-item" onclick="loadContent('/Admin/Kullanicilar', 'contentArea')">Kullanıcılar</a>
+    <a class="panel-item" onclick="loadContent('/Admin/Kullanicilar', 'contentArea')">Kullanıcılar ( @ViewBag.Kullaicilar )</a>
     <p>Ayarlar</p>
     <a class="panel-item" onclick="loadContent('/Admin/Ayarlar/SayfaAyarlari', 'contentArea')"> Ana Sayfa Ayarları</a>
     <a class="panel-item" onclick="loadContent('/Admin/Ayarlar/KategoriAyarlari', 'contentArea')"> Kategori Ayarlari </a>

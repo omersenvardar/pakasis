@@ -10,7 +10,6 @@ namespace DBGoreWebApp.Models.ViewModels
         public List<ArsaResim> ArsaResimler { get; set; } = new List<ArsaResim>();
         public List<Adres> Adresler { get; set; } = new List<Adres>();
         public ArabaViewModel? ArabaViewModels { get; set; }
-
         public List<Araba>? Arabalar { get; set; }
         public List<ArabaResim>? ArabalarResimler { get; set; }
 

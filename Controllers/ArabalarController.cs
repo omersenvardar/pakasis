@@ -6,6 +6,8 @@ using DBGoreWebApp.Models.Entities;
 using DBGoreWebApp.Models.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting; // IWebHostEnvironment için
+using Microsoft.Extensions.Hosting;
 
 namespace DBGoreWebApp.Controllers
 {
@@ -13,47 +15,69 @@ namespace DBGoreWebApp.Controllers
     {
         private readonly ILogger<ArabalarController> _logger;
         private readonly ApplicationDbContext _context;
+        private IWebHostEnvironment _hostingEnvironment;
 
-        public ArabalarController(ILogger<ArabalarController> logger, ApplicationDbContext context)
+        public ArabalarController(ILogger<ArabalarController> logger, ApplicationDbContext context, IWebHostEnvironment hostEnvironment)
         {
             _logger = logger;
             _context = context;
+            _hostingEnvironment = hostEnvironment;
         }
- 
-   public IActionResult Index(int page = 1, int pageSize = 12)
-{
-    // Durum 'a' veya 'v' olan toplam araba sayısını al
-    var totalItems = _context.Arabalar
-        .Where(a => a.Durum == 'a' || a.Durum == 'v')
-        .Count();
+        private void LogHata(Exception ex)
+        {
+            string logPath = Path.Combine(_hostingEnvironment.WebRootPath, "logs", "error_log.txt");
 
-    // Sayfalama ve filtreleme için veriyi al
-    var arabalar = _context.Arabalar
-        .Include(a => a.Marka)
-        .Include(a => a.Model)
-        .Include(a => a.Yil)
-        .Include(a => a.AdresKonumuNavigation)
-        .Where(a => a.Durum == 'a' || a.Durum == 'v') // Durum filtresi
-        .OrderByDescending(a => a.CreatedDate) // Son ekleme tarihine göre sırala
-        .Skip((page - 1) * pageSize) // Sayfa başına belirtilen kadar atla
-        .Take(pageSize) // Sayfa başına belirlenen kadar al
-        .ToList();
+            // Eğer logs klasörü yoksa oluştur
+            if (!Directory.Exists(Path.GetDirectoryName(logPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            }
 
-    // Resim URL'lerini al
-    ViewBag.ArabaResimUrls = _context.ArabaResimleri
-        .GroupBy(r => r.ArabaId)
-        .ToDictionary(g => g.Key, g => g.FirstOrDefault()?.ResimArabaUrl ?? "/img/default-car.jpg");
+            // Hata mesajını dosyaya ekle
+            System.IO.File.AppendAllText(logPath,
+                $"{DateTime.Now}: Hata oluştu - {ex.Message}\nStackTrace: {ex.StackTrace}\n\n");
+        }
+        public IActionResult Index(int page = 1, int pageSize = 12)
+        {
+            var query = _context.Arabalar
+                .Include(a => a.Marka)
+                .Include(a => a.Model)
+                .Include(a => a.Yil)
+                .Include(a => a.AdresKonumuNavigation)
+                .Where(a => a.Durum == 'a' || a.Durum == 'v'); // Gereksiz verileri çekmemek için filtreleme en başta yapılmalı.
 
-    // Versiyon Adlarını al
-    ViewBag.ArabaVersiyonlar = _context.AracYilVersiyons
-        .ToDictionary(v => v.VersiyonID, v => v.VersiyonAdi);
+            // Toplam kayıt sayısını hesapla (gereksiz tüm arabaları çekmemek için ayrı bir sorgu)
+            var totalItems = query.Count();
 
-    // Toplam sayfa sayısı ve mevcut sayfa numarası
-    ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-    ViewBag.CurrentPage = page;
+            // Sayfalama ve filtreleme
+            var arabalar = query
+                .OrderByDescending(a => a.CreatedDate) // Son ekleme tarihine göre sırala
+                .Skip((page - 1) * pageSize) // Sayfa başına belirtilen kadar atla
+                .Take(pageSize) // Sayfa başına belirlenen kadar al
+                .ToList();
 
-    return View(arabalar);
-}
+            // Sadece bu sayfadaki arabaların ID'lerini çekiyoruz
+            var arabaIds = arabalar.Select(a => a.Id).ToList();
+            var versiyonIds = arabalar.Select(a => a.VersiyonID).Distinct().ToList();
+
+            // Resim URL'lerini verimli şekilde alıyoruz (Sadece bu sayfadaki arabalar için)
+            ViewBag.ArabaResimUrls = _context.ArabaResimleri
+                .Where(r => arabaIds.Contains(r.ArabaId))
+                .GroupBy(r => r.ArabaId)
+                .ToDictionary(g => g.Key, g => g.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg");
+
+            // Versiyon Adlarını sadece ilgili ID'ler için çekiyoruz (Tüm tabloyu değil)
+            ViewBag.ArabaVersiyonlar = _context.AracYilVersiyons
+                .Where(v => versiyonIds.Contains(v.VersiyonID))
+                .ToDictionary(v => v.VersiyonID, v => v.VersiyonAdi);
+
+            // Toplam sayfa sayısı ve mevcut sayfa numarası
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            ViewBag.CurrentPage = page;
+
+            return View(arabalar);
+        }
+
 
 
         // Detay Görüntüleme (Detail)
@@ -106,7 +130,7 @@ namespace DBGoreWebApp.Controllers
 
             return Json(versions);
         }
-        
+
         [HttpGet]
         public IActionResult Create()
         {
@@ -173,7 +197,7 @@ namespace DBGoreWebApp.Controllers
         // Kullanıcı ID'sini Session'dan Al
         private int? GetKullaniciIdFromSession()
         {
-            
+
             var kullaniciIdString = HttpContext.Session.GetString("KullaniciId");
 
             if (!string.IsNullOrEmpty(kullaniciIdString) && int.TryParse(kullaniciIdString, out int kullaniciId))
@@ -194,7 +218,7 @@ namespace DBGoreWebApp.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            
+
 
             // Kullanıcı ID'sini al ve kontrol et
             string? kullaniciIdStr = HttpContext.Session.GetString("KullaniciId");
@@ -241,7 +265,9 @@ namespace DBGoreWebApp.Controllers
                 // Resim işlemleri
                 if (resimler != null && resimler.Count > 0)
                 {
-                    string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "resimaraba");
+                    //string uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "resimaraba");
+                    // **Doğru dosya yolu (Plesk İçin)**
+                    string uploadsFolder = Path.Combine(_hostingEnvironment.WebRootPath, "resimaraba");
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder); // Klasör yoksa oluştur
@@ -251,7 +277,7 @@ namespace DBGoreWebApp.Controllers
                     {
                         if (resim.Length > 0)
                         {
-                            string uniqueFileName = Guid.NewGuid().ToString() + "_" + resim.FileName;
+                            string uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(resim.FileName);
                             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
                             using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -259,11 +285,11 @@ namespace DBGoreWebApp.Controllers
                                 resim.CopyTo(fileStream);
                             }
 
-                            // Resmi veritabanına kaydedelim
+                            // **Veritabanına doğru URL formatında kaydet**
                             var arabaResim = new ArabaResim
                             {
                                 ArabaId = araba.Id,
-                                ResimArabaUrl = $"/resimaraba/{uniqueFileName}",
+                                ResimArabaUrl = $"/resimaraba/{uniqueFileName}", // **Burada başında `.` olmamalı**
                                 ResimAdi = uniqueFileName
                             };
                             _context.ArabaResimleri.Add(arabaResim);
@@ -271,12 +297,13 @@ namespace DBGoreWebApp.Controllers
                     }
 
                     _context.SaveChanges();
+
                 }
                 return RedirectToAction("Ilanverildi", "EmlakBahce");
             }
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Bir hata oluştu. Lütfen tekrar deneyiniz."+ex.Message);
+                ModelState.AddModelError("", "Bir hata oluştu. Lütfen tekrar deneyiniz." + ex.Message);
                 return View(model);
             }
         }
@@ -346,6 +373,6 @@ namespace DBGoreWebApp.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+
     }
 }

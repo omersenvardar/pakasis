@@ -91,7 +91,9 @@ namespace DBGoreWebApp.Controllers
             ViewBag.OnayEmlak = _context.EmlakBahceler.Count(e => e.Durum == 'k');
 
             // Araç İlanları İstatistikleri
-            ViewBag.AktifArac = _context.Arabalar.Count(); // Aktif durum 'a'
+            ViewBag.Arabalar = _context.Arabalar.Count(); 
+            ViewBag.Emlaklar = _context.EmlakBahceler.Count();
+            ViewBag.Kullaicilar = _context.Kullanicilar.Count();
 
             return View();
         }
@@ -125,12 +127,6 @@ namespace DBGoreWebApp.Controllers
             return PartialView("Admin/_KullanicilarPartial", kullanicilar);
         }
 
-
-
-
-
-
-
         public async Task<IActionResult> EmlakIlanlari()
         {
             if (HttpContext.Session.GetString("KullaniciYetki") != "admin")
@@ -157,20 +153,49 @@ namespace DBGoreWebApp.Controllers
 
         public async Task<IActionResult> ArabaIlanlari()
         {
+            // ✅ Kullanıcı Yetkisini Kontrol Et
             if (HttpContext.Session.GetString("KullaniciYetki") != "admin")
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            var arabaIlanlari = await _context.Arabalar
-            .Include(e => e.AdresKonumuNavigation)
-            .ToListAsync();
-            foreach (var ilan in arabaIlanlari)
+
+            var kullaniciIdString = HttpContext.Session.GetString("KullaniciId");
+
+            if (!int.TryParse(kullaniciIdString, out int kullaniciId))
             {
-                ilan.ArabaResimleri = await _context.ArabaResimleri
-                .Where(r => r.Id == ilan.Id && r.IsDeleted == 0)
-                .ToListAsync();
+                return BadRequest("Geçersiz Kullanıcı ID!");
             }
-            return PartialView("Admin/_ArabaIlanlariPartial", arabaIlanlari);
+
+            // ✅ Marka, Model, Yıl ve Resimleri Getir
+            var ilanlar = await (from i in _context.Arabalar
+                     join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
+                     join model in _context.AracModelListesis on i.ModelID equals model.ModelID
+                     join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
+                     orderby i.CreatedDate descending // En son eklenen ilanları en üste almak için
+                     select new IlanArabaViewModel
+                     {
+                         Id = i.Id,
+                         VersiyonAdi = i.VersiyonAdi,
+                         Marka = marka.Marka,
+                         Model = model.Model,
+                         Yil = int.Parse(yil.Yil.ToString()),
+                         Fiyat = i.Fiyat,
+                         Durum = i.Durum,
+                         CreatedDate = i.CreatedDate, // İlanın eklenme tarihini ekledik
+                         ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
+                     }).ToListAsync();
+
+
+            // ✅ İlk Resmi Getir
+            var arabaResim = await _context.ArabaResimleri
+                                .Where(ar => ar.IsDeleted == 0 && ilanlar.Select(i => i.Id).Contains(ar.ArabaId))
+                                .GroupBy(ar => ar.ArabaId)
+                                .Select(g => g.FirstOrDefault())
+                                .ToListAsync();
+
+            // ✅ Verileri ViewBag ile View'e Gönder
+            ViewBag.arabaResimleri = arabaResim;
+            return PartialView("Admin/_ArabaIlanlariPartial", ilanlar);
         }
 
         // Kullanıcı Detayları Metodu
@@ -444,15 +469,14 @@ namespace DBGoreWebApp.Controllers
                 throw new InvalidOperationException("IlanNo null değer içeriyor.");
             }
 
-
-            ilan.Durum = 'p';
-
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
             {
+                TempData["UpdateEmlakDetayMessage"] = "Emlak ilanı güncellenemedi. " + ex.Message;
+                return RedirectToAction("EmlakDetay", new { id = id });
             }
 
             TempData["UpdateEmlakDetayMessage"] = "Emlak ilanı başarıyla güncellendi.";

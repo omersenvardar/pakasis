@@ -1,76 +1,214 @@
 @model List<DBGoreWebApp.Models.Entities.EmlakBahce>
+
 <style>
-    .card {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        padding: 10px;
-        background-color: #fff;
-        transition: box-shadow 0.3s ease;
+    .container-fluid {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: flex-start;
     }
 
-    .card:hover {
+    .filter-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        background: #f8f9fa;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 100%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-container select {
+        width: 180px;
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .filter-panel {
+        flex: 0 0 250px;
+        min-height: 100%;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        position: sticky;
+        top: 10px;
+    }
+
+    .ilan-listesi {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .ilan-kapsayici {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .ilan-kapsayici:hover {
+        transform: scale(1.02);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .card-body {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    .ilan-resim {
+        width: 150px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 8px;
+        border: 1px solid #ddd;
     }
 
-    .badge {
-        padding: 5px 10px;
-        font-size: 0.9rem;
+    .ilan-detay {
+        flex: 1;
+    }
+
+    .ilan-ust {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .ilan-alt {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .durum-badge {
+        padding: 6px 12px;
         border-radius: 5px;
-    }
-
-    .form-select {
-        width: auto;
+        color: white;
+        font-weight: bold;
         display: inline-block;
     }
 
-    .btn-sm {
-        padding: 5px 10px;
-        font-size: 0.9rem;
+    /* Durum Renkleri */
+    .durum-onayli {
+        background-color: green;
+    }
+
+    .durum-vitrin {
+        background-color: blue;
+    }
+
+    .durum-onaysiz {
+        background-color: orange;
+    }
+
+    .durum-kaldirildi {
+        background-color: red;
+    }
+
+    /* Mobil Uyum */
+    @@media (max-width: 992px) {
+        .container-fluid {
+            flex-direction: column;
+        }
+
+        .filter-panel {
+            width: 100%;
+            position: relative;
+        }
     }
 </style>
+<!-- Sağ Taraf (Filtre Paneli) -->
+    <div class="filter-panel">
+        <div class="filter-container">
+            <label for="durumFiltre">Durum:</label>
+            <select id="durumFiltre" class="form-control">
+                <option value="">Tümü</option>
+                <option value="a">Onaylı</option>
+                <option value="v">Vitrinde</option>
+                <option value="p">Onaysız</option>
+                <option value="k">Kaldırılmış</option>
+            </select>
 
-@foreach (var emlak in Model)
-{
-    <div class="card mb-3 shadow">
-        <a asp-controller="Admin" asp-action="EmlakDetay" asp-route-id="@emlak.Id" class="btn">
-            <div class="card-body d-flex justify-content-between align-items-center">
-                <!-- Resim Alanı -->
-                <div>
-                    <img src="@(!string.IsNullOrEmpty(emlak.ArsaResimleri?.FirstOrDefault()?.ResimArsaUrl) 
-                        ? emlak.ArsaResimleri.FirstOrDefault()?.ResimArsaUrl 
-                        : "/img/default-emlak.jpg")" alt="Emlak Resmi" class="rounded"
-                        style="width: 100px; height: 100px; object-fit: cover; border: 1px solid #ddd;">
-                </div>
-                
+            <label for="tarihSiralama">Tarih:</label>
+            <select id="tarihSiralama" class="form-control">
+                <option value="desc">Yeniden Eskiye</option>
+                <option value="asc">Eskiden Yeniye</option>
+            </select>
 
-
-                <!-- Bilgi Alanı -->
-                <div style="flex: 1; margin-left: 20px;">
-                    <h5>@emlak.IlanAdi</h5>
-                    <p><strong>Adres:</strong> @emlak.AdresKonumuNavigation?.Il, @emlak.AdresKonumuNavigation?.Ilce, @emlak.AdresKonumuNavigation?.MahalleKoyAdi</p>
-                    <p><strong>Fiyat:</strong> @emlak.FiyatSatis?.ToString("N0") ₺</p>
-                </div>
-
-                <!-- Durum Alanı -->
-                <div>
-                    <p>
-                        <strong>Durum:</strong>
-                        <span class="badge"
-                            style="background-color: @(emlak.Durum == 'a' ? "green" : emlak.Durum == 'v' ? "blue" : emlak.Durum == 'p' ? "orange" : "red"); color: white;">
-                            @(emlak.Durum == 'a' ? "Onaylı" : emlak.Durum == 'v' ? "Vitrinde" : emlak.Durum == 'p' ?
-                                "Onaysız" : "Kaldırılmış")
-                        </span>
-                    </p>
-                </div>
-            </div>
-        </a>
+            <label for="fiyatSiralama">Fiyat:</label>
+            <select id="fiyatSiralama" class="form-control">
+                <option value="">Tümü</option>
+                <option value="desc">Yüksekten Düşüğe</option>
+                <option value="asc">Düşükten Yükseğe</option>
+            </select>
+        </div>
     </div>
+<div class="container-fluid">
+    <!-- Sol Taraf (İlan Listesi) -->
+    <div class="ilan-listesi">
+        @foreach (var emlak in Model)
+        {
+            <a asp-controller="Admin" asp-action="EmlakDetay" asp-route-id="@emlak.Id" class="ilan-kapsayici text-decoration-none text-dark"
+                data-durum="@emlak.Durum" data-tarih="@emlak.CreatedDate" data-fiyat="@emlak.FiyatSatis">
+                <img src="@(!string.IsNullOrEmpty(emlak.ArsaResimleri?.FirstOrDefault()?.ResimArsaUrl) 
+                    ? emlak.ArsaResimleri.FirstOrDefault()?.ResimArsaUrl
+                    : "/img/default-emlak.jpg")" class="ilan-resim" alt="Emlak Resmi">
+
+                <div class="ilan-detay">
+                    <h5>@emlak.IlanAdi</h5>
+                    <p><span class="ilan-ust">Adres:</span> @emlak.AdresKonumuNavigation?.Il, @emlak.AdresKonumuNavigation?.Ilce, @emlak.AdresKonumuNavigation?.MahalleKoyAdi</p>
+                    <p><span class="ilan-ust">Fiyat:</span> @emlak.FiyatSatis?.ToString("N0") ₺</p>
+                    <p><span class="ilan-ust">İlan Tarihi:</span> @emlak.CreatedDate.ToString("dd/MM/yyyy")</p>
+
+                    <span class="durum-badge 
+                        @(emlak.Durum == 'a' ? "durum-onayli" : emlak.Durum == 'v' ? "durum-vitrin" : emlak.Durum == 'p' ? "durum-onaysiz" : "durum-kaldirildi")">
+                        @(emlak.Durum == 'a' ? "Onaylı" : emlak.Durum == 'v' ? "Vitrinde" : emlak.Durum == 'p' ? "Onaysız" : "Kaldırılmış")
+                    </span>
+                </div>
+            </a>
+        }
+    </div>
+
+    
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const durumFiltre = document.getElementById("durumFiltre");
+            const tarihSiralama = document.getElementById("tarihSiralama");
+            const fiyatSiralama = document.getElementById("fiyatSiralama");
+            const ilanListesi = document.querySelector(".ilan-listesi");
+
+            function filtreleVeSirala() {
+                let seciliDurum = durumFiltre.value;
+                let siralamaTarih = tarihSiralama.value;
+                let siralamaFiyat = fiyatSiralama.value;
+
+                let ilanlar = Array.from(ilanListesi.getElementsByClassName("ilan-kapsayici"));
+
+                ilanlar.forEach(ilan => {
+                    let ilanDurumu = ilan.getAttribute("data-durum");
+                    ilan.style.display = (!seciliDurum || ilanDurumu === seciliDurum) ? "flex" : "none";
+                });
+
+                let siraliIlanlar = ilanlar.sort((a, b) => parseFloat(b.getAttribute("data-fiyat")) - parseFloat(a.getAttribute("data-fiyat")));
+
+                ilanListesi.innerHTML = "";
+                siraliIlanlar.forEach(ilan => ilanListesi.appendChild(ilan));
+            }
+
+            durumFiltre.addEventListener("change", filtreleVeSirala);
+            tarihSiralama.addEventListener("change", filtreleVeSirala);
+            fiyatSiralama.addEventListener("change", filtreleVeSirala);
+
+            filtreleVeSirala();
+        });
+    </script>
 }
-
-

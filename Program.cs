@@ -16,9 +16,11 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.IdleTimeout = TimeSpan.FromDays(365); // **1 yıl boyunca oturumu açık tut**
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
+    options.Cookie.Name = ".Pakasis.Session"; // **Özel oturum cookie ismi**
+    options.Cookie.SameSite = SameSiteMode.Strict; // **Güvenlik için stric olarak ayarla**
 });
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -26,7 +28,11 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     {
         options.LoginPath = "/Account/Login";
         options.AccessDeniedPath = "/Account/AccessDenied";
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+        options.ExpireTimeSpan = TimeSpan.FromDays(365);  // **1 yıl boyunca oturumu açık tut**
+        options.SlidingExpiration = true; // **Kullanıcı her işlem yaptığında süresi yenilensin**
+        options.Cookie.HttpOnly = true;
+        options.Cookie.Name = ".Pakasis.Auth"; // **Özel Authentication Cookie ismi**
+        options.Cookie.SameSite = SameSiteMode.Strict;
     });
 
 builder.Services.AddAuthorization(options =>
@@ -38,7 +44,6 @@ builder.Services.AddAuthorization(options =>
 // ✅ **Servisleri Ekleyin**
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ArabaBilgileriServices>();
-
 var app = builder.Build();
 
 // ✅ **Hata Yönetimi**
@@ -50,12 +55,14 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// ✅ **Middleware Sıralaması (Doğru Kullanım)**
+// ✅ **Middleware Sıralaması**
 app.UseStaticFiles();
 app.UseRouting();
+
+// ✅ **Session ve Yetkilendirme Middleware'leri**
+app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseSession();
 
 // ✅ **Resim Yükleme Boyutunu Arttır**
 app.Use(async (context, next) =>
@@ -85,13 +92,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{page?}/{pageSize?}");
 
-Console.WriteLine("✅ Uygulama başlatılıyor...");
-
-try
-{
-    app.Run();
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"🚨 Uygulama başlatılırken hata oluştu: {ex.Message}");
-}
+app.Run();

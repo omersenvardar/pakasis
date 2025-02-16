@@ -15,10 +15,26 @@ namespace DBGoreWebApp.Controllers
     public class EmlakBahceController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _hostingEnvironment;
 
-        public EmlakBahceController(ApplicationDbContext context)
+        public EmlakBahceController(ApplicationDbContext context, IWebHostEnvironment hostingEnvironment)
         {
             _context = context;
+            _hostingEnvironment = hostingEnvironment;
+        }
+        private void LogHata(Exception ex)
+        {
+            string logPath = Path.Combine(_hostingEnvironment.WebRootPath, "logs", "error_log.txt");
+
+            // Eğer logs klasörü yoksa oluştur
+            if (!Directory.Exists(Path.GetDirectoryName(logPath)))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(logPath));
+            }
+
+            // Hata mesajını dosyaya ekle
+            System.IO.File.AppendAllText(logPath,
+                $"{DateTime.Now}: Hata oluştu - {ex.Message}\nStackTrace: {ex.StackTrace}\n\n");
         }
         public async Task<IActionResult> GetCitiesWithCount()
         {
@@ -187,7 +203,7 @@ namespace DBGoreWebApp.Controllers
                     if (resim.Length > 0)
                     {
                         var dosyaAdi = $"{Guid.NewGuid()}{Path.GetExtension(resim.FileName)}";
-                        var dosyaYolu = Path.Combine("wwwroot/emlakresimler", dosyaAdi);
+                        var dosyaYolu = Path.Combine("./wwwroot/emlakresimler", dosyaAdi);
 
                         using (var stream = new FileStream(dosyaYolu, FileMode.Create))
                         {

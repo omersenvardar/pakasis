@@ -86,14 +86,15 @@
             foreach (var emlak in Model)
             {
                 <div class="@ViewBag.emlaklarKolonSayisi mb-4 d-flex ju stify-content-center">
+                    
                     <div class="card shadow-sm">
                         <!-- Resim URL'sini ViewBag üzerinden al -->
-                        <a href="/EmlakBahce/Detail/@emlak.Id">
+                        <a asp-controller="EmlakBahce" asp-action="Detail" asp-route-id="@emlak.Id">
                             <img src="@ViewBag.ResimUrls[emlak.Id]" class="card-img-top" alt="@emlak.IlanAdi">
                         </a>
                         <div class="card-body">
                             <h5 class="card-title text-center">
-                                <a href="/EmlakBahce/Detail/@emlak.Id" class="text-decoration-none text-dark">
+                                <a asp-controller="EmlakBahce" asp-action="Detail" asp-route-id="@emlak.Id" class="text-decoration-none text-dark">
                                     @emlak.IlanAdi
                                 </a>
                             </h5>
@@ -103,12 +104,13 @@
                             </p>
                             @if(emlak.Taksitlimi == "E")
                             {
-                            <p class="card-taksit">Aylık @emlak.TaksitBedeli ₺ taksit bedeli ile @emlak.TaksitSayisi ay taksite sahip olabilirsiniz. </p>
+                           // <p class="card-taksit">Aylık @emlak.TaksitBedeli ₺ taksit bedeli ile @emlak.TaksitSayisi ay taksite sahip olabilirsiniz. </p>
                             }
                             else
                             {
                             <p>@emlak.YuzOlcum m2</p>
                             }
+                            
                                 
                             <p class="card-price">
                                 <strong>Fiyat:</strong> @emlak.FiyatSatis?.ToString("C0")
