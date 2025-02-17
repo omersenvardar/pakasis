@@ -16,11 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             ilan.style.display = (!seciliDurum || ilanDurumu === seciliDurum) ? "flex" : "none";
         });
 
-        let siraliIlanlar = ilanlar.sort((a, b) => {
-            let fiyatA = parseFloat(a.getAttribute("data-fiyat")) || 0;
-            let fiyatB = parseFloat(b.getAttribute("data-fiyat")) || 0;
-            return siralamaFiyat === "asc" ? fiyatA - fiyatB : fiyatB - fiyatA;
-        });
+        let siraliIlanlar = ilanlar.sort((a, b) => parseFloat(b.getAttribute("data-fiyat")) - parseFloat(a.getAttribute("data-fiyat")));
 
         ilanListesi.innerHTML = "";
         siraliIlanlar.forEach(ilan => ilanListesi.appendChild(ilan));

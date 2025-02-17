@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DBGoreWebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fb08c06208a47c2b1702022cc14c57701f3c6a21")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1166936a886413ad06ad15d3be34fe47606b86da")]
 [assembly: System.Reflection.AssemblyProductAttribute("DBGoreWebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DBGoreWebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

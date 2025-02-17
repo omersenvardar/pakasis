@@ -44,6 +44,7 @@ builder.Services.AddAuthorization(options =>
 // ✅ **Servisleri Ekleyin**
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ArabaBilgileriServices>();
+
 var app = builder.Build();
 
 // ✅ **Hata Yönetimi**
@@ -64,7 +65,7 @@ app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 
-// ✅ **Resim Yükleme Boyutunu Arttır**
+// ✅ **Resim Yükleme Boyutunu Arttır (50MB)**
 app.Use(async (context, next) =>
 {
     var maxRequestSizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
@@ -73,6 +74,30 @@ app.Use(async (context, next) =>
         maxRequestSizeFeature.MaxRequestBodySize = 52428800; // 50 MB
     }
     await next.Invoke();
+});
+
+// ✅ **Kullanıcı Oturumunu Cookie'den Yükleme (Session Süresi Dolduğunda)**
+app.Use(async (context, next) =>
+{
+    if (string.IsNullOrEmpty(context.Session.GetString("KullaniciId")))
+    {
+        var userId = context.Request.Cookies["UserId"];
+        if (!string.IsNullOrEmpty(userId))
+        {
+            var user = await context.RequestServices.GetRequiredService<ApplicationDbContext>()
+                .Kullanicilar.FirstOrDefaultAsync(u => u.Id.ToString() == userId);
+
+            if (user != null)
+            {
+                context.Session.SetString("KullaniciId", user.Id.ToString());
+                context.Session.SetString("KullaniciAd", user.Ad);
+                context.Session.SetString("KullaniciYetki", user.Rol);
+                context.Session.SetString("KullaniciProfilResmi", user.ImgUrl ?? "/img/default-user.jpg");
+            }
+        }
+    }
+
+    await next();
 });
 
 // ✅ **Veritabanından Kategorileri Al ve Cache'e Ekle**
