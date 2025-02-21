@@ -131,7 +131,7 @@ namespace DBGoreWebApp.Controllers
                 return RedirectToAction("AccessDenied", "Account");
             }
 
-
+Console.WriteLine("Model: " + model.IlanAciklamasi);
             // Session'dan KullaniciId'yi al 
             string kullaniciIdStr = HttpContext.Session.GetString("KullaniciId");
             if (!string.IsNullOrEmpty(kullaniciIdStr) && int.TryParse(kullaniciIdStr, out int kullaniciIdInt))
@@ -163,6 +163,7 @@ namespace DBGoreWebApp.Controllers
                 model.Adresler = _context.Adresler.ToList();
                 return View(model);
             }
+            ViewBag.AdresKonumu = model?.AdresKonumu ?? 0;
 
             var yeniIlanNo = (_context.EmlakBahceler.Max(e => (int?)e.IlanNo) ?? 100) + 1;
 

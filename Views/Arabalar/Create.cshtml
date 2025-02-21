@@ -1,36 +1,79 @@
 @model DBGoreWebApp.Models.ViewModels.ArabaViewModel
 <style>
-    .resim-card {
-        width: 100px;
-        height: 100px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        overflow: hidden;
-        position: relative;
-    }
+    /*resim seçme stilleri*/
+    #resimPreview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
 
-    .resim-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.resim-card {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-    .resim-card .close-btn {
-        position: absolute;
-        top: 5px;
-        right: 5px;
-        background: red;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-    }
+.resim-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.resim-card .close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.resim-card .select-main {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #00aeff;
+    color: white;
+    font-size: 14px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.resim-card:hover .select-main {
+    visibility: visible;
+}
+
+.ana-resim {
+    border: 2px solid #00aeff;
+}
+
+.ana-resim .select-main {
+    background: #86d9ff;
+    visibility: visible;
+}
+
 </style>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
 <div class="container" style="max-width: 900px;">

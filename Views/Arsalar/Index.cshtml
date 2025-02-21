@@ -1,0 +1,35 @@
+@model List<DBGoreWebApp.Models.Entities.Adres>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Adresler</title>
+</head>
+<body>
+    <h1>Adresler</h1>
+    <p>@Model.Count()</p>
+    <form asp-controller="Arsalar" asp-action="GetIlce" method="post">
+        <label for="iller">İller:</label>
+        <select id="iller" name="Il" onchange="this.form.submit()">
+            <option value="">İl Seçiniz</option>
+            @foreach(var il in Model)
+            {
+                <option value="@il.Id">@il.Il</option>
+            }
+            @* @foreach (var il in Model)
+            {
+                <option value="@il.Id" @(il.Id == Model.SelectedIl ? "selected" : "")>@il.Ad</option>
+            } *@
+        </select>
+        <br>
+        <label for="ilceler">İlçeler:</label>
+        <select id="ilceler" name="SelectedIlce">
+            <option value="">İlçe Seçiniz</option>
+            @* @foreach (var ilce in Model.Ilceler)
+            {
+                <option value="@ilce.Id">@ilce.Ad</option>
+            } *@
+        </select>
+    </form>
+</body>
+</html>

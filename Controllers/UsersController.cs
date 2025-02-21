@@ -53,9 +53,10 @@ namespace DBGoreWebApp.Controllers
         [RoleAuthorize("admin", "üye")]
         public IActionResult Index()
         {
-            var users = _context.Kullanicilar.ToList();
-            return View(users);
+           // var users = _context.Kullanicilar.ToList();
+            return View();
         }
+
 
         // Kullanıcı Detayı
         [RoleAuthorize("admin", "üye")]
@@ -185,7 +186,7 @@ namespace DBGoreWebApp.Controllers
             }
             var adres = GetAdresGruplari();
             var emlakIlanlari = _context.EmlakBahceler
-               .Where(e => e.KullaniciId == kullaniciId && (e.Durum == 'a' || e.Durum == 'v') )
+               .Where(e => e.KullaniciId == kullaniciId && (e.Durum == 'a' || e.Durum == 'v'))
                .OrderByDescending(e => e.CreatedDate)
                .ToList(); // Tüm ilanları liste olarak getir
 
@@ -292,23 +293,23 @@ namespace DBGoreWebApp.Controllers
 
             // ✅ Marka, Model, Yıl ve Resimleri Getir
             var ilanlar = await (from i in _context.Arabalar
-                     join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
-                     join model in _context.AracModelListesis on i.ModelID equals model.ModelID
-                     join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
-                     where i.KullaniciId == kullaniciId && (i.Durum == 'a' || i.Durum == 'v')
-                     orderby i.CreatedDate descending // En son eklenen ilanları en üste almak için
-                     select new IlanArabaViewModel
-                     {
-                         Id = i.Id,
-                         VersiyonAdi = i.VersiyonAdi,
-                         Marka = marka.Marka,
-                         Model = model.Model,
-                         Yil = int.Parse(yil.Yil.ToString()),
-                         Fiyat = i.Fiyat,
-                         Durum = i.Durum,
-                         CreatedDate = i.CreatedDate, // İlanın eklenme tarihini ekledik
-                         ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
-                     }).ToListAsync();
+                                 join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
+                                 join model in _context.AracModelListesis on i.ModelID equals model.ModelID
+                                 join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
+                                 where i.KullaniciId == kullaniciId && (i.Durum == 'a' || i.Durum == 'v')
+                                 orderby i.CreatedDate descending // En son eklenen ilanları en üste almak için
+                                 select new IlanArabaViewModel
+                                 {
+                                     Id = i.Id,
+                                     VersiyonAdi = i.VersiyonAdi,
+                                     Marka = marka.Marka,
+                                     Model = model.Model,
+                                     Yil = int.Parse(yil.Yil.ToString()),
+                                     Fiyat = i.Fiyat,
+                                     Durum = i.Durum,
+                                     CreatedDate = i.CreatedDate, // İlanın eklenme tarihini ekledik
+                                     ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
+                                 }).ToListAsync();
 
 
             // ✅ İlk Resmi Getir
@@ -326,7 +327,7 @@ namespace DBGoreWebApp.Controllers
 
         public async Task<IActionResult> ArabaIlanlarimOnaysiz()
         {
-             // ✅ Kullanıcı Yetkisini Kontrol Et
+            // ✅ Kullanıcı Yetkisini Kontrol Et
             if (HttpContext.Session.GetString("KullaniciYetki") != "admin" && HttpContext.Session.GetString("KullaniciYetki") != "üye")
             {
                 return RedirectToAction("AccessDenied", "Account");
@@ -339,7 +340,7 @@ namespace DBGoreWebApp.Controllers
                 return BadRequest("Geçersiz Kullanıcı ID!");
             }
 
-             // ✅ Marka, Model, Yıl ve Resimleri Getir
+            // ✅ Marka, Model, Yıl ve Resimleri Getir
             var ilanlar = await (from i in _context.Arabalar
                                  join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
                                  join model in _context.AracModelListesis on i.ModelID equals model.ModelID
@@ -463,7 +464,7 @@ namespace DBGoreWebApp.Controllers
             // 4.2. Yeni Resimleri Yükleme
             // Yeni eklenen resimleri belirtilen dizine kaydediyoruz.
             await fileService.YukleYeniResimlerAsync<ArsaResim>(yeniResimler, ilan.IlanNo.Value, "wwwroot/emlakresimler");
-
+            ilan.Durum = 'p';
             // **5. Değişiklikleri Kaydetme**
             try
             {

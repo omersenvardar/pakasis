@@ -1,5 +1,5 @@
 using System;
-using System.IO; 
+using System.IO;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -76,7 +76,7 @@ namespace DBGoreWebApp.Controllers
                 // **SESSION KAYIT**
                 HttpContext.Session.SetString("KullaniciAd", user.Ad);
                 HttpContext.Session.SetString("KullaniciId", user.Id.ToString());
-                HttpContext.Session.SetString("KullaniciYetki", user.Rol ?? "üye"); 
+                HttpContext.Session.SetString("KullaniciYetki", user.Rol ?? "üye");
                 HttpContext.Session.SetString("KullaniciProfilResmi", user.ImgUrl ?? "/img/default-user.jpg");
 
                 // **COOKIE KAYIT (Eğer 'Beni Hatırla' Seçildi ise)**
@@ -84,16 +84,18 @@ namespace DBGoreWebApp.Controllers
                 {
                     CookieOptions cookieOptions = new CookieOptions
                     {
-                        Expires = DateTime.Now.AddDays(30), 
+                        Expires = DateTime.Now.AddDays(30),
                         HttpOnly = true,
-                        Secure = true, 
+                        Secure = true,
                         SameSite = SameSiteMode.Strict
                     };
-
-                    Response.Cookies.Append("UserId", user.Id.ToString(), cookieOptions);
-                    Response.Cookies.Append("UserRole", user.Rol, cookieOptions);
-                    Response.Cookies.Append("UserName", user.Ad, cookieOptions);
-                    Response.Cookies.Append("UserProfilePic", user.ImgUrl ?? "/img/default-user.jpg", cookieOptions);
+                    if (!string.IsNullOrEmpty(user.Id.ToString()) || !string.IsNullOrEmpty(user.Rol) || !string.IsNullOrEmpty(user.Ad) || !string.IsNullOrEmpty(user.ImgUrl))
+                    {
+                        Response.Cookies.Append("UserId", user.Id.ToString(), cookieOptions);
+                        Response.Cookies.Append("UserRole", user.Rol, cookieOptions);
+                        Response.Cookies.Append("UserName", user.Ad, cookieOptions);
+                        Response.Cookies.Append("UserProfilePic", user.ImgUrl ?? "/img/default-user.jpg", cookieOptions);
+                    }
                 }
 
                 TempData["LoginMessage"] = "Giriş başarılı.";
@@ -180,6 +182,164 @@ namespace DBGoreWebApp.Controllers
         public IActionResult RegisterSuccess()
         {
             return View();
+        }
+
+        [HttpGet("Kullanici/Profil/EditProfilResimi/{id}")]
+        public IActionResult EditProfilResimi(int id)
+        {
+            var user = _context.Kullanicilar.Find(id);
+            if (user == null) return NotFound();
+
+            return PartialView("Kullanici/Profil/_EditProfilResimiPartial", user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateProfilResimi(int id, IFormFile ImgUrl)
+
+        {
+            Console.WriteLine("Profil resmi güncelleme işlemi başlatıldı.");
+            Console.WriteLine($"Gelen Kullanıcı ID: {id}");
+
+            // Kullanıcıyı veritabanında bul
+            var user = _context.Kullanicilar.Find(id);
+            if (user == null)
+            {
+                Console.WriteLine("Kullanıcı bulunamadı.");
+                return NotFound();
+            }
+
+            Console.WriteLine($"Kullanıcı bulundu: {user.Ad} {user.Soyad}");
+
+            // Resim kontrolü
+            if (ImgUrl != null && ImgUrl.Length > 0)
+            {
+                Console.WriteLine("Resim yüklendi. İşleme başlandı.");
+
+                try
+                {
+                    // Dosya adı ve yolu oluşturuluyor
+                    var uniqueFileName = Guid.NewGuid() + Path.GetExtension(ImgUrl.FileName);
+                    Console.WriteLine($"Oluşturulan benzersiz dosya adı: {uniqueFileName}");
+
+                    var uploadPath = Path.Combine(_hostingEnvironment.WebRootPath, "uploads", uniqueFileName);
+                    Console.WriteLine($"Yükleme yolu: {uploadPath}");
+
+                    // Resim dosyasını kaydet
+                    using (var stream = new FileStream(uploadPath, FileMode.Create))
+                    {
+                        ImgUrl.CopyTo(stream);
+                        Console.WriteLine("Resim başarıyla kaydedildi.");
+                    }
+
+                    // Kullanıcıya yeni resim yolunu kaydet
+                    user.ImgUrl = "/uploads/" + uniqueFileName;
+                    Console.WriteLine($"Kullanıcı için resim yolu güncellendi: {user.ImgUrl}");
+
+                    // Değişiklikleri kaydet
+                    _context.SaveChanges();
+                    Console.WriteLine("Veritabanına değişiklikler kaydedildi.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Resim yükleme sırasında bir hata oluştu: {ex.Message}");
+                    TempData["ErrorMessage"] = "Profil resmi güncellenirken bir hata oluştu. Lütfen tekrar deneyin.";
+                    return RedirectToAction("Edit", new { id = user.Id });
+                }
+            }
+            else
+            {
+                Console.WriteLine("Resim yüklenmedi. İşlem iptal edildi.");
+            }
+
+            TempData["SuccessMessage"] = "Profil resmi başarıyla güncellendi.";
+            Console.WriteLine("Profil resmi güncelleme işlemi başarıyla tamamlandı.");
+            return RedirectToAction("Detail", "Users", new { Id = id });
+        }
+
+
+        [HttpGet("Kullanici/Profil/EditKullanici/{id}")]
+        public IActionResult EditKullanici(int id)
+        {
+            var user = _context.Kullanicilar.Find(id);
+            if (user == null) return NotFound();
+
+            return PartialView("Kullanici/Profil/_EditKullaniciPartial", user);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateKullanici(Kullanici model)
+        {
+            var user = _context.Kullanicilar.Find(model.Id);
+            if (user == null) return NotFound();
+
+            // Kullanıcı bilgilerini güncelle
+            user.Ad = model.Ad;
+            user.Soyad = model.Soyad;
+            user.Telefon = model.Telefon;
+            user.Email = model.Email;
+
+            // Veritabanına değişiklikleri kaydet
+            _context.SaveChanges();
+
+            // TempData ile başarı mesajını ilet
+            TempData["SuccessMessage"] = "Kullanıcı bilgileri başarıyla güncellendi.";
+
+            // Users/Detail/{id} adresine yönlendir
+            return RedirectToAction("Detail", "Users", new { id = model.Id });
+        }
+
+        // Şifre Güncelleme Sayfası - GET
+        [HttpGet("Kullanici/Profil/EditPassword/{id}")]
+        public IActionResult EditPassword(int id)
+        {
+            var user = _context.Kullanicilar.Find(id);
+            if (user == null)
+                return NotFound();
+
+            var model = new PasswordChangeViewModel
+            {
+                Id = user.Id
+            };
+
+            return PartialView("Kullanici/Profil/_EditPassPartial", model);
+        }
+
+
+        // Şifre Güncelleme İşlemi
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdatePassword(PasswordChangeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _context.Kullanicilar.Find(model.Id);
+                if (user == null) return NotFound();
+
+                // Mevcut şifre kontrolü
+                if (!BCrypt.Net.BCrypt.Verify(model.CurrentPassword, user.SifreHash))
+                {
+                    ModelState.AddModelError(string.Empty, "Mevcut şifre yanlış.");
+                    return PartialView("Kullanici/Profil/_EditPassPartial", model);
+                }
+
+                // Yeni şifre ve onay eşleşmiyor
+                if (model.NewPassword != model.ConfirmNewPassword)
+                {
+                    ModelState.AddModelError(string.Empty, "Yeni şifreler eşleşmiyor.");
+                    return PartialView("Kullanici/Profil/_EditPassPartial", model);
+                }
+
+                // Yeni şifreyi hashleyerek kaydet
+                user.SifreHash = BCrypt.Net.BCrypt.HashPassword(model.NewPassword);
+                _context.SaveChanges();
+
+                TempData["SuccessMessage"] = "Şifreniz başarıyla güncellendi.";
+                return RedirectToAction("Edit", new { id = model.Id });
+            }
+
+            return PartialView("Kullanici/Profil/_EditPassPartial", model);
         }
     }
 }

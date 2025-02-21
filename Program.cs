@@ -89,10 +89,13 @@ app.Use(async (context, next) =>
 
             if (user != null)
             {
-                context.Session.SetString("KullaniciId", user.Id.ToString());
-                context.Session.SetString("KullaniciAd", user.Ad);
-                context.Session.SetString("KullaniciYetki", user.Rol);
-                context.Session.SetString("KullaniciProfilResmi", user.ImgUrl ?? "/img/default-user.jpg");
+                if (!string.IsNullOrEmpty("KullaniciId") || !string.IsNullOrEmpty("KullaniciAd") || !string.IsNullOrEmpty("KullaniciYetki") || !string.IsNullOrEmpty("KullaniciProfilResmi"))
+                {
+                    context.Session.SetString("KullaniciId", user.Id.ToString());
+                    context.Session.SetString("KullaniciAd", user.Ad);
+                    context.Session.SetString("KullaniciYetki", user.Rol);
+                    context.Session.SetString("KullaniciProfilResmi", user.ImgUrl ?? "/img/default-user.jpg");
+                }
             }
         }
     }

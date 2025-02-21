@@ -275,10 +275,11 @@ public class HomeController : Controller
 
 
   [HttpGet]
-  public IActionResult NotFound()
-  {
-    return View();
-  }
+  public new IActionResult NotFound()
+{
+    return View("NotFoundView");
+}
+
 
   [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
   public IActionResult Error()

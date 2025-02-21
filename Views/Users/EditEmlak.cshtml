@@ -44,7 +44,7 @@
 .küçük-resim-container img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     cursor: pointer;
 }
 
@@ -165,12 +165,12 @@
             @if (Model.ArsaResimleri != null && Model.ArsaResimleri.Any())
             {
                 <img src="@Model.ArsaResimleri.FirstOrDefault()?.ResimArsaUrl" id="ana-resim" class="img-fluid border"
-                    style="width: 100%; height: 100%; object-fit: cover;" alt="Ana Resim">
+                    style="width: 100%; height: 100%; object-fit: contain;" alt="Ana Resim">
             }
             else
             {
                 <img src="/img/default-emlak.jpg" class="img-fluid border"
-                    style="width: 100%; height: 100%; object-fit: cover;" alt="Varsayılan Resim">
+                    style="width: 100%; height: 100%; object-fit: contain;" alt="Varsayılan Resim">
             }
         </div>
         <!-- Küçük Resimler -->
@@ -199,9 +199,10 @@
     <h2 class="fw-bold text-primary border-bottom pb-2">@Model.IlanAdi</h2>
     
     <div class="mt-3 px-2 py-3 bg-light rounded shadow-sm">
-        <p class="text-muted" style="font-size: 1.1rem; line-height: 1.6;">
-            @Html.Raw(Model.IlanAciklamasi)
-        </p>
+        <div class="text-muted" style="font-size: 1.1rem; line-height: 1.6; min-height: 200px;">
+            @Model?.IlanAciklamasi
+        </div>
+
     </div>
 </div>
 
@@ -309,7 +310,7 @@
                             <div class="col-md-3">
                                 <label for="Turu" class="form-label">Niteliği</label>
                                 <select id="Turu" class="form-select" name="Turu">
-                                    <option value="@Model.Turu" disabled>@Model.Turu</option>
+                                    <option value="@Model.Turu" disabled selected>@Model.Turu</option>
                                     <option value="Arsa">Arsa</option>
                                     <option value="Tarla">Tarla</option>
                                     <option value="Hobi Bahçesi">Hobi Bahçesi</option>
@@ -412,11 +413,9 @@
                                 <input type="text" class="form-control" value="@Model.IlanAdi" id="IlanAdi"
                                     name="IlanAdi"  maxlength="100" placeholder="Örn: Satılık Hobi Bahçesi" required>
                             </div>
-                            <div class="col-md-12">
-                                <label for="IlanAciklamasi" class="form-label">İlan Açıklaması</label>
-                                <textarea class="form-control" id="IlanAciklamasi"
-                                          name="IlanAciklamasi" rows="3" placeholder="İlan hakkında detaylı bilgi..." required>@Html.Raw(Model.IlanAciklamasi)</textarea>
-                            </div>
+                            <textarea class="form-control" id="editor" name="IlanAciklamasi" rows="6"
+                            placeholder="İlan hakkında detaylı bilgi..." required>@Html.Raw(Model?.IlanAciklamasi ?? "")</textarea>
+
 
                         </div>
                         <div class="form-group mt-3">
@@ -642,4 +641,50 @@ function removeExistingImage(id) {
     });
     </script>
     <!-- Detay sayfasının düzeni -->
-    
+
+    <!-- TextArea alanının enteri algılaması -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const editorTextarea = document.getElementById("editor");
+
+        editorTextarea.addEventListener("keydown", function (event) {
+            // TAB tuşuna basıldığında boşluk ekleme
+            if (event.key === "Tab") {
+                event.preventDefault(); // Varsayılan tab davranışını engelle
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+
+                // 4 boşluk ekleyelim (tab gibi)
+                const tabSpaces = "\t";  // Tab karakteri ekleniyor
+                this.value = this.value.substring(0, start) + tabSpaces + this.value.substring(end);
+
+                // İmleci doğru yere koy
+                this.selectionStart = this.selectionEnd = start + tabSpaces.length;
+            }
+
+            // ENTER tuşuna basıldığında alt satıra geçme
+            if (event.key === "Enter") {
+                event.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+
+                // Yeni satır ekleme
+                const newLine = "\n";  // Yeni satır karakteri ekleniyor
+                this.value = this.value.substring(0, start) + newLine + this.value.substring(end);
+
+                // İmleci yeni satırın sonuna koy
+                this.selectionStart = this.selectionEnd = start + newLine.length;
+            }
+        });
+
+        // **Form Gönderilirken `\n` ve `\t` karakterleri olduğu gibi gönderilsin**
+        const form = document.querySelector("form");
+        form.addEventListener("submit", function () {
+            const editorContent = document.getElementById("editor").value;
+
+            console.log("Veritabanına kaydedilecek içerik:", editorContent); // Konsolda kontrol etmek için
+            document.getElementById("editor").value = editorContent;
+        });
+    });
+
+</script>

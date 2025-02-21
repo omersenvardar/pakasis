@@ -73,7 +73,7 @@ namespace DBGoreWebApp.Controllers
 
             // Tüm özellikleri alma
             var allProperties = _arabaBilgileriServices.GetAllProperties(serializedData);
-            
+
 
         }
 
@@ -91,7 +91,7 @@ namespace DBGoreWebApp.Controllers
             ViewBag.OnayEmlak = _context.EmlakBahceler.Count(e => e.Durum == 'k');
 
             // Araç İlanları İstatistikleri
-            ViewBag.Arabalar = _context.Arabalar.Count(); 
+            ViewBag.Arabalar = _context.Arabalar.Count();
             ViewBag.Emlaklar = _context.EmlakBahceler.Count();
             ViewBag.Kullaicilar = _context.Kullanicilar.Count();
 
@@ -140,9 +140,12 @@ namespace DBGoreWebApp.Controllers
             // Resimleri manuel olarak eşleştiriyoruz
             foreach (var ilan in emlakIlanlari)
             {
-                ilan.ArsaResimleri = await _context.ArsaResimleri
-                    .Where(r => r.ArsaId == ilan.IlanNo && r.IsDeleted == 0)
-                    .ToListAsync();
+                if (ilan != null)
+                {
+                    ilan.ArsaResimleri = await _context.ArsaResimleri
+                        .Where(r => r.ArsaId == ilan.IlanNo && r.IsDeleted == 0)
+                        .ToListAsync();
+                }
 
             }
             return PartialView("Admin/_EmlakIlanlariPartial", emlakIlanlari);
@@ -168,22 +171,22 @@ namespace DBGoreWebApp.Controllers
 
             // ✅ Marka, Model, Yıl ve Resimleri Getir
             var ilanlar = await (from i in _context.Arabalar
-                     join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
-                     join model in _context.AracModelListesis on i.ModelID equals model.ModelID
-                     join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
-                     orderby i.CreatedDate descending // En son eklenen ilanları en üste almak için
-                     select new IlanArabaViewModel
-                     {
-                         Id = i.Id,
-                         VersiyonAdi = i.VersiyonAdi,
-                         Marka = marka.Marka,
-                         Model = model.Model,
-                         Yil = int.Parse(yil.Yil.ToString()),
-                         Fiyat = i.Fiyat,
-                         Durum = i.Durum,
-                         CreatedDate = i.CreatedDate, // İlanın eklenme tarihini ekledik
-                         ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
-                     }).ToListAsync();
+                                 join marka in _context.AracMarkalaris on i.MarkaID equals marka.MarkaID
+                                 join model in _context.AracModelListesis on i.ModelID equals model.ModelID
+                                 join yil in _context.AracModelYillaris on i.YilID equals yil.YilID
+                                 orderby i.CreatedDate descending // En son eklenen ilanları en üste almak için
+                                 select new IlanArabaViewModel
+                                 {
+                                     Id = i.Id,
+                                     VersiyonAdi = i.VersiyonAdi,
+                                     Marka = marka.Marka,
+                                     Model = model.Model,
+                                     Yil = int.Parse(yil.Yil.ToString()),
+                                     Fiyat = i.Fiyat,
+                                     Durum = i.Durum,
+                                     CreatedDate = i.CreatedDate, // İlanın eklenme tarihini ekledik
+                                     ResimUrl = i.ArabaResimleri.FirstOrDefault().ResimArabaUrl ?? "/img/default-car.jpg"
+                                 }).ToListAsync();
 
 
             // ✅ İlk Resmi Getir
@@ -674,7 +677,7 @@ namespace DBGoreWebApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["UpdateArabaDetayMessage"] = "Araç ilanı güncellenirken bir hata oluştu."+ex.Message;
+                TempData["UpdateArabaDetayMessage"] = "Araç ilanı güncellenirken bir hata oluştu." + ex.Message;
             }
 
             return RedirectToAction("ArabaDetay", new { id = araba.Id });
@@ -711,7 +714,7 @@ namespace DBGoreWebApp.Controllers
             {
                 return RedirectToAction("AccessDenied", "Account");
             }
-            
+
             // Kullanıcıyı veritabanında bul
             var kullanici = _context.Kullanicilar.FirstOrDefault(k => k.Id == Id);
 

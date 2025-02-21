@@ -1,0 +1,43 @@
+@model DBGoreWebApp.Models.ViewModels.EmlakIlanverViewModel
+
+<div class="adres-container">
+    <label for="Adres" class="form-label">Adres Seçiniz</label>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="Il" class="form-label">İl</label>
+            <select id="Il" name="Il" class="form-select" required>
+                <option value="" disabled selected>İl Seçiniz</option>
+                @if (ViewBag.AdresGruplari != null)
+                {
+                    @foreach (var il in ViewBag.AdresGruplari.Keys)
+                    {
+                        <option value="@il">@il</option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="Ilce" class="form-label">İlçe</label>
+            <select id="Ilce" name="Ilce" class="form-select" required>
+                <option value="" disabled selected>İlçe Seçiniz</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label for="Mahalle" class="form-label">Mahalle</label>
+            <select id="Mahalle" name="MahalleKoyAdi" class="form-select" required>
+                <option value="" disabled selected>Mahalle Seçiniz</option>
+            </select>
+        </div>
+    </div>
+
+    <input type="hidden" id="adresKonumu" name="AdresKonumu" value="@Model.AdresKonumu" />
+
+    <div class="mt-2" id="girilenAdres">
+        <p id="adresKonumuGoster">Adres: </p>
+    </div>
+</div>
+
+<script>
+    window.adresGruplari = @Html.Raw(Json.Serialize(ViewBag.AdresGruplari));
+    console.log("Adres Grupları:", window.adresGruplari); // JSON verisini kontrol et
+</script>

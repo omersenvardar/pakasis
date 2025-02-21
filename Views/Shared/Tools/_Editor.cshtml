@@ -1,0 +1,41 @@
+@* <div class="custom-editor-container">
+    <!-- Araç Çubuğu -->
+    <div class="custom-toolbar">
+        <button type="button" data-cmd="bold"><b>B</b></button>
+        <button type="button" data-cmd="italic"><i>İ</i></button>
+        <button type="button" data-cmd="underline"><u>A</u></button>
+        <button type="button" data-cmd="strikeThrough"> ~T~ </button>
+
+        <select data-cmd="fontSize">
+            <option value="1">Küçük</option>
+            <option value="3" selected>Normal</option>
+            <option value="5">Büyük</option>
+            <option value="7">Çok Büyük</option>
+        </select>
+
+        <!-- Yuvarlak Renk Seçme Butonları -->
+        <button type="button" class="color-picker color-black" data-cmd="foreColor" value="black"></button>
+        <button type="button" class="color-picker color-red" data-cmd="foreColor" value="red"></button>
+        <button type="button" class="color-picker color-blue" data-cmd="foreColor" value="blue"></button>
+        <button type="button" class="color-picker color-green" data-cmd="foreColor" value="green"></button>
+        <button type="button" class="color-picker color-orange" data-cmd="foreColor" value="orange"></button>
+
+        <!-- Hizalama Butonları -->
+        <button type="button" class="align-btn" data-cmd="justifyLeft">⬅</button>
+        <button type="button" class="align-btn" data-cmd="justifyCenter">⬆⬇</button>
+        <button type="button" class="align-btn" data-cmd="justifyRight">➡</button>
+
+        <button type="button" data-cmd="undo">↩</button>
+        <button type="button" data-cmd="redo">↪</button>
+        <button type="button" data-cmd="removeFormat">🧹</button>
+    </div>
+
+    <!-- Editör Alanı -->
+    <div id="customEditor" class="custom-editor form-control" contenteditable="true">
+    </div>
+        <textarea name="IlanAciklamasi" id="customEditorContent" style="visibility:hidden; height:0;"></textarea>
+</div>
+
+@section Scripts {
+    <script src="~/js/editor.js"></script>
+} *@

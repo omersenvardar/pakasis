@@ -1,0 +1,163 @@
+/* Editör Konteyneri */
+.custom-editor-container {
+    border: 1px solid #d1d5db; /* Açık gri çerçeve */
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #ffffff; /* Beyaz arka plan */
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Toolbar Stili */
+.custom-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #eef2ff;
+    padding: 8px;
+    border-radius: 6px;
+    border-bottom: 2px solid #d1d5db;
+}
+
+/* Genel Buton Stili */
+.custom-toolbar button, .custom-toolbar select {
+    /* background-color: white; */
+    border: 1px solid #d1d5db;
+    padding: 6px 10px;
+    margin: 3px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Efekti */
+.custom-toolbar button:hover, .custom-toolbar select:hover {
+    background-color: #e0e7ff;
+}
+
+/* Aktif Buton */
+.custom-toolbar button:active {
+    background-color: #c7d2fe;
+}
+
+/* Buton Simge Boyutu */
+.custom-toolbar button i {
+    font-size: 16px;
+}
+
+/* Renk Seçici Yuvarlak İkonlar */
+.color-picker {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    margin: 3px;
+    border: 2px solid #d1d5db;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+
+/* Hover Efekti */
+.color-picker:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Aktif Seçili Renk */
+.color-picker.active {
+    border: 3px solid #2563eb;
+}
+
+
+/* Editör Alanı */
+.custom-editor-container {
+    border: 1px solid #d1d5db; /* Açık gri çerçeve */
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #f5f8fb; /* Beyaz arka plan */
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    
+}
+
+
+/* Araç Çubuğu */
+.custom-toolbar {
+    display: flex;
+    flex-wrap: nowrap; /* Tek satırda kalmasını sağlar */
+    gap: 5px;
+    align-items: center;
+    background: #f0f5ff;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+/* Buton Stilleri */
+.toolbar-button {
+    border: none;
+    background: #b9cbf2;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.toolbar-button:hover {
+    background: #1d4ed8;
+}
+.custom-editor {
+    min-height: 150px; /* Yaklaşık 6 satır */
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+/* Seçili Renkler */
+.color-picker {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid #d1d5db;
+    cursor: pointer;
+    display: inline-block;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.color-picker.active {
+    border: 3px solid #2563eb;
+}
+
+/* Renkler */
+.color-black { background-color: black; }
+.color-red { background-color: red; }
+.color-blue { background-color: blue; }
+.color-green { background-color: green; }
+.color-orange { background-color: orange; }
+
+/* Kaydet Butonu */
+.custom-editor-form button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #3b82f6;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.custom-editor-form button:hover {
+    background-color: #2563eb;
+}
+
+
+
+

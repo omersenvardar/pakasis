@@ -91,6 +91,16 @@
             background-color: #128c7e;
         }
 
+        /* Instagram rengi */
+        .instagram {
+            background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
+        }
+
+        .instagram:hover {
+            background: radial-gradient(circle at 30% 30%, #feda75, #d62976, #962fbf, #4f5bd5);
+            filter: brightness(1.2);
+        }
+
         .share {
             background-color: #007bff;
         }
@@ -230,11 +240,13 @@
                 <div class="ana-resim-container">
                     @if (Model.ArabaResimler != null && Model.ArabaResimler.Count > 0)
                     {
-                        <img src="@Model.ArabaResimler[0].ResimArabaUrl" id="ana-resim" alt="Ana Resim" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="@Model.ArabaResimler[0].ResimArabaUrl" id="ana-resim" alt="Ana Resim"
+                            style="width: 100%; height: 100%; object-fit: contain;">
                     }
                     else
                     {
-                        <img src="/img/default-car.jpg" id="ana-resim" alt="Varsayılan Resim" style="width: 100%; height: 100%; object-fit: contain;">
+                        <img src="/img/default-car.jpg" id="ana-resim" alt="Varsayılan Resim"
+                            style="width: 100%; height: 100%; object-fit: contain;">
                     }
                 </div>
 
@@ -267,6 +279,16 @@
                         <i class="fas fa-chevron-right"></i>
                     </button>
                 </div>
+                <!-- İlan Başlığı ve Açıklama -->
+                    <div class="mt-3 p-4 bg-white shadow-sm rounded-lg">
+                        <h2 class="fw-bold border-bottom pb-2">@Model.ArabaDetay?.VersiyonAdi</h2>
+
+                        <div class="mt-3 px-2 py-3 bg-lightt rounded shadow-sm">
+                            <p class="text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                                <pre>@Html.Raw(Model.ArabaDetay?.Ozellikleri)</pre>
+                            </p>
+                        </div>
+                    </div>
 
             </div>
 
@@ -305,6 +327,20 @@
                         style="width: 120px; height: 120px;">
                     <h4 class="mt-2">@Model.KullaniciDetay?.Ad</h4>
                     <p><strong>Telefon:</strong> @Model.KullaniciDetay?.Telefon</p>
+                </div>
+                <div class="button-panel">
+                    <a href="tel:@Model.KullaniciDetay?.Telefon" class="button phone" title="Telefon">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                    <a href="https://wa.me/905322173384" class="button whatsapp" id="whatsapp-share" title="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://instagram.com/azizvememokaa" class="button instagram" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="button share" title="Paylaş">
+                        <i class="fas fa-share-alt"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -347,4 +383,37 @@
                 // Sayfa yüklendiğinde butonları güncelle
                 updateButtons();
             });
+            //# whatsappdan paylaşım yapmak için icona basınca çalışıyor.
+            document.addEventListener("DOMContentLoaded", function () {
+                document.querySelectorAll(".whatsapp-share").forEach(button => {
+                    button.addEventListener("click", function () {
+                        // Tıklanan butona ait ilan bilgilerini al
+                        const ilanKart = this.closest(".ilan-kart"); // En yakın ilan kartını bul
+                        const ilanBasligi = ilanKart.querySelector(".ilan-baslik")?.textContent.trim() || "İlan Bilgisi";
+                        const ilanLinki = ilanKart.dataset.ilanUrl || window.location.href;
+
+                        // WhatsApp mesajını oluştur
+                        const mesaj = `Merhaba, "${ilanBasligi}" ilanınız ile ilgili bilgi alabilir miyim?\nİlan linki: ${ilanLinki}`;
+
+                        // WhatsApp URL'sini oluştur
+                        const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mesaj)}`;
+
+                        // Yeni sekmede WhatsApp aç
+                        window.open(whatsappUrl, "_blank");
+                    });
+                });
+            });
+
+            @* //# whatsappdan paylaşım yapmak için icona basınca çalışıyor.
+                document.getElementById("whatsapp-share").addEventListener("click", function () {
+                    const ilanBasligi = "Satılık Arsa - Muhteşem Fırsat!"; // İlan Başlığını Dinamik Getirin
+                    const ilanLinki = window.location.href; // Şu anki sayfa URL'sini alın
+                    const mesaj = `${ilanBasligi}\n${ilanLinki}`;
+
+                    // WhatsApp URL'sini oluştur
+                    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(mesaj)}`;
+
+                    // Kullanıcıyı WhatsApp'a yönlendir
+                    window.open(whatsappUrl, "_blank");
+                }); *@
         </script>

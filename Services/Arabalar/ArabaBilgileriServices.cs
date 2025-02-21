@@ -54,8 +54,7 @@ namespace DBGoreWebApp.Services.Arabalar
                     result.Add($"key_{match.Index}", null);
                 }
             }
-
-            return result;
+                return result ?? default!;
         }
 
         /// <summary>

@@ -21,6 +21,14 @@
       "PackagePath": "staticwebassets\\css\\HomeIndex.css"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\css\\chooseaddress.css",
+      "PackagePath": "staticwebassets\\css\\chooseaddress.css"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\css\\editor.css",
+      "PackagePath": "staticwebassets\\css\\editor.css"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -29,16 +37,56 @@
       "PackagePath": "staticwebassets\\emlakresimler\\023b1ec6-0b4f-46c1-bb43-e6a2726891b2.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0328aaab-445e-49d3-970d-89174e53cbbf.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\0328aaab-445e-49d3-970d-89174e53cbbf.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\03c94af5-426f-49f6-a486-3a1e903860d2.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\03c94af5-426f-49f6-a486-3a1e903860d2.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\03cdbe50-386d-434f-b918-ae8e66741afb.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\03cdbe50-386d-434f-b918-ae8e66741afb.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\06a23ae2-1306-41fd-b816-ade737aa7f04.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\06a23ae2-1306-41fd-b816-ade737aa7f04.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\06ed4e1e-9b85-443e-a6b2-c09807db36f1.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\06ed4e1e-9b85-443e-a6b2-c09807db36f1.png"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\08b235ad-f73b-4873-bf84-30e1d3f64f38.png",
       "PackagePath": "staticwebassets\\emlakresimler\\08b235ad-f73b-4873-bf84-30e1d3f64f38.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0b660456-4a3d-4ad7-bbb0-44c0574e7570.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\0b660456-4a3d-4ad7-bbb0-44c0574e7570.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0c06f85b-fbb8-45d9-8800-88a627959ea5.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\0c06f85b-fbb8-45d9-8800-88a627959ea5.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0d9165b0-85a5-488a-b909-6c6361d9268a.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\0d9165b0-85a5-488a-b909-6c6361d9268a.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\0e113cb4-44cf-48a0-81b5-2dde3167fc3b.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\0e113cb4-44cf-48a0-81b5-2dde3167fc3b.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\11ec4da0-2b8a-49bc-9832-3be7d20c1b9e.png",
       "PackagePath": "staticwebassets\\emlakresimler\\11ec4da0-2b8a-49bc-9832-3be7d20c1b9e.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\124a32d8-d6b1-431f-be6c-600d230da44f.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\124a32d8-d6b1-431f-be6c-600d230da44f.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\14252099-0961-4c49-9107-7ed921756fc0.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\14252099-0961-4c49-9107-7ed921756fc0.png"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\17e1ff88-f01a-472c-9841-2bf5b885c500.jpg",
@@ -49,6 +97,10 @@
       "PackagePath": "staticwebassets\\emlakresimler\\1c14f0cc-b21d-48b7-a675-4075c3104157.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\247c47b0-b371-4cb6-a1ee-de57e6050cf7.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\247c47b0-b371-4cb6-a1ee-de57e6050cf7.jpg"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\26d88a90-778e-4f72-9008-3f6dffa3235f.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\26d88a90-778e-4f72-9008-3f6dffa3235f.jpg"
     },
@@ -57,20 +109,52 @@
       "PackagePath": "staticwebassets\\emlakresimler\\2afaaceb-fc79-471e-a12c-cd88927db528.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\2b522092-679e-4f8e-ad76-0662b7054668.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\2b522092-679e-4f8e-ad76-0662b7054668.jpg"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\2c119aa5-fd06-44f2-b38c-2de4d7fe823f.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\2c119aa5-fd06-44f2-b38c-2de4d7fe823f.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\2e8ba035-d627-4a02-84ff-0243d7447d39.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\2e8ba035-d627-4a02-84ff-0243d7447d39.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\316119a5-93a7-4aa2-88af-44f1df109453.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\316119a5-93a7-4aa2-88af-44f1df109453.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\3640992a-ee08-4b49-a4e8-938ef2f118f9.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\3640992a-ee08-4b49-a4e8-938ef2f118f9.jpg"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\3eccd31b-5678-447b-85ac-59f44b58fae3.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\3eccd31b-5678-447b-85ac-59f44b58fae3.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\425954c2-129c-4cbc-99c3-e6bb76791378.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\425954c2-129c-4cbc-99c3-e6bb76791378.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\4307d9b6-b05c-4493-8923-c0c54e127bc9.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\4307d9b6-b05c-4493-8923-c0c54e127bc9.jpg"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\4a843e92-6700-49a9-aea9-b84366147c72.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\4a843e92-6700-49a9-aea9-b84366147c72.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\4eabebe7-8623-4177-831b-613c11da673b.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\4eabebe7-8623-4177-831b-613c11da673b.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\532bd82f-0314-4ca2-8632-52a0acd45354.png",
       "PackagePath": "staticwebassets\\emlakresimler\\532bd82f-0314-4ca2-8632-52a0acd45354.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\576da930-7e97-47cc-bb9b-a8c30bebac11.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\576da930-7e97-47cc-bb9b-a8c30bebac11.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\5b1e9de7-6f2b-4880-982c-6a3539faa6b1.jpg",
@@ -81,28 +165,104 @@
       "PackagePath": "staticwebassets\\emlakresimler\\5ca535b3-bf56-4fe3-8bbb-41a5568052b1.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\5d8b42b8-900a-4d5d-9c8b-df292c29afa9.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\5d8b42b8-900a-4d5d-9c8b-df292c29afa9.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\5e04a4c2-9f12-4184-ab43-54b977cfbea9.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\5e04a4c2-9f12-4184-ab43-54b977cfbea9.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\622d6384-7b08-4692-9416-3fce77bf421d.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\622d6384-7b08-4692-9416-3fce77bf421d.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\6c4f9ab7-2c80-4e0e-b3fb-963bbcb6bd69.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\6c4f9ab7-2c80-4e0e-b3fb-963bbcb6bd69.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\6fedc95e-e4ad-4ee7-8acb-086ed55355ec.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\6fedc95e-e4ad-4ee7-8acb-086ed55355ec.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\7603353f-2a84-41f0-b1d7-f37d42e56aa9.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\7603353f-2a84-41f0-b1d7-f37d42e56aa9.png"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\7772fa95-fa47-4d3c-b76b-19858d299214.png",
       "PackagePath": "staticwebassets\\emlakresimler\\7772fa95-fa47-4d3c-b76b-19858d299214.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\7bdf8b5e-e2b8-4882-9dad-85d28825e3ce.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\7bdf8b5e-e2b8-4882-9dad-85d28825e3ce.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\7c00ee09-ebcc-44ce-accf-1a2806fe6e28.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\7c00ee09-ebcc-44ce-accf-1a2806fe6e28.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\7c24fd08-17f3-46cc-aec0-a80c4e451c72.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\7c24fd08-17f3-46cc-aec0-a80c4e451c72.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\7cf724ca-c4c6-4fb4-9ff3-748fc7580036.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\7cf724ca-c4c6-4fb4-9ff3-748fc7580036.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\7f4493e3-3ef4-4072-bac6-94140d02870d.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\7f4493e3-3ef4-4072-bac6-94140d02870d.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\809407e1-5999-4445-8675-46a0863e6c73.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\809407e1-5999-4445-8675-46a0863e6c73.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\816c2eca-7196-4262-86e2-0b777fe0efe8.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\816c2eca-7196-4262-86e2-0b777fe0efe8.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8177fa4f-d13e-482d-9226-93aeedc5c1e6.png",
       "PackagePath": "staticwebassets\\emlakresimler\\8177fa4f-d13e-482d-9226-93aeedc5c1e6.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\85384f8d-6177-4dcf-8859-f173a4a1337d.avif",
+      "PackagePath": "staticwebassets\\emlakresimler\\85384f8d-6177-4dcf-8859-f173a4a1337d.avif"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\87053599-c18b-4623-b4c5-b87ebe834543.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\87053599-c18b-4623-b4c5-b87ebe834543.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\89ad12cf-6361-48eb-933f-3f8ca1b17ccf.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\89ad12cf-6361-48eb-933f-3f8ca1b17ccf.jpg"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8b47bb01-aed7-4cdc-bd77-9910ad1b23b0.png",
       "PackagePath": "staticwebassets\\emlakresimler\\8b47bb01-aed7-4cdc-bd77-9910ad1b23b0.png"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8d2ca9af-e815-4602-bfbd-bbce10ff687d.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\8d2ca9af-e815-4602-bfbd-bbce10ff687d.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\8eaefa42-64c7-435d-a3f9-529a584445d5.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\8eaefa42-64c7-435d-a3f9-529a584445d5.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\90c7d83d-b6d8-4a45-83c3-52faf0fd2a04.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\90c7d83d-b6d8-4a45-83c3-52faf0fd2a04.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\960d4cd0-7b49-4679-8276-f7f3f7b82271.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\960d4cd0-7b49-4679-8276-f7f3f7b82271.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\99f794ef-0de7-4cf8-ba3c-60e0fa4c897d.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\99f794ef-0de7-4cf8-ba3c-60e0fa4c897d.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\9a931097-9de0-435e-b3d4-3a36ec2265e0.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\9a931097-9de0-435e-b3d4-3a36ec2265e0.png"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\a2720c5f-f472-4369-a6a7-73138e2f0e77.jpg",
@@ -113,12 +273,60 @@
       "PackagePath": "staticwebassets\\emlakresimler\\a3118f06-e6e0-4af8-961c-f274776f8b22.jpg"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\ad1ef723-c182-4041-a5ae-dd98421fcae8.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\ad1ef723-c182-4041-a5ae-dd98421fcae8.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\adf935f0-1008-4153-aeba-bcfe1a3d16ce.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\adf935f0-1008-4153-aeba-bcfe1a3d16ce.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\ae8c8409-1966-455d-9001-998a137b7620.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\ae8c8409-1966-455d-9001-998a137b7620.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\bfa3d4c7-06e4-4b25-9e92-39b6593d4c77.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\bfa3d4c7-06e4-4b25-9e92-39b6593d4c77.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\c04c0c12-6779-4a0b-9dd6-3abe2e4bf253.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\c04c0c12-6779-4a0b-9dd6-3abe2e4bf253.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\c12c8888-dc0b-4d8e-9088-7addff8b5ca2.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\c12c8888-dc0b-4d8e-9088-7addff8b5ca2.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\c25d6503-396e-4f6a-87c7-f51d50e5ced5.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\c25d6503-396e-4f6a-87c7-f51d50e5ced5.png"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\cebfcc04-ebdb-49d9-9d1d-22e83d2e45b1.jpg",
       "PackagePath": "staticwebassets\\emlakresimler\\cebfcc04-ebdb-49d9-9d1d-22e83d2e45b1.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\d566cf60-aeeb-4b91-bf64-4040a43a33d9.png",
       "PackagePath": "staticwebassets\\emlakresimler\\d566cf60-aeeb-4b91-bf64-4040a43a33d9.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\de5df306-2784-416d-bc70-ccacce6d8036.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\de5df306-2784-416d-bc70-ccacce6d8036.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\e124af05-d627-47e0-8621-e5815f53abfc.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\e124af05-d627-47e0-8621-e5815f53abfc.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\e4a82cf1-9c7d-4e59-ac1a-140fdf8e7872.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\e4a82cf1-9c7d-4e59-ac1a-140fdf8e7872.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\e5af409b-d338-466a-952a-c65ac81bdd40.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\e5af409b-d338-466a-952a-c65ac81bdd40.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\e757957f-5a82-4c82-970c-21dd317112fb.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\e757957f-5a82-4c82-970c-21dd317112fb.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\e86e9344-6842-4b15-aa0f-8752fc70384d.png",
@@ -129,8 +337,20 @@
       "PackagePath": "staticwebassets\\emlakresimler\\eb071759-a6b1-4238-aa94-abf49794cee1.jpg"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\f599623c-9d4d-4f1c-a633-f8730394ad16.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\f599623c-9d4d-4f1c-a633-f8730394ad16.jpg"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\f63631ca-bfa2-4aa5-9b8d-0a25e318e050.png",
       "PackagePath": "staticwebassets\\emlakresimler\\f63631ca-bfa2-4aa5-9b8d-0a25e318e050.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\f9755bd7-e434-44fd-b9fe-7e93c173cdd4.png",
+      "PackagePath": "staticwebassets\\emlakresimler\\f9755bd7-e434-44fd-b9fe-7e93c173cdd4.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\fcad4064-2c3e-43f3-97c4-940587bfbcc0.jpg",
+      "PackagePath": "staticwebassets\\emlakresimler\\fcad4064-2c3e-43f3-97c4-940587bfbcc0.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\emlakresimler\\fde3a695-b10e-4e9c-8cc5-10ddd13fc8d2.png",
@@ -199,6 +419,14 @@
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\index.html",
       "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\js\\chooseaddress.js",
+      "PackagePath": "staticwebassets\\js\\chooseaddress.js"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\js\\editor.js",
+      "PackagePath": "staticwebassets\\js\\editor.js"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\js\\filter.js",
@@ -461,8 +689,16 @@
       "PackagePath": "staticwebassets\\resimaraba\\284e7ad5-f8b3-4b60-ac80-423704d4c19f.jpg"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\31425571-4d90-41df-aa92-96119e5fec65_216d10.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\31425571-4d90-41df-aa92-96119e5fec65_216d10.jpg"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\3e8b3a4d-9897-44da-9a5d-5761947bcffe_216d3.jpg",
       "PackagePath": "staticwebassets\\resimaraba\\3e8b3a4d-9897-44da-9a5d-5761947bcffe_216d3.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\3efc0e88-949f-46ec-a981-63a61662c910_216d8.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\3efc0e88-949f-46ec-a981-63a61662c910_216d8.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\49e93274-ed05-4f73-8fec-2ecfe1faca35.jpg",
@@ -479,6 +715,10 @@
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\743b8a97-2306-4a39-a7be-f25a6a9eac0b_216d5.jpg",
       "PackagePath": "staticwebassets\\resimaraba\\743b8a97-2306-4a39-a7be-f25a6a9eac0b_216d5.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\83b290b5-6702-48ea-bbae-eb02cd186cea_216d9.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\83b290b5-6702-48ea-bbae-eb02cd186cea_216d9.jpg"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\8da2316d-be34-4fe6-bd0a-f36668d9a761.jpg",
@@ -505,6 +745,10 @@
       "PackagePath": "staticwebassets\\resimaraba\\b0c3013a-fd78-4b99-9e67-d129b454d402_216d3.jpg"
     },
     {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\b4fb4fe9-bb07-4cb3-a75b-f00999003f8f.jpg",
+      "PackagePath": "staticwebassets\\resimaraba\\b4fb4fe9-bb07-4cb3-a75b-f00999003f8f.jpg"
+    },
+    {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\bf32db31-a7ef-4ee3-9003-12d1b24485bd_216d4.jpg",
       "PackagePath": "staticwebassets\\resimaraba\\bf32db31-a7ef-4ee3-9003-12d1b24485bd_216d4.jpg"
     },
@@ -523,6 +767,14 @@
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\resimaraba\\d9272f6b-8483-4a28-8416-f2d3799a4969.jpg",
       "PackagePath": "staticwebassets\\resimaraba\\d9272f6b-8483-4a28-8416-f2d3799a4969.jpg"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\101957cd-903d-47be-94fe-d6fd0d10f53b.png",
+      "PackagePath": "staticwebassets\\uploads\\101957cd-903d-47be-94fe-d6fd0d10f53b.png"
+    },
+    {
+      "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\3a9ba11a-20ac-44d8-8b75-79791f2fb7af.png",
+      "PackagePath": "staticwebassets\\uploads\\3a9ba11a-20ac-44d8-8b75-79791f2fb7af.png"
     },
     {
       "Id": "C:\\Projes\\Pakasis\\DBGoreWebApp\\wwwroot\\uploads\\4bcc836d-f761-41e7-832b-257ce5d70d1a.jpg",

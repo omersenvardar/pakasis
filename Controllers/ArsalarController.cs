@@ -1,66 +1,58 @@
-// using System;
-// using System.Collections.Generic;
-// using System.Diagnostics;
-// using System.Linq;
-// using System.Threading.Tasks;
-// using DBGoreWebApp.Data;
-// using Microsoft.EntityFrameworkCore;
-// using DBGoreWebApp.Models;
-// using DBGoreWebApp.Models.Entities;
-// using Microsoft.AspNetCore.Authorization;
-// using Microsoft.AspNetCore.Mvc;
-// using DBGoreWebApp.Models.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using DBGoreWebApp.Data;
+using Microsoft.EntityFrameworkCore;
+using DBGoreWebApp.Models;
+using DBGoreWebApp.Models.Entities;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using DBGoreWebApp.Models.ViewModels;
 
-// namespace DBGoreWebApp.Controllers
-// {
-//     // [Route("[controller]")]
-//     public class ArsalarController : Controller
-//     {
-//         private readonly ILogger<ArsalarController> _logger;
-//         private readonly ApplicationDbContext _context;
+namespace DBGoreWebApp.Controllers
+{
+    // [Route("[controller]")]
+    public class ArsalarController : Controller
+    {
+        private readonly ILogger<ArsalarController> _logger;
+        private readonly ApplicationDbContext _context;
 
-//         public ArsalarController(ApplicationDbContext context, ILogger<ArsalarController> logger)
-//         {
-//             _context = context;
-//             _logger = logger;
-//         }
+        public ArsalarController(ApplicationDbContext context, ILogger<ArsalarController> logger)
+        {
+            _context = context;
+            _logger = logger;
+        }
 
-//         [AllowAnonymous]
-//         public IActionResult Index()
-//         {
-//             return View();
-//         }
-//         public IActionResult Ilanver()
-//         {
-//             // var adresler = _context.Adresler.ToList();
+        [AllowAnonymous]
+        public IActionResult Index()
+        {
+            var adresler = _context.Adresler
+    .GroupBy(a => a.Il) // İl bazında grupla
+    .Select(g => g.FirstOrDefault())
+    .ToList();
+            // var adresler = _context.Adresler.ToList();
+            return View(adresler);
+        }
+        
+        [HttpPost]
+        public IActionResult GetIlce(Adres model)
+        {
+            var ilceler = _context.Adresler
+                .Where(a => a.Il == model.Il)
+                .GroupBy(a => a.Ilce) // İlçe bazında grupla
+                .Select(g => g.FirstOrDefault())
+                .ToList();
 
-//             // // İl, ilçe ve mahalleleri gruplandır
-//             // var groupedAdresler = adresler
-//             //     .GroupBy(a => a.Il)
-//             //     .ToDictionary(
-//             //         g => g.Key,
-//             //         g => g.GroupBy(a => a.Ilce)
-//             //               .ToDictionary(
-//             //                   ilceGroup => ilceGroup.Key,
-//             //                   ilceGroup => ilceGroup.Select(a => a.Mahalle).ToList()
-//             //               )
-//             //     );
+            return View(model);
+        }
 
-//             // var model = new IlanverViewModel
-//             // {
-//             //     Adresler = adresler,
-//             // };
 
-//             // // Gruplandırılmış adresleri JSON olarak ViewBag'e aktar
-//             // ViewBag.AdresGruplari = groupedAdresler;
-
-//             return View();
-//         }
-
-//         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-//         public IActionResult Error()
-//         {
-//             return View("Error!");
-//         }
-//     }
-// }
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View("Error!");
+        }
+    }
+}
